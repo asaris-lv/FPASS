@@ -1,0 +1,26 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="DSPrecMedType" targetNamespace="http://www.tempuri.org/DSPrecMedType.xsd" xmlns:mstns="http://www.tempuri.org/DSPrecMedType.xsd" xmlns="http://www.tempuri.org/DSPrecMedType.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="DSPrecMedType" msdata:IsDataSet="true">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="FPASS_PRECMEDTYPE">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PMTY_CHANGEUSER" type="xs:decimal" />
+              <xs:element name="PMTY_TIMESTAMP" type="xs:dateTime" />
+              <xs:element name="PMTY_ID" type="xs:decimal" />
+              <xs:element name="PMTY_MND_ID" type="xs:decimal" />
+              <xs:element name="PMTY_TYPE" type="xs:string" />
+              <xs:element name="PMTY_NOTATION" type="xs:string" />
+              <xs:element name="PMTY_HELPFILE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FPASS_PRECMEDTYPE" />
+      <xs:field xpath="mstns:PMTY_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

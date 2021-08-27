@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="DSExcoCoord" targetNamespace="http://www.tempuri.org/DSExcoCoord.xsd" xmlns:mstns="http://www.tempuri.org/DSExcoCoord.xsd"
+	xmlns="http://www.tempuri.org/DSExcoCoord.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="DSExcoCoord" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="FPASS_EXCOECOD">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ECEC_CHANGEUSER" type="xs:decimal" />
+							<xs:element name="ECEC_TIMESTAMP" type="xs:dateTime" />
+							<xs:element name="ECEC_ECOD_ID" type="xs:decimal" />
+							<xs:element name="ECEC_EXCO_ID" type="xs:decimal" />
+							<xs:element name="EXCO_NAME" type="xs:string"></xs:element>
+							<xs:element name="UM_BOTHNAMESTEL" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:FPASS_EXCOECOD" />
+			<xs:field xpath="mstns:ECEC_ECOD_ID" />
+			<xs:field xpath="mstns:ECEC_EXCO_ID" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

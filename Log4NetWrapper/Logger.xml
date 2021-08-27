@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Log4NetWrapper</name>
+    </assembly>
+    <members>
+        <member name="T:de.pta.Component.Logging.Log4NetWrapper.Logger">
+            <summary>
+            This class implements a wrapper to the Log4Net class library.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> A. Seibt, PTA GmbH
+            <b>Date:</b> Aug/19/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.Logging.Log4NetWrapper.Logger.LOG4NET_CONFIGURATION">
+            <summary>The configuration file for Log4Net.</summary>
+        </member>
+        <member name="F:de.pta.Component.Logging.Log4NetWrapper.Logger.mLog">
+            <summary>A logger for debugging purpose.</summary>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.#ctor(System.Type)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.GetApplicationPath">
+            <summary>
+            Returns the base directory for the application. Usually this is the
+            directory where the .exe file of the application is stored.
+            </summary>
+            <returns>The application base directory</returns>
+            <remarks>
+            The XML configuration file for the application is stored in a subdirectory
+            named "Configuration" below the application root directory. The root directory
+            differs if the application is started from Visual Studio .NET (it's the
+            \bin\Debug or \bin\Release directory. This method strips the "\bin..." part of
+            the application root directory so that the position of the "Configuration"
+            directory can be the same for production and development environment
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Debug(System.String)">
+            <summary>
+            Logs a message of type DEBUG.
+            </summary>
+            <param name="pMsg">The message text.</param>
+        </member>
+        <member name="P:de.pta.Component.Logging.Log4NetWrapper.Logger.IsDebugEnabled">
+            <summary>
+            Returns true if debug is enabled.
+            </summary>
+            <param name="pMsg">The message text.</param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Debug(System.String,System.Exception)">
+            <summary>
+            Logs a message of type DEBUG with an exception.
+            </summary>
+            <param name="pMsg">The message text.</param>
+            <param name="pException">The exception.</param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Info(System.String)">
+            <summary>
+            Logs a message of type INFO.
+            </summary>
+            <param name="pMsg">The message text.</param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Info(System.String,System.Exception)">
+            <summary>
+            Logs a message of type INFO with an exception.
+            </summary>
+            <param name="pMsg">The message text.</param>
+            <param name="pException">The exception.</param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Warn(System.String)">
+            <summary>
+            Logs a message of type WARN.
+            </summary>
+            <param name="pMsg">The message text.</param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Warn(System.String,System.Exception)">
+            <summary>
+            Logs a message of type WARN with an exception.
+            </summary>
+            <param name="pMsg">The message text.</param>
+            <param name="pException">The exception.</param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Error(System.String)">
+            <summary>
+            Logs a message of type ERROR.
+            </summary>
+            <param name="pMsg">The message text.</param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Error(System.String,System.Exception)">
+            <summary>
+            Logs a message of type ERROR with an exception.
+            </summary>
+            <param name="pMsg">The message text.</param>
+            <param name="pException"></param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Fatal(System.String)">
+            <summary>
+            Logs a message of type FATAL.
+            </summary>
+            <param name="pMsg">The message text.</param>
+        </member>
+        <member name="M:de.pta.Component.Logging.Log4NetWrapper.Logger.Fatal(System.String,System.Exception)">
+            <summary>
+            Logs a message of type FATAL with an exception.
+            </summary>
+            <param name="pMsg">The message text.</param>
+            <param name="pException"></param>
+        </member>
+    </members>
+</doc>

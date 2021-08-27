@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+<title>Erinnerungsmail</title>
+</head>
+<body style="font-family: 'Open Sans',sans-serif, Arial; font-size: 10pt">
+<p>
+Guten Tag Herr/Frau {COORDINATOR},
+</p>
+<p>
+der Zutritt einer oder mehrerer Ihrer Fremdfirmenmitarbeiter läuft in den nächsten {TAGE} Tagen ab. 
+<br />
+Bitte prüfen Sie folgende Personen in FPASS und verlängern Sie ihren Zutritt entsprechend:
+</p>
+<p>
+    <table style="width: 75%; font-family: 'Open Sans',sans-serif, Arial; font-size: 10pt;">
+        <thead>
+            <tr style="text-align: center;">
+                <th>Fermdfirmenmitarbeiter</th>
+                <th>Gültig bis</th>
+                <th>Fremdfirma</th>
+                <th>Koordinator des FFMA</th>
+            </tr>
+        </thead>
+        <tbody style="text-align: center;">
+            <!-- table rows set by program-->
+            {COWORKER_LIST}
+        </tbody>
+    </table>
+
+</p>
+<br/>
+<p>
+Freundliche Grüße, 
+<br/>
+Ihre FPASS-Administration
+</p>
+</body>
+</html>

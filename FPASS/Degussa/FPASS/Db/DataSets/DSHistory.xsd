@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="DSHistory" targetNamespace="http://www.tempuri.org/DSHistory.xsd" xmlns:mstns="http://www.tempuri.org/DSHistory.xsd" xmlns="http://www.tempuri.org/DSHistory.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="DSHistory" msdata:IsDataSet="true">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="FPASS_HIST">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="HIST_ID" type="xs:decimal" />
+              <xs:element name="HIST_USER_ID" type="xs:decimal" />
+              <xs:element name="HIST_CHANGEDATE" type="xs:dateTime" />
+              <xs:element name="HIST_TABLENAME" type="xs:string" />
+              <xs:element name="HIST_COLUMNNAME" type="xs:string" />
+              <xs:element name="HIST_ROWID" type="xs:decimal" />
+              <xs:element name="HIST_OLDVALUE" type="xs:string" />
+              <xs:element name="HIST_NEWVALUE" type="xs:string" />
+              <xs:element name="HIST_DESCRIPTION" type="xs:string" minOccurs="0" />
+              <xs:element name="ROWID" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

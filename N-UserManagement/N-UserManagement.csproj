@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75FD229B-7590-4706-A88F-16D97377F7B4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>N-UserManagement</AssemblyName>
+    <AssemblyOriginatorKeyFile>FPASSKey.pfx</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Name>Common</Name>
+      <Project>{852EBA43-E7E9-477E-9812-8EDE30355112}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Name>DataAccess</Name>
+      <Project>{3AA4D25C-BBA8-4421-8989-7342A96AF0B2}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\ErrorHandling\ErrorHandling.csproj">
+      <Name>ErrorHandling</Name>
+      <Project>{1BC2C67D-06A8-4AB1-A715-9E3D099647DE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\AuthorizationManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\Authorization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\AuthorizedEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\IAuthorizable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\IAuthorization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\IRole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\IUser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\IUserGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\Role.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Authorization\UserGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\AdministrationManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\AuthorizationBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\ObjectMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\RdbAuthorizationBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\RdbResourceBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\RdbRoleBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\RdbRoleToUserBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\RdbUserBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\RelationalObjectMapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\ResourceBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\RoleBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\RoleToUserBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\UserBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\XMLAuthorizationBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\XMLResourceBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\XMLRoleBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\XMLRoleToUserBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\DataAccess\XMLUserBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Exception\DataAccessException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Exception\PasswordVerificationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Exception\RdbDataAccessException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Exception\UserManagementConfigurationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Exception\UserManagementException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Exception\XmlDataAccessException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Internal\AbstractClassMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Internal\UserManagementConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Internal\XmlUserManagementConfigProcessor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Internal\XmlUserManagementProcessor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\LoginManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Resource\Batch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Resource\Control.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Resource\Dialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Resource\Function.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Resource\IResource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Resource\Report.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Resource\Resource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\UserManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Vo\AuthorizationVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Vo\ResourceVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Vo\RoleToUserVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Vo\RoleVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="de\pta\Component\N-UserManagement\Vo\UserVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FPASSKey.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

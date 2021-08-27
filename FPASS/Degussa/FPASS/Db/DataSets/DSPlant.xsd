@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSPlant" targetNamespace="http://www.tempuri.org/DSPlant.xsd" xmlns:mstns="http://www.tempuri.org/DSPlant.xsd" xmlns="http://www.tempuri.org/DSPlant.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSPlant" msdata:IsDataSet="true" msdata:Locale="en-US" msprop:Generator_DataSetName="DSPlant" msprop:Generator_UserDSName="DSPlant">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FPASS_PLANT" msprop:Generator_TableClassName="FPASS_PLANTDataTable" msprop:Generator_RowEvArgName="FPASS_PLANTRowChangeEvent" msprop:Generator_TablePropName="FPASS_PLANT" msprop:Generator_TableVarName="tableFPASS_PLANT" msprop:Generator_RowEvHandlerName="FPASS_PLANTRowChangeEventHandler" msprop:Generator_RowDeletingName="FPASS_PLANTRowDeleting" msprop:Generator_RowChangingName="FPASS_PLANTRowChanging" msprop:Generator_RowDeletedName="FPASS_PLANTRowDeleted" msprop:Generator_UserTableName="FPASS_PLANT" msprop:Generator_RowChangedName="FPASS_PLANTRowChanged" msprop:Generator_RowClassName="FPASS_PLANTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PL_CHANGEUSER" msprop:Generator_ColumnVarNameInTable="columnPL_CHANGEUSER" msprop:Generator_ColumnPropNameInRow="PL_CHANGEUSER" msprop:Generator_ColumnPropNameInTable="PL_CHANGEUSERColumn" msprop:Generator_UserColumnName="PL_CHANGEUSER" type="xs:decimal" />
+              <xs:element name="PL_TIMESTAMP" msprop:Generator_ColumnVarNameInTable="columnPL_TIMESTAMP" msprop:Generator_ColumnPropNameInRow="PL_TIMESTAMP" msprop:Generator_ColumnPropNameInTable="PL_TIMESTAMPColumn" msprop:Generator_UserColumnName="PL_TIMESTAMP" type="xs:dateTime" />
+              <xs:element name="PL_ID" msprop:Generator_ColumnVarNameInTable="columnPL_ID" msprop:Generator_ColumnPropNameInRow="PL_ID" msprop:Generator_ColumnPropNameInTable="PL_IDColumn" msprop:Generator_UserColumnName="PL_ID" type="xs:decimal" />
+              <xs:element name="PL_MND_ID" msprop:Generator_ColumnVarNameInTable="columnPL_MND_ID" msprop:Generator_ColumnPropNameInRow="PL_MND_ID" msprop:Generator_ColumnPropNameInTable="PL_MND_IDColumn" msprop:Generator_UserColumnName="PL_MND_ID" type="xs:decimal" />
+              <xs:element name="PL_NAME" msprop:Generator_ColumnVarNameInTable="columnPL_NAME" msprop:Generator_ColumnPropNameInRow="PL_NAME" msprop:Generator_ColumnPropNameInTable="PL_NAMEColumn" msprop:Generator_UserColumnName="PL_NAME" type="xs:string" />
+              <xs:element name="PL_STATUS" msprop:Generator_ColumnVarNameInTable="columnPL_STATUS" msprop:Generator_ColumnPropNameInRow="PL_STATUS" msprop:Generator_ColumnPropNameInTable="PL_STATUSColumn" msprop:Generator_UserColumnName="PL_STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="PL_SOURCE" msprop:Generator_ColumnVarNameInTable="columnPL_SOURCE" msprop:Generator_ColumnPropNameInRow="PL_SOURCE" msprop:Generator_ColumnPropNameInTable="PL_SOURCEColumn" msprop:Generator_UserColumnName="PL_SOURCE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

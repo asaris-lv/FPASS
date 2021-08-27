@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application>
+  <configuration>
+    <DbAccess>
+      <Connection type="ORACLE" encrypted="false" connectstring="user id=fpass;data source=wesorat1;password=fpass2003"></Connection>
+      
+       <SqlCommands>
+         <SqlCommand id="GlobalsFPASSPara">
+           <Sql>SELECT PARF_ID, PARF_KEY, PARF_VALUE FROM FPASS_PARAMETERFPASS WHERE PARF_MND_ID = :PARF_MND_ID AND PARF_KEY IN ('PARF_REMINDERTIME', 'PARF_FPASSVERSION')</Sql>
+           <Parameters>
+             <Parameter name=":PARF_MND_ID" type="number" precision="10" scale="0"></Parameter>
+           </Parameters>
+         </SqlCommand>
+         <SqlCommand id="CoordinatorsRemind">
+          <Sql>
+            SELECT CWR_ID, CWR_SURNAME, CWR_FIRSTNAME, CWR_STATUS, CWR_ACCESS, CWR_SMARTACTNO, CWR_VALIDUNTIL, ECOD_ID, US_NAME, US_USERID, EXCO_ID, EXCO_NAME, CWR_COORD_NAME, CWR_COORD_FIRSTNAME, CWR_COORD_TELNO, MND_ID FROM VW_FPASS_COORDIN_REMIND ORDER BY US_USERID, EXCO_NAME, CWR_SURNAME
+          </Sql>          
+        </SqlCommand>
+      </SqlCommands>
+      
+    </DbAccess>
+  </configuration>
+</application>

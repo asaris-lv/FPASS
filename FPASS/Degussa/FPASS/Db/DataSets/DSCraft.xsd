@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="DSCraft" targetNamespace="http://www.tempuri.org/DSCraft.xsd" xmlns:mstns="http://www.tempuri.org/DSCraft.xsd" xmlns="http://www.tempuri.org/DSCraft.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="DSCraft" msdata:IsDataSet="true">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="FPASS_CRAFT">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CRA_CHANGEUSER" type="xs:decimal" />
+              <xs:element name="CRA_TIMESTAMP" type="xs:dateTime" />
+              <xs:element name="CRA_ID" type="xs:decimal" />
+              <xs:element name="CRA_MND_ID" type="xs:decimal" />
+              <xs:element name="CRA_CRAFTNO" type="xs:string" />
+              <xs:element name="CRA_CRAFTNOTATION" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,92 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="DSCoWorker" targetNamespace="http://www.tempuri.org/DSCoWorker.xsd" xmlns:codegen="urn:schemas-microsoft-com:xml-msprop"
+	xmlns:mstns="http://www.tempuri.org/DSCoWorker.xsd" xmlns="http://www.tempuri.org/DSCoWorker.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
+	attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="DSCoWorker" msdata:IsDataSet="true" msdata:Locale="de-DE">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="FPASS_COWORKER">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CWR_ID" codegen:typedName="CoWorkerID" type="xs:decimal" />
+							<xs:element name="CWR_TK" codegen:typedName="TK" type="xs:decimal" />
+							<xs:element name="CWR_PERSNO" codegen:typedName="PersNo" type="xs:decimal" />
+							<xs:element name="CWR_EXCO_ID" codegen:typedName="ContractorID" type="xs:decimal" />
+							<xs:element name="CWR_DEPT_ID" codegen:typedName="DepartmentID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="CWR_CRA_ID" codegen:typedName="CraftID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="CWR_ECOD_ID" codegen:typedName="CoordinatorID" type="xs:decimal" />
+							<xs:element name="CWR_SUBE_ID" codegen:typedName="SubcontractorID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="CWR_OVEREIGHTEEN_YN" codegen:typedName="CwOvereighteen" type="xs:string" />
+							<xs:element name="CWR_IDCARDNO" codegen:typedName="IdCardNo" type="xs:decimal" minOccurs="0" />
+							<xs:element name="CWR_SURNAME" codegen:typedName="Surname" type="xs:string" />
+							<xs:element name="CWR_FIRSTNAME" codegen:typedName="Firstname" type="xs:string" />
+							<xs:element name="CWR_DATEOFBIRTH" codegen:typedName="DateOfBirth" type="xs:date" />
+							<xs:element name="CWR_PLACEOFBIRTH" codegen:typedName="PlaceOfBirth" type="xs:string" />
+							<xs:element name="CWR_DATECREATED" codegen:typedName="Created" type="xs:dateTime" />
+							<xs:element name="CWR_VALIDFROM" codegen:typedName="ValidFrom" type="xs:dateTime" />
+							<xs:element name="CWR_VALIDUNTIL" codegen:typedName="ValidUntil" type="xs:dateTime" />
+							<xs:element name="CWR_ORDERNO" codegen:typedName="OrderNo" type="xs:string" minOccurs="0" />
+							<xs:element name="CWR_SECPASS_YN" codegen:typedName="SecurityPass" type="xs:string" />
+							<xs:element name="CWR_ENTRYDATECOOD" codegen:typedName="EntryDateCoord" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="CWR_ENTRYCOODID" codegen:typedName="EntryCoordID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="CWR_CHKOFFDATECOOD" codegen:typedName="CheckOffDateCoord" type="xs:dateTime"
+								minOccurs="0" />
+							<xs:element name="CWR_CHKOFFCOODID" codegen:typedName="CheckOffDateCoordID" type="xs:decimal"
+								minOccurs="0" />
+							<xs:element name="CWR_ORDERCOMPLET_YN" codegen:typedName="OrcerComplete" type="xs:string" />
+							<xs:element name="CWR_CHANGEUSER" codegen:typedName="ChangeUser" type="xs:decimal" />
+							<xs:element name="CWR_TIMESTAMP" codegen:typedName="Timestamp" type="xs:dateTime" />
+							<xs:element name="CWR_RETURNCODE_ZKS" codegen:typedName="ReturnZKS" type="xs:string" minOccurs="0" />
+							<xs:element name="CWR_ACCESS" codegen:typedName="Access" type="xs:string" minOccurs="0" />
+							<xs:element name="CWR_STATUS" codegen:typedName="Status" type="xs:string" minOccurs="0" />
+							<xs:element name="CWR_MND_ID" codegen:typedName="MandatorID" type="xs:decimal" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FPASS_RECEPTIONAUTHORIZE">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RATH_ID" codegen:typedName="ReceptionAuthorizeID" type="xs:decimal" />
+							<xs:element name="RATH_CWR_ID" codegen:typedName="PKCoWorkerID" type="xs:decimal" />
+							<xs:element name="RATH_RATT_ID" codegen:typedName="AuthorizationType" type="xs:decimal" />
+							<xs:element name="RATH_USER_ID" codegen:typedName="ChangeUser" type="xs:decimal" />
+							<xs:element name="RATH_RECEPTAUTHO_YN" codegen:typedName="AuthorozationYN" type="xs:string" />
+							<xs:element name="RATH_RECEPTAUTHODATE" codegen:typedName="DateOfAutorization" type="xs:dateTime"
+								minOccurs="0" />
+							<xs:element name="RATH_TIMESTAMP" codegen:typedName="Timestamp" type="xs:dateTime" />
+							<xs:element name="USER_NAME" codegen:typedName="UserName" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FPASS_RECEPTIONAUTHORIZEACCESS">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RATH_ID" codegen:typedName="ReceptionAuthorizeID" type="xs:decimal" />
+							<xs:element name="RATH_CWR_ID" codegen:typedName="PKCoWorkerID" type="xs:decimal" />
+							<xs:element name="RATH_RATT_ID" codegen:typedName="AuthorizationType" type="xs:decimal" />
+							<xs:element name="RATH_USER_ID" codegen:typedName="ChangeUser" type="xs:decimal" />
+							<xs:element name="RATH_RECEPTAUTHO_YN" codegen:typedName="AuthorozationYN" type="xs:string" />
+							<xs:element name="RATH_RECEPTAUTHODATE" codegen:typedName="DateOfAutorization" type="xs:dateTime"
+								minOccurs="0" />
+							<xs:element name="RATH_TIMESTAMP" codegen:typedName="Timestamp" type="xs:dateTime" />
+							<xs:element name="USER_NAME" codegen:typedName="UserName" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:key name="PK_RECEPTIONAUTHORIZE">
+			<xs:selector xpath=".//mstns:FPASS_RECEPTIONAUTHORIZE" />
+			<xs:field xpath="mstns:RATH_ID" />
+		</xs:key>
+		<xs:key name="PK_COWORKER" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:FPASS_COWORKER" />
+			<xs:field xpath="mstns:CWR_ID" />
+		</xs:key>
+		<xs:keyref name="FPASS_COWORKERFPASS_RECEPTIONAUTHORIZE" refer="mstns:PK_COWORKER" msdata:ConstraintOnly="true">
+			<xs:selector xpath=".//mstns:FPASS_RECEPTIONAUTHORIZE" />
+			<xs:field xpath="mstns:RATH_CWR_ID" />
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

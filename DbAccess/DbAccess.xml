@@ -1,0 +1,1503 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DbAccess</name>
+    </assembly>
+    <members>
+        <member name="T:de.pta.Component.DbAccess.Cryptography.CryptoUtil">
+            <summary>
+            The purpose of this class is to encrypt / decrypt the connection string
+            stored in the configuration file with the Rijndal algorithm.
+            <p>
+            <b>Because they key for the algorithm is stored in the class, the
+            dll has to be encrypted with the Dotfuscator tool provided with
+            Visual Studio .NET</b>
+            </p>
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/28/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Cryptography.CryptoUtil.mKey">
+            <summary>The key used to en- / decrypt the connection string.</summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Cryptography.CryptoUtil.mIV">
+            <summary>The initialization vector for the key.</summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Cryptography.CryptoUtil.Decrypt(System.String)">
+            <summary>
+            Takes a encrypted connectionstring as parameter and returns
+            the decrypted connectionstring.
+            </summary>
+            <param name="pInputString">encrypted connectionstring</param>
+            <returns>decrypted connectionstring</returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Cryptography.CryptoUtil.Encrypt(System.String)">
+            <summary>
+            Takes a connectionstring as parameter and returns
+            the encrypted connectionstring.
+            </summary>
+            <param name="pInputString">connectionstring</param>
+            <returns>encrypted connectionstring</returns>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Enumerations.DbAccessConfigType">
+            <summary>
+            All possible types of configuration.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessConfigType.Xml">
+            <summary>The configuration is stored in a XML file</summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessConfigType.RdbSqlServer">
+            <summary>The configuration is stored in a SQLServer database</summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessConfigType.RdbOracle">
+            <summary>The configuration is stored in a Oracle database</summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessConfigType.RdbOleDb">
+            <summary>The configuration is stored in a database</summary>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Enumerations.DbAccessProviderType">
+            <summary>
+            Enumerates the types of data providers supported by the component.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> A. Seibt, PTA GmbH
+            <b>Date:</b> 22.08.2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessProviderType.None">
+            <summary>
+            Provider type not initialized.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessProviderType.OleDb">
+            <summary>
+            The OLE DB.NET data provider (<see cref="N:System.Data.OleDb"/>).
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessProviderType.SqlClient">
+            <summary>
+            The SQL Server.NET data provider (<see cref="N:System.Data.SqlClient"/>).
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessProviderType.Oracle">
+            <summary>
+            The Oracle.NET data provider (<see cref="N:System.Data.OracleClient"/>).
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Enumerations.DbAccessProviderType.OracleOdp">
+            <summary>
+            The Oracle ODP.NET data provider.
+            </summary>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Exceptions.ConfigNotFoundException">
+            <summary>
+            This exception is thrown, if the configuration data for a specific data adapter
+            or command is missing (e.g. invalid identifier passed to the create method).
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/02/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.ConfigNotFoundException.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.ConfigNotFoundException.#ctor(System.String)">
+            <summary>
+            Instantiating while defining a error message.
+            </summary>
+            <param name="message">message associated with the exception</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.ConfigNotFoundException.#ctor(System.String,System.Exception)">
+            <summary>
+            Instantiating with a defined message a associated inner exception.
+            </summary>
+            <param name="message">message associated with the exception</param>
+            <param name="innerException">exception which caused this exception</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Exceptions.DbAccessConfigurationException">
+            <summary>
+            Summary description for DbAccessConfigurationException.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/02/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.DbAccessConfigurationException.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.DbAccessConfigurationException.#ctor(System.String)">
+            <summary>
+            Instantiating while defining a error message.
+            </summary>
+            <param name="message">message associated with the exception</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.DbAccessConfigurationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Instantiating with a defined message a associated inner exception.
+            </summary>
+            <param name="message">message associated with the exception</param>
+            <param name="innerException">exception which caused this exception</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Exceptions.DbAccessException">
+            <summary>
+            This exception is thrown, if an error occured in the DbAccess component.
+            It is the base class for all exceptions defined for the component.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/02/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.DbAccessException.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.DbAccessException.#ctor(System.String)">
+            <summary>
+            Instantiating while defining a error message.
+            </summary>
+            <param name="message">message associated with the exception</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.DbAccessException.#ctor(System.String,System.Exception)">
+            <summary>
+            Instantiating with a defined message a associated inner exception.
+            </summary>
+            <param name="message">message associated with the exception</param>
+            <param name="innerException">exception which caused this exception</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Exceptions.InvalidConfigFactoryException">
+            <summary>
+            This exception is thrown, if an invalid config factory is requested
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/02/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.InvalidConfigFactoryException.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.InvalidConfigFactoryException.#ctor(System.String)">
+            <summary>
+            Instantiating while defining a error message.
+            </summary>
+            <param name="message">message associated with the exception</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.InvalidConfigFactoryException.#ctor(System.String,System.Exception)">
+            <summary>
+            Instantiating with a defined message a associated inner exception.
+            </summary>
+            <param name="message">message associated with the exception</param>
+            <param name="innerException">exception which caused this exception</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Exceptions.ProviderException">
+            <summary>
+            This exception is thrown by the xxxProvider classes.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/02/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.ProviderException.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.ProviderException.#ctor(System.String)">
+            <summary>
+            Instantiating while defining a error message.
+            </summary>
+            <param name="message">message associated with the exception</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Exceptions.ProviderException.#ctor(System.String,System.Exception)">
+            <summary>
+            Instantiating with a defined message a associated inner exception.
+            </summary>
+            <param name="message">message associated with the exception</param>
+            <param name="innerException">exception which caused this exception</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration">
+            <summary>
+            This is the base class for the configuration data of a data adapter or a command.
+            It holds the configuration items which are common to a DataAdapter and a Command.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/02/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.mId">
+            <summary>
+            The unique identifier for the command or data adapter
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.mSql">
+            <summary>
+            The SQL associated with the command or data adapter
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.mParameters">
+            <summary>
+            The parameters for the SQL
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.Id">
+            <summary>
+            Gets or sets the unique identifier for the command.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.Sql">
+            <summary>
+            Gets or sets the SQL associated with the command.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.Parameters">
+            <summary>
+            Gets the list of parameters associated with the command
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration.AddParameter(de.pta.Component.DbAccess.Internal.Configuration.DbParameter)">
+            <summary>
+            Adds a new parameter to the list of parameters.
+            </summary>
+            <param name="pParam">A DbParameter object</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.CommandConfiguration">
+            <summary>
+            This class acts as a value object. It holds the configuration
+            data for a SQL Command.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/01/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.CommandConfiguration.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.CommandConfiguration.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.ConfigFactory">
+            <summary>
+            This class creates an instance of a concrete configuration factory class.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/24/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.ConfigFactory.mLog">
+            <summary>
+            Provides logging functionality.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.ConfigFactory.GetFactory(de.pta.Component.DbAccess.Enumerations.DbAccessConfigType)">
+            <summary>
+            Returns the concrete Factory to read configurations.
+            </summary>
+            <param name="pType">The type of configuration to be read.</param>
+            <returns></returns>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.DataAdapterConfiguration">
+            <summary>
+            This class acts as a value object. It holds the configuration
+            data for a DataAdapter.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/01/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DataAdapterConfiguration.mReadOnly">
+            <summary>
+            A Flag which denotes if the data adapter is readonly
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DataAdapterConfiguration.mSourceTable">
+            <summary>
+            Defines the default name of the source table for mapping in a data set.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DataAdapterConfiguration.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DataAdapterConfiguration.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DataAdapterConfiguration.ReadOnly">
+            <summary>
+            Gets or sets the readonly mode of the data adapter.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DataAdapterConfiguration.SourceTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration">
+            <summary>
+            The class acts as a container for the configuration data of the DbAccess component.
+            It is designed as Singleton.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/01/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.mInstance">
+            <summary>
+            The only instance of this class.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.mProviderType">
+            <summary>
+            The type of the database provider which implements the access to the database.
+            </summary>
+            <remarks>
+            See enumeration <see cref="T:de.pta.Component.DbAccess.Enumerations.DbAccessProviderType"/>
+            for supported databases.
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.mConnectString">
+            <summary>
+            The connection string used to acces the database.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.mConnectStringEncrypted">
+            <summary>
+            A flag which denotes if the connection string was stored encrypted in the XML.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.mAdapterData">
+            <summary>
+            A list of data adapter configurations.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.mCommandData">
+            <summary>
+            A list of command configurations.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.ConnectString">
+            <summary>
+            Sets or returns the connection string.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.ProviderType">
+            <summary>
+            Sets or returns the data provider type.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.ConnectStringEncrypted">
+            <summary>
+            Sets or returns the encrypted-flag.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.GetInstance">
+            <summary>
+            Returns the only instance of the class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.AddAdapterData(System.String,de.pta.Component.DbAccess.Internal.Configuration.DataAdapterConfiguration)">
+            <summary>
+            Adds the configuration data for a DataAdapter.
+            </summary>
+            <param name="pId">The unique id for the configuration</param>
+            <param name="pConfig">A DataAdapterConfiguration object</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.GetAdapterData(System.String)">
+            <summary>
+            Returns the configuration data for a specific data adapter.
+            </summary>
+            <param name="pId">The unique identifier for the configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.AddCommandData(System.String,de.pta.Component.DbAccess.Internal.Configuration.CommandConfiguration)">
+            <summary>
+            Adds the configuration data for a SQL command.
+            </summary>
+            <param name="pId">The unique id for the configuration</param>
+            <param name="pConfig">A CommandConfiguration object.</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration.GetCommandData(System.String)">
+            <summary>
+            Returns the configuration data for a specific command.
+            </summary>
+            <param name="pId">The unique identifier for the configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.DbParameter">
+            <summary>
+            This class encapsulates the configuration data for a parameter of a SQL statement.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Sep/01/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.mName">
+            <summary>
+            The name of the parameter.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.mDbType">
+            <summary>
+            The type of the parameter.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.mLength">
+            <summary>
+            The length of the parameter (only used for strings / varchars).
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.mPrecision">
+            <summary>
+            The number of digits of the parameter (only used for number / decimal).
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.mScale">
+            <summary>
+            The number of digits after the decimal point for the parameter
+            (only used for number / decimal).
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.Name">
+            <summary>
+            Gets or sets the name of the parameter.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.DbType">
+            <summary>
+            Gets or sets the data type (in the database) of the parameter.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.Length">
+            <summary>
+            Gets or sets the length of the parameter value. This property is only
+            evaluated if the parameter has the DbType "varchar".
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.Precision">
+            <summary>
+            Gets or sets the number of digits of the parameter. This property is only
+            evaluated if the parameter has the DbType "number".
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.DbAccess.Internal.Configuration.DbParameter.Scale">
+            <summary>
+            gets or sets the number of decimal digits of the parameter. This property
+            is only evaluated if the parameter has the DbType "number".
+            </summary>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.IConfigFactory">
+            <summary>
+            All classes which reads configurations for the DbAccess component must implement this
+            interface.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/24/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.IConfigFactory.GetConfiguration">
+            <summary>
+            Returns the configuration object for the component.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigFactory">
+            <summary>
+            Assembles a configuration for the component based on an XML configuration file.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/29/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigFactory.XML_SECTION">
+            <summary>
+            The section in Configuration.xml to process.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigFactory.mLog">
+            <summary>
+            Enables logging functionality.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigFactory.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigFactory.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigFactory.GetConfiguration">
+            <summary>
+            Returns the data access configuration for the application.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigFactory.GetApplicationPath">
+            <summary>
+            Returns the base directory for the application. Usually this is the
+            directory where the .exe file of the application is stored.
+            </summary>
+            <returns>The application base directory</returns>
+            <remarks>
+            The XML configuration file for the application is stored in a subdirectory
+            named "Configuration" below the application root directory. The root directory
+            differs if the application is started from Visual Studio .NET (it's the
+            \bin\Debug or \bin\Release directory. This method strips the "\bin..." part of
+            the application root directory so that the position of the "Configuration"
+            directory can be the same for production and development environment
+            </remarks>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor">
+            <summary>
+            Processes the configuration section in Configuration.xml for the component.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/29/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.mLog">
+            <summary>
+            Enables logging functionality.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.mConfig">
+            <summary>
+            The object which holds the complete configuration
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.mAdapterConfig">
+            <summary>
+            Configuration data for a DataAdapter
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.mCommandConfig">
+            <summary>
+            Configuration data for a Command
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.mAdapterParameters">
+            <summary>
+            List of parameters for a Select SQL of a DataAdapter.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.mCommandParameters">
+            <summary>
+            List of parameters for a Command
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.mActSection">
+            <summary>
+            The parameter definition for a DataAdapter and a Command is identical.
+            This member tracks, if a DataAdapter or a Command is being processed.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.ProcessConfigBlockBegin(de.pta.Component.Common.ConfigNode)">
+            <summary>
+            Process an XML-Element.
+            </summary>
+            <param name="pNode"></param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.ProcessConfigItem(de.pta.Component.Common.ConfigNode)">
+            <summary>
+            Process a XML-Element
+            </summary>
+            <param name="pNode"></param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.ProcessConfigBlockEnd(de.pta.Component.Common.ConfigNode)">
+            <summary>
+            Process a XML element
+            </summary>
+            <param name="pNode"></param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.ConvertProviderType(System.String)">
+            <summary>
+            Convert the provider type declared in the XML to the appropriate
+            enumeration member.
+            </summary>
+            <param name="pProviderType">The provider type as string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.Configuration.XML.XmlConfigProcessor.WriteNodeAttributes(System.Collections.Hashtable)">
+            <summary>
+            Helper method for debugging.
+            </summary>
+            <param name="pAttributes">The attributes of a xml element</param>
+            <remarks>
+            Print all attributes of the current node.
+            </remarks>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.DataProvider">
+            <summary>
+            This is the abstract base class for all implemented data providers.
+            It implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            interface. Most of the mesthods are defined abstract as they have to use the
+            database specific .NET data classes.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/29/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.DataProvider.mLog">
+            <summary>
+            Enables logging functionality.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.DataProvider.mConfig">
+            <summary>
+            Holds the configuration for all DataAdapters and Commands.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.initialize">
+            <summary>
+            Get the configuration data.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.CreateCommand(System.String)">
+            <summary>
+            Implements the <see cref="M:de.pta.Component.DbAccess.IProvider.CreateCommand(System.String)">IProvider</see>
+            <code>CreateCommand</code> method.
+            </summary>
+            <param name="pId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.CreateDataAdapter(System.String)">
+            <summary>
+            Implements the <see cref="M:de.pta.Component.DbAccess.IProvider.CreateDataAdapter(System.String)">IProvider</see>
+            <code>CreateDataAdapter</code> method.
+            </summary>
+            <param name="pId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.GetReader(System.Data.IDbCommand)">
+            <summary>
+            Implements the <see cref="M:de.pta.Component.DbAccess.IProvider.GetReader(System.Data.IDbCommand)">IProvider</see>
+            <code>GetReader</code> method.
+            </summary>
+            <param name="pCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.SetParameter(System.Data.IDbDataAdapter,System.String,System.Object)">
+            <summary>
+            Implements the <see cref="M:de.pta.Component.DbAccess.IProvider.SetParameter(System.Data.IDbDataAdapter,System.String,System.Object)">IProvider</see>
+            <code>SetParameter</code> method.
+            </summary>
+            <param name="pAdapter"></param>
+            <param name="pParameterId"></param>
+            <param name="pParameterValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.SetParameter(System.Data.IDbCommand,System.String,System.Object)">
+            <summary>
+            Implements the <see cref="M:de.pta.Component.DbAccess.IProvider.SetParameter(System.Data.IDbDataAdapter,System.String,System.Object)">IProvider</see>
+            <code>SetParameter</code> method.
+            </summary>
+            <param name="pCommand"></param>
+            <param name="pParameterId"></param>
+            <param name="pParameterValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.GetTransaction(System.Data.IDbCommand)">
+            <summary>
+            Implements the <see cref="M:de.pta.Component.DbAccess.IProvider.GetTransaction(System.Data.IDbDataAdapter)">IProvider</see>
+            <code>GetTransaction</code> method.
+            </summary>
+            <param name="pCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.GetTransaction(System.Data.IDbDataAdapter)">
+            <summary>
+            Implements the <see cref="M:de.pta.Component.DbAccess.IProvider.GetTransaction(System.Data.IDbDataAdapter)">IProvider</see>
+            <code>GetTransaction</code> method.
+            </summary>
+            <param name="pDataAdapter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.FillDataSet(System.String,System.Data.IDbDataAdapter,System.Data.DataSet)">
+            <summary>
+            Implements the <see cref="M:de.pta.Component.DbAccess.IProvider.FillDataSet(System.String,System.Data.IDbDataAdapter,System.Data.DataSet)">IProvider</see>
+            <code>FillDataSet</code> method.
+            </summary>
+            <param name="pId"></param>
+            <param name="pAdapter"></param>
+            <param name="pDataSet"></param>
+            <returns></returns>
+            <exception cref="T:de.pta.Component.DbAccess.Exceptions.ConfigNotFoundException">
+            Is thrown if the parameter <code>pId</code> contains an invalid id.
+            </exception>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.DataProvider.GetTransaction(System.Data.IDbConnection)">
+            <summary>
+            Starts a transaction for the passed Connection object.
+            </summary>
+            <param name="pConnection">A Connection object for which the transaction should be started.</param>
+            <returns>A Transaction object</returns>
+            <remarks>
+            This method could be implemented here if the exception handling of the .NET Framework 
+            where better. But every .NET Dataprovider defines his own exceptions, so they only
+            could be catched in our specific provider classes.
+            </remarks>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.OleDbProvider">
+            <summary>
+            This class implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see> interface
+            for the .NET OleDb data provider.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/29/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.OleDbProvider.mConnection">
+            <summary>
+            The Connection object for all DataAdapters
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.OleDbProvider.mReaderConnection">
+            <summary>
+            The Connection object for all Commands.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OleDbProvider.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OleDbProvider.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OleDbProvider.CreateCommand(System.String)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OleDbProvider.CreateDataAdapter(System.String)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OleDbProvider.GetReader(System.Data.IDbCommand)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OleDbProvider.GetTransaction(System.Data.IDbConnection)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.Internal.DataProvider">DataProvider</see>
+            method.
+            </summary>
+            <param name="pConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OleDbProvider.GetOleDbType(System.String)">
+            <summary>
+            Translate the data type for a parameter from the configuration 
+            into an OleDbType.
+            </summary>
+            <param name="pTypeName">The data type from the configuration</param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OleDbProvider.AddParameters(System.Data.OleDb.OleDbCommand,de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration)">
+            <summary>
+            Add parameters to a Command object. The method can be used for DataAdapters
+            and Commands.
+            </summary>
+            <param name="pCommand">The Command object.</param>
+            <param name="pConfig">The configuration for theh command.</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.OracleProvider">
+            <summary>
+            This class implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see> interface
+            for the .NET Oracle data provider.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/29/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.OracleProvider.mConnection">
+            <summary>
+            The Connection object for all DataAdapters.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.OracleProvider.mReaderConnection">
+            <summary>
+            The Connection object for all Commands.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OracleProvider.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OracleProvider.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OracleProvider.CreateCommand(System.String)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OracleProvider.CreateDataAdapter(System.String)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OracleProvider.GetReader(System.Data.IDbCommand)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OracleProvider.GetTransaction(System.Data.IDbConnection)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.Internal.DataProvider">DataProvider</see>
+            method.
+            </summary>
+            <param name="pConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OracleProvider.GetOracleType(System.String)">
+            <summary>
+            Translate the data type for a parameter from the configuration 
+            into an OracleType.
+            </summary>
+            <param name="pTypeName">The data type from the configuration</param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.OracleProvider.AddParameters(System.Data.OracleClient.OracleCommand,de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration)">
+            <summary>
+            Add parameters to a Command object. The method can be used for DataAdapters
+            and Commands.
+            </summary>
+            <param name="pCommand">The Command object.</param>
+            <param name="pConfig">The configuration for theh command.</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.Internal.SqlProvider">
+            <summary>
+            This class implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see> interface
+            for the .NET Microsoft Sql Server data provider.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/29/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.SqlProvider.mConnection">
+            <summary>
+            The Connection object for all DataAdapters.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.Internal.SqlProvider.mReaderConnection">
+            <summary>
+            The Connection object for all Commands.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.SqlProvider.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.SqlProvider.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.SqlProvider.CreateCommand(System.String)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.SqlProvider.CreateDataAdapter(System.String)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.SqlProvider.GetReader(System.Data.IDbCommand)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.IProvider">IProvider</see>
+            method.
+            </summary>
+            <param name="pCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.SqlProvider.GetTransaction(System.Data.IDbConnection)">
+            <summary>
+            Implements the <see cref="T:de.pta.Component.DbAccess.Internal.DataProvider">DataProvider</see>
+            method.
+            </summary>
+            <param name="pConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.SqlProvider.GetSqlType(System.String)">
+            <summary>
+            Translate the data type for a parameter from the configuration 
+            into an OracleType.
+            </summary>
+            <param name="pTypeName">The data type from the configuration</param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.Internal.SqlProvider.AddParameters(System.Data.SqlClient.SqlCommand,de.pta.Component.DbAccess.Internal.Configuration.BaseConfiguration)">
+            <summary>
+            Add parameters to a Command object. The method can be used for DataAdapters
+            and Commands.
+            </summary>
+            <param name="pCommand">The Command object.</param>
+            <param name="pConfig">The configuration for theh command.</param>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.IProvider">
+            <summary>
+            <para>
+            This is the interface for all implemented data providers. A data provider
+            must supply the functionality to create DataAdapter, Command and DataReader
+            objects which are specific to the database which is used. All methods uses the
+            .NET Framework interfaces as return parameter to keep the application independent
+            from the underlying database.
+            </para>
+            <para>
+            A Connection object will not be available directly for an application. The data 
+            provider manages two Connection objects internally, one for the DataAdapters and
+            one for the DataReaders. The application may access the connection object via the
+            DataAdapters / DataReaders Connection property.
+            </para>
+            <para>
+            All SQL statements and SQL parameters for the DataAdapters / DataReaders used by
+            an application are stored in a XML configuration file which meets the standards
+            of a PTA component. The XML is transformed to a <see cref="T:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration">DbAccessConfiguration</see>
+            object. The configuration for a specific DataAdapter / Command is requested via an
+            unique identifier.
+            </para>
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/29/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.IProvider.CreateCommand(System.String)">
+            <summary>
+            Returns a command object for the concrete data provider.
+            </summary>
+            <param name="pId">the id of the command as defined in the configuration</param>
+            <returns></returns>
+            <exception cref="T:de.pta.Component.DbAccess.Exceptions.ProviderException">
+            if the Command object could not be created
+            </exception>
+            <exception cref="T:de.pta.Component.DbAccess.Exceptions.ConfigNotFoundException">
+            if the passed id for the command was invalid.
+            </exception>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.IProvider.CreateDataAdapter(System.String)">
+            <summary>
+            Returns a data adapter object for the concrete data provider.
+            </summary>
+            <param name="pId">the id of the data adapter as defined in the configuration</param>
+            <returns></returns>
+            <exception cref="T:de.pta.Component.DbAccess.Exceptions.ProviderException">
+            if the DataAdapter object or the CommandBuilder object (which is used internally
+            to create the insert, update and delete statements) could not be created.
+            </exception>
+            <exception cref="T:de.pta.Component.DbAccess.Exceptions.ConfigNotFoundException">
+            if the passed id for the DataAdapter was invalid.
+            </exception>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.IProvider.GetReader(System.Data.IDbCommand)">
+            <summary>
+            Returns a DataReader for the specified Command object via the ExecuterReader()
+            method.
+            </summary>
+            <param name="pCommand">A Command object with an Select statement.</param>
+            <returns></returns>
+            <remarks>
+            The returned DataReader uses its own Connection object. The connection is
+            automatically closed if you call the DataReader.Close() method.
+            </remarks>
+            <exception cref="T:de.pta.Component.DbAccess.Exceptions.ProviderException">
+            if the connection for the reader could not be opened or the ExecuteReader()
+            method of the Command object failed.
+            </exception>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.IProvider.SetParameter(System.Data.IDbDataAdapter,System.String,System.Object)">
+            <summary>
+            Set the value of a parameter in the Select command of a data adapter.
+            </summary>
+            <param name="pAdapter">The DataAdapter object.</param>
+            <param name="pParameterId">The id of the parameter to set.</param>
+            <param name="pParameterValue">The value of the parameter to set.</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.IProvider.SetParameter(System.Data.IDbCommand,System.String,System.Object)">
+            <summary>
+            Sets a parameter for a Command object.
+            </summary>
+            <param name="pCommand">The Command object.</param>
+            <param name="pParameterId">The id of the parameter to set.</param>
+            <param name="pParameterValue">The value of the parameter to set.</param>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.IProvider.GetTransaction(System.Data.IDbDataAdapter)">
+            <summary>
+            Starts a transaction for a DataAdapter. The transaction is initialized for the
+            connection which is held by the DataAdapter.
+            </summary>
+            <param name="pAdapter">The data adapter object which holds the connection to where
+            the transaction belongs.</param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.IProvider.GetTransaction(System.Data.IDbCommand)">
+            <summary>
+            Starts a transaction for a Command. The transaction is initialized for the
+            connection which is held by the Command.
+            </summary>
+            <param name="pCommand">The command object which holds the connection to where
+            the transaction belongs.</param>
+            <returns></returns>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.IProvider.FillDataSet(System.String,System.Data.IDbDataAdapter,System.Data.DataSet)">
+            <summary>
+            Fills the query result of a DataAdapter into a DataSet.
+            </summary>
+            <param name="pId">The Id of the DataAdapter configuration</param>
+            <param name="pAdapter">The DataAdapter which queries the data.</param>
+            <param name="pDataSet">The DataSet into which the query result should be filled.</param>
+            <returns>The number of records in the query result.</returns>
+            <remarks>
+            The Id of the DataAdapter configuration is needed to get additional
+            configuration information which is not part of the DataAdapter itself.
+            </remarks>
+        </member>
+        <member name="T:de.pta.Component.DbAccess.ProviderFactory">
+            <summary>
+            This class implements the Gang of Four Factory pattern to return objects which provides
+            the access to different databases. The following databases are supported:
+            <list type="bullet">
+            <item><description>Microsoft Sql Server</description></item>
+            <item><description>Oracle</description></item>
+            <item><description>any OleDb compliant database</description></item>
+            </list>
+            All information required to access data from a database is stored in a XML definition
+            file. In the future it will be possible to store the information in database tables.
+            </summary>
+            <remarks>
+            <para><b>History</b></para>
+            <list type="table">
+            <item>
+            <term><b>Author:</b></term>
+            <description>A. Seibt, PTA GmbH</description>
+            </item>
+            <item>
+            <term><b>Date:</b></term>
+            <description>Aug/29/2003</description>
+            </item>
+            <item>
+            <term><b>Remarks:</b></term>
+            <description>initial version</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.ProviderFactory.mInstance">
+            <summary>
+            Holds the only instance of the class.
+            </summary>
+        </member>
+        <member name="F:de.pta.Component.DbAccess.ProviderFactory.mConfig">
+            <summary>
+            Holds the configuration data for database access.
+            See <see cref="T:de.pta.Component.DbAccess.Internal.Configuration.DbAccessConfiguration">DbAccessConfiguration</see> for Details.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.ProviderFactory.#ctor(de.pta.Component.DbAccess.Enumerations.DbAccessConfigType)">
+            <summary>
+            The constructor is private because the class implements the Singleton pattern.
+            </summary>
+            <param name="pConfigType">The type of the configuration</param>
+            <remarks>
+            See the enumeration <see cref="T:de.pta.Component.DbAccess.Enumerations.DbAccessConfigType">DbAccessConfigType</see>
+            for the supported configuration types. 
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.ProviderFactory.GetInstance(de.pta.Component.DbAccess.Enumerations.DbAccessConfigType)">
+            <summary>
+            Returns the only instance of the class.
+            </summary>
+            <param name="pConfigType">The type of configuration to read.</param>
+            <returns></returns>
+            <remarks>
+            See the enumeration <see cref="T:de.pta.Component.DbAccess.Enumerations.DbAccessConfigType">DbAccessConfigType</see>
+            for the supported configuration types. 
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.DbAccess.ProviderFactory.GetProvider">
+            <summary>
+            Returns the concrete data provider to use in the application.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

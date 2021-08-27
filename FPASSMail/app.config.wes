@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<configuration>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+  <appSettings>
+    <add key="ConfigurationType" value="XML" />
+	
+    <!-- configuration data for ActiveDirectorySearch in FPASS Wesseling  -->
+    <add key="LdapSearch.UseLdap" value="true" />
+    <add key="LdapSearch.ServerName" value="eu.degussanet.com" />
+    <add key="LdapSearch.ServerPort" value="389" />
+    <add key="LdapSearch.SSL" value="false" />
+    <add key="LdapSearch.ConnAuthType" value="2" />
+    <add key="LdapSearch.LdapProtocolVersion" value="3" />
+    <add key="LdapSearch.InvalidCredentialsString" value="credential" />
+    <add key="LdapSearch.BindUserPrefix" value="" />
+    <add key="LdapSearch.BindUserBaseDn" value="" />
+    <add key="LdapSearch.SearchDomain" value="LDAP://dc=eu,dc=degussanet,dc=com"/>
+    <add key="LdapSearchDialog.CredentialsNeeded" value="false" />
+    <add key="ClientSettingsProvider.ServiceUri" value="" />
+    <add key="Email.Active" value="true"/>
+    <add key="Email.Sender" value="fpassv51@evonik.com" />
+    <add key="Email.Subject" value="Erinnerung: Der Zutritt ihrer FFMA läuft bald ab." />
+    <add key="Email.TestUser" value="mundy" /> 
+    </appSettings>
+
+  <system.net>
+    <mailSettings>
+      <smtp>
+        <network host="smtp.pta.de" port="25"/>
+      </smtp>
+    </mailSettings>
+  </system.net>
+
+</configuration>

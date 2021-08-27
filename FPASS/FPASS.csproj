@@ -1,0 +1,1120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D39149A5-A5DA-4206-95CA-4D5B62A4DE49}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>degussa_1.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>FPASS</AssemblyName>
+    <AssemblyOriginatorKeyFile>FPASSKey.pfx</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>Degussa.FPASS.FPASSMain</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.OracleClient">
+      <Name>system.data.oracleclient</Name>
+      <HintPath>c:\winnt\assembly\gac\system.data.oracleclient\1.0.5000.0__b77a5c561934e089\system.data.oracleclient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Name>System.EnterpriseServices</Name>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Name>Common</Name>
+      <Project>{852EBA43-E7E9-477E-9812-8EDE30355112}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Name>DataAccess</Name>
+      <Project>{3AA4D25C-BBA8-4421-8989-7342A96AF0B2}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DbAccess\DbAccess.csproj">
+      <Name>DbAccess</Name>
+      <Project>{615B6CCF-6FF7-45DC-A3CB-184E318B9EBF}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\ErrorHandling\ErrorHandling.csproj">
+      <Name>ErrorHandling</Name>
+      <Project>{1BC2C67D-06A8-4AB1-A715-9E3D099647DE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\FPASSLdap\FPASSLdap.csproj">
+      <Project>{357e2f2e-4c28-43d6-9284-3241b67d743f}</Project>
+      <Name>FPASSLdap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ListOfValues\ListOfValues.csproj">
+      <Name>ListOfValues</Name>
+      <Project>{B3029539-1A08-4C18-ADE2-761268AD2121}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Log4NetWrapper\Log4NetWrapper.csproj">
+      <Name>Log4NetWrapper</Name>
+      <Project>{A57809D8-224D-4693-B064-7A06F64C0ECE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\N-UserManagement\N-UserManagement.csproj">
+      <Name>N-UserManagement</Name>
+      <Project>{75FD229B-7590-4706-A88F-16D97377F7B4}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\PdfGenerator\PdfGenerator.csproj">
+      <Name>PdfGenerator</Name>
+      <Project>{2C35EF7E-D4D1-44B2-BCE0-DF1361784AF0}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configuration\xmlpdf.lic" />
+    <None Include="Degussa\FPASS\Db\DataSets\DSCraft.xsc">
+      <DependentUpon>DSCraft.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSCraft.xss">
+      <DependentUpon>DSCraft.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSCraft.xsx">
+      <DependentUpon>DSCraft.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSDepartment.xsc">
+      <DependentUpon>DSDepartment.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSDepartment.xss">
+      <DependentUpon>DSDepartment.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSDepartment.xsx">
+      <DependentUpon>DSDepartment.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSExcoCoord.xsc">
+      <DependentUpon>DSExcoCoord.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSExcoCoord.xsx">
+      <DependentUpon>DSExcoCoord.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSExContractor.xsc">
+      <DependentUpon>DSExContractor.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSExContractor.xss">
+      <DependentUpon>DSExContractor.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSExContractor.xsx">
+      <DependentUpon>DSExContractor.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSHistory.xsc">
+      <DependentUpon>DSHistory.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSHistory.xsx">
+      <DependentUpon>DSHistory.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSPlant.xsc">
+      <DependentUpon>DSPlant.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSPlant.xss">
+      <DependentUpon>DSPlant.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSPlant.xsx">
+      <DependentUpon>DSPlant.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSPrecMedType.xsc">
+      <DependentUpon>DSPrecMedType.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSPrecMedType.xsx">
+      <DependentUpon>DSPrecMedType.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSRole.xsc">
+      <DependentUpon>DSRole.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSRole.xss">
+      <DependentUpon>DSRole.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSRole.xsx">
+      <DependentUpon>DSRole.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSUser.xsc">
+      <DependentUpon>DSUser.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DataSets\DSUser.xsx">
+      <DependentUpon>DSUser.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DSDummy.xsc">
+      <DependentUpon>DSDummy.xsd</DependentUpon>
+    </None>
+    <None Include="Degussa\FPASS\Db\DSDummy.xsx">
+      <DependentUpon>DSDummy.xsd</DependentUpon>
+    </None>
+    <Content Include="App.ico" />
+    <Content Include="Bilder\blau_klein.jpg" />
+    <Content Include="Bilder\checkBoxChecked.gif" />
+    <Content Include="Bilder\checkBoxUnchecked.gif" />
+    <Content Include="Bilder\dummy.gif" />
+    <Content Include="Bilder\evonikbanner.JPG" />
+    <Content Include="Configuration\Configuration.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\log4net.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSCraft.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSCraft.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSDepartment.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSDepartment.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSExcoCoord.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSExcoCoord.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSExContractor.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSExContractor.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSHistory.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSHistory.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSPlant.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSPlant.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSPrecMedType.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSPrecMedType.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSRole.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSRole.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DataSets\DSUser.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSUser.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Db\DSDummy.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSDummy.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Degussa\FPASS\Gui\Dialog\degussa_1.ico" />
+    <Content Include="degussa_1.ico" />
+    <None Include="fpass2017.pfx" />
+    <None Include="FPASSKey.pfx" />
+    <None Include="fpasskey2016.pfx" />
+    <None Include="SuccessComplete.bmp" />
+    <Compile Include="Degussa\FPASS\Bo\Administration\BORespMask.cs" />
+    <Compile Include="Degussa\FPASS\Bo\Pass\MaskFlorixReturned.cs" />
+    <Compile Include="Degussa\FPASS\Bo\Pass\MaskFlorixLent.cs" />
+    <Compile Include="Degussa\FPASS\Bo\Pass\MaskTecBosLent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\MaskTecBosReturned.cs" />
+    <Compile Include="Degussa\FPASS\Gui\FPASSMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\FPASSMessageBox.Designer.cs">
+      <DependentUpon>FPASSMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\AbstractAdminBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BOCoordinatorWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BOCraft.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BODepartment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BOExcoCoordinator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BOExternalContractor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BOPlant.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BOPrecMedical.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BOUser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Administration\BOIDCardReader.cs" />
+    <Compile Include="Degussa\FPASS\Bo\Mandator\BOUserMndt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\AbstractAuthorization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\AbstractBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\AbstractCoWorkerBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\AbstractMask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\AccessAuthorization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\AuthorizationFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Search\CoWorkerSearch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Search\DynamicDataSearch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Search\HistorySearch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Search\VehicleAccessSearch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\BreathingApparatusG26_2_Briefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\BreathingApparatusG26_3_Briefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\BriefingFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\BriefingFireman.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\CoWorker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\CranesBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\IdCardPhotoSmActBriefing.cs" />
+    <Compile Include="Degussa\FPASS\Bo\Pass\IdCardPhotoHitagBriefing.cs" />
+    <Compile Include="Degussa\FPASS\Bo\Pass\IndustrialSafetyAuthorization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\ApprenticeBriefing.cs" />
+    <Compile Include="Degussa\FPASS\Bo\Pass\MaskFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\PalletLifterBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\ParkingExternalAuthorization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\Plant.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\Plants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\PrecautionaryMedicalBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\PrecautionaryMedicals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\RaisablePlattformBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\RespiratoryMaskBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\SafetyAtWork_Briefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\SafetyAuhorization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\SiteSecurityBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\VehicleEntranceLongBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\VehicleEntranceShortBriefing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\VehicleRegistrationNumber.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Pass\VehicleRegistrationNumberFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Reports\BOReportExContractor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Reports\BOReportPlantManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Reports\BOReportRespMask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Bo\Reports\BOReportsCheckList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSCraft.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSCraft.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSDepartment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSDepartment.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSExcoCoord.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSExcoCoord.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSExContractor.cs">
+      <DependentUpon>DSExContractor.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSExContractor.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSExContractor.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSHistory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSHistory.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSPlant.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSPlant.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSPrecMedType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSPrecMedType.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSRole.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSRole.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DataSets\DSUser.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSUser.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DBSingleton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Db\DSDummy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSDummy.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\FPASSApplication\AllFPASSDialogs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\FPASSApplication\FPASSControllSingleton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\FPASSMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\FPASSStart.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\AbstractController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\AbstractModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\BaseUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\BaseView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\AdministrationController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\AdministrationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\FrmAdministration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\FrmPopExcoCoordHist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\PopECODHistController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\PopECODHistModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminCoordinatorExternalContractor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminCraft.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminDepartment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminExternalContractor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminPlant.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminPrecautionaryMedical.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\ActiveDirectory\FrmSearchLDAPWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\ActiveDirectory\FrmSearchLDAPWin.Designer.cs">
+      <DependentUpon>FrmSearchLDAPWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\ArchiveController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\ArchiveModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\CoWorkerController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\CoWorkerModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\DeleteController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\DeleteModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\DynamicDataController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\DynamicDataModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\ExtendedSearchController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\ExtendedSearchModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\ExternalContractorSearchController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\ExternalContractorSearchModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmArchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmCoWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmCoWorkerDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmDynamicData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmExtendedSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmPopCoWorkerHist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmSearchExternalContractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmSummaryCoWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmVehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\HistoryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\HistoryModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\FrmSearchIDCardReader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\IDCardReaderSearchController.cs" />
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\IDCardReaderSearchModel.cs" />
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\PopCoWorkerHistController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\PopCoWorkerHistModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\SummaryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\SummaryModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\VehicleController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\Pass\VehicleModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\ActiveDirectory\WindowsPasswordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\ActiveDirectory\WindowsPasswordDialog.designer.cs">
+      <DependentUpon>WindowsPasswordDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\FrmPromptCoordinator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\FrmRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\FrmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\FrmUserToRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\RoleController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\RoleCoordinatorSingleton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\RoleModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\UserController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\UserModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\UserToRoleController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\User\UserToRoleModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\FPASSAboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\FPASSAboutBox.Designer.cs">
+      <DependentUpon>FPASSAboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\FPASSBaseController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\FPASSBaseModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\FPASSBaseView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Mandator\FrmMandator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Mandator\MandatorController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Mandator\MandatorModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\InterfaceZks\FpassZks.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\InterfaceZks\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\FrmPopupSearchExco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\FrmPopupSearchExco.Designer.cs">
+      <DependentUpon>FrmPopupSearchExco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\FrmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\ReportsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\ReportsModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\UserControls\UCReportAttendance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\UserControls\UCReportChecklist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\UserControls\UCReportCoWorker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\UserControls\UcReportExConBooking.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\UserControls\UCReportExContractor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\UserControls\UCReportPlant.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\UserControls\UCReportRespMask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\FPASSDocument.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\FpassExport.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\FpassExportParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\FpassReport.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\FpassReportParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\FpassReportSingleton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\ReportFilenames.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\ReportNames.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Reports\Util\SortedDictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\SmartAct\FrmIdCardsPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Gui\Dialog\SmartAct\IdCardsController.cs" />
+    <Compile Include="Degussa\FPASS\Gui\Dialog\SmartAct\IdCardsModel.cs" />
+    <Compile Include="Degussa\FPASS\Util\Enums\SmartActActions.cs" />
+    <Compile Include="Degussa\FPASS\Util\SmartAct\IdCardPoller.cs" />
+    <Compile Include="Degussa\FPASS\Util\Enums\EnumAccessTypes.cs" />
+    <Compile Include="Degussa\FPASS\Util\Enums\IDReaderTypes.cs" />
+    <Compile Include="Degussa\FPASS\Util\Enums\IDCardTypes.cs" />
+    <Compile Include="Degussa\FPASS\Util\ErrorHandling\BaseUIPublisher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ErrorHandling\LoggingSingleton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ErrorHandling\UIErrorPublisher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ErrorHandling\UIFatalPublisher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ErrorHandling\UIWarningPublisher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\Exceptions\ActionCancelledException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\Exceptions\BaseFPASSException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\Exceptions\InterfaceZKSException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\Exceptions\ParameterException.cs" />
+    <Compile Include="Degussa\FPASS\Util\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ListOfValues\Assignment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ListOfValues\ContractorLovItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ListOfValues\CoordLovItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ListOfValues\CraftLovItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ListOfValues\FPASSLovsSingleton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ListOfValues\SupervisorLovItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\Messages\MessageSingleton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\ProgressUtil\FrmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\UserManagement\UserManagementControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Degussa\FPASS\Util\Validation\StringValidation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\BaseUserControl.resx">
+      <DependentUpon>BaseUserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\BaseView.resx">
+      <DependentUpon>BaseView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Administration\FrmAdministration.resx">
+      <DependentUpon>FrmAdministration.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Administration\FrmPopExcoCoordHist.resx">
+      <DependentUpon>FrmPopExcoCoordHist.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminCoordinatorExternalContractor.resx">
+      <DependentUpon>FrmUCAdminCoordinatorExternalContractor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminCraft.resx">
+      <DependentUpon>FrmUCAdminCraft.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminDepartment.resx">
+      <DependentUpon>FrmUCAdminDepartment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminExternalContractor.resx">
+      <DependentUpon>FrmUCAdminExternalContractor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminPlant.resx">
+      <DependentUpon>FrmUCAdminPlant.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Administration\UserControls\FrmUCAdminPrecautionaryMedical.resx">
+      <DependentUpon>FrmUCAdminPrecautionaryMedical.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\ActiveDirectory\FrmSearchLDAPWin.resx">
+      <DependentUpon>FrmSearchLDAPWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmArchive.resx">
+      <DependentUpon>FrmArchive.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmCoWorker.resx">
+      <DependentUpon>FrmCoWorker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmCoWorkerDelete.resx">
+      <DependentUpon>FrmCoWorkerDelete.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmDynamicData.resx">
+      <DependentUpon>FrmDynamicData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmExtendedSearch.resx">
+      <DependentUpon>FrmExtendedSearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmHistory.resx">
+      <DependentUpon>FrmHistory.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmPopCoWorkerHist.resx">
+      <DependentUpon>FrmPopCoWorkerHist.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmSearchExternalContractor.resx">
+      <DependentUpon>FrmSearchExternalContractor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmSummaryCoWorker.resx">
+      <DependentUpon>FrmSummaryCoWorker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmVehicle.resx">
+      <DependentUpon>FrmVehicle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\ActiveDirectory\WindowsPasswordDialog.resx">
+      <DependentUpon>WindowsPasswordDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\Pass\FrmSearchIDCardReader.resx">
+      <DependentUpon>FrmSearchIDCardReader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\User\FrmPromptCoordinator.resx">
+      <DependentUpon>FrmPromptCoordinator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\User\FrmRole.resx">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\User\FrmUser.resx">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\User\FrmUserToRole.resx">
+      <DependentUpon>FrmUserToRole.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\FPASSAboutBox.resx">
+      <DependentUpon>FPASSAboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\FPASSBaseView.resx">
+      <DependentUpon>FPASSBaseView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\FPASSMessageBox.resx">
+      <DependentUpon>FPASSMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Mandator\FrmMandator.resx">
+      <DependentUpon>FrmMandator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\InterfaceZks\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\FrmPopupSearchExco.resx">
+      <DependentUpon>FrmPopupSearchExco.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\FrmReport.resx">
+      <DependentUpon>FrmReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\UserControls\UCReportAttendance.resx">
+      <DependentUpon>UCReportAttendance.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\UserControls\UCReportChecklist.resx">
+      <DependentUpon>UCReportChecklist.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\UserControls\UCReportCoWorker.resx">
+      <DependentUpon>UCReportCoWorker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\UserControls\UcReportExConBooking.resx">
+      <DependentUpon>UcReportExConBooking.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\UserControls\UCReportExContractor.resx">
+      <DependentUpon>UCReportExContractor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\UserControls\UCReportPlant.resx">
+      <DependentUpon>UCReportPlant.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Reports\UserControls\UCReportRespMask.resx">
+      <DependentUpon>UCReportRespMask.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Gui\Dialog\SmartAct\FrmIdCardsPopup.resx">
+      <DependentUpon>FrmIdCardsPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Degussa\FPASS\Util\ProgressUtil\FrmProgress.resx">
+      <DependentUpon>FrmProgress.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Degussa\FPASS\Gui\Dialog\Pass\UserControl\" />
+    <Folder Include="Degussa\FPASS\Util\ActiveDirectory\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>mkdir $(TargetDir)Configuration
+mkdir $(TargetDir)Bilder
+copy $(ProjectDir)Configuration\Configuration.xml $(TargetDir)Configuration\Configuration.xml
+copy $(ProjectDir)Configuration\log4net.xml $(TargetDir)Configuration\log4net.xml
+copy $(ProjectDir)Configuration\xmlpdf.lic $(TargetDir)\xmlpdf.lic
+copy $(ProjectDir)Bilder\* $(TargetDir)Bilder\*</PostBuildEvent>
+  </PropertyGroup>
+</Project>

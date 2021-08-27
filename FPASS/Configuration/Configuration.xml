@@ -1,0 +1,1515 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application>
+	<configuration>
+		<DbAccess>
+			<Connection type="ORACLE" encrypted="false" connectstring="user id=fpass;data source=wesorat1;password=fpass2003"></Connection>
+			<DataAdapters>
+				<DataAdapter id="DSCoWorker" readonly="false">
+					<SourceTable>FPASS_COWORKER</SourceTable>
+					<Sql>SELECT CWR_ID, CWR_TK, CWR_PERSNO, CWR_EXCO_ID, CWR_DEPT_ID, CWR_CRA_ID, CWR_ECOD_ID, CWR_SUBE_ID, CWR_OVEREIGHTEEN_YN, CWR_IDCARDNO, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_PLACEOFBIRTH, CWR_DATECREATED, CWR_VALIDFROM, CWR_VALIDUNTIL, CWR_ORDERNO, CWR_SECPASS_YN, CWR_ENTRYDATECOOD, CWR_ENTRYCOODID, CWR_CHKOFFDATECOOD, CWR_CHKOFFCOODID, CWR_ORDERCOMPLET_YN, CWR_CHANGEUSER, CWR_TIMESTAMP, CWR_RETURNCODE_ZKS, CWR_ACCESS, CWR_STATUS, CWR_MND_ID FROM FPASS_COWORKER WHERE (CWR_ID = :CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</DataAdapter>				
+				<DataAdapter id="DSReceptionAuthorize" readonly="false">
+					<SourceTable>FPASS_RECEPTIONAUTHORIZE</SourceTable>
+					<Sql>SELECT RATH_ID, RATH_CWR_ID, RATH_RATT_ID, RATH_USER_ID, RATH_RECEPTAUTHO_YN, RATH_RECEPTAUTHODATE, RATH_TIMESTAMP FROM FPASS_RECEPTIONAUTHORIZE WHERE (RATH_RATT_ID = :RATH_RATT_ID) AND (RATH_CWR_ID = :RATH_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":RATH_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":RATH_RATT_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSExContractor" readonly="false">
+					<SourceTable>FPASS_EXCONTRACTOR</SourceTable>
+					<Sql>SELECT EXCO_ID, EXCO_MND_ID, EXCO_NAME, EXCO_DEBITNO, EXCO_CITY, EXCO_POSTCODE, EXCO_COUNTRY, EXCO_STREET, EXCO_SUPERFIRSTNAME, EXCO_SUPERSURNAME, EXCO_TELEPHONENO, EXCO_FAX, EXCO_MOBILEPHONE, EXCO_STATUS, EXCO_CHANGEUSER, EXCO_TIMESTAMP FROM FPASS_EXCONTRACTOR WHERE (EXCO_MND_ID = :EXCO_MND_ID) AND (EXCO_STATUS = 'GÜLTIG' OR EXCO_STATUS IS NULL)</Sql>
+					<Parameters>
+						<Parameter name=":EXCO_MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":EXCO_NAME" type="text" length="30"></Parameter>
+						<Parameter name=":EXCO_CITY" type="text" length="30"></Parameter>
+						<Parameter name=":EXCO_SUPERSURNAME" type="text" length="30"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSExCoCoordinator" readonly="false">
+					<SourceTable>FPASS_EXCOECOD</SourceTable>
+					<Sql>SELECT ECEC_CHANGEUSER, ECEC_TIMESTAMP, ECEC_ECOD_ID, ECEC_EXCO_ID FROM FPASS_EXCOECOD</Sql>
+					<Parameters>
+						<Parameter name=":ECEC_EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":ECEC_ECOD_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSExCoCoordinatorView" readonly="true">
+					<SourceTable>vw_fpass_exco_coord_admin</SourceTable>
+					<Sql>SELECT DISTINCT EXCO_ID, EXCO_NAME, EXCO_CITY, VWC_ID, VWC_SURNAME, VWC_FIRSTNAME FROM vw_fpass_exco_coord_admin WHERE (EXCO_MND_ID = :EXCO_MND_ID) AND (EXCO_ID = :EXCO_ID) OR (VWC_ID = :VWC_ID)</Sql>
+					<Parameters>
+						<Parameter name=":EXCO_MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":VWC_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSPrecMedicalType" readonly="false">
+					<SourceTable>FPASS_PRECMEDTYPE</SourceTable>
+					<Sql>SELECT PMTY_CHANGEUSER, PMTY_TIMESTAMP, PMTY_ID, PMTY_MND_ID, PMTY_TYPE, PMTY_NOTATION, PMTY_HELPFILE FROM FPASS_PRECMEDTYPE WHERE (PMTY_MND_ID = :PMTY_MND_ID) AND (PMTY_TYPE LIKE :PMTY_TYPE) AND (PMTY_NOTATION LIKE :PMTY_NOTATION) ORDER BY NLSSORT(PMTY_TYPE, 'NLS_SORT=GERMAN')</Sql>
+					<Parameters>
+						<Parameter name=":PMTY_MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMTY_TYPE" type="text" length="30"></Parameter>
+						<Parameter name=":PMTY_NOTATION" type="text" length="100"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSPlant" readonly="false">
+					<SourceTable>FPASS_PLANT</SourceTable>
+					<Sql>SELECT PL_CHANGEUSER, PL_TIMESTAMP, PL_ID, PL_MND_ID, PL_NAME, PL_STATUS, PL_SOURCE FROM FPASS_PLANT WHERE (PL_MND_ID = :PL_MND_ID) AND (PL_NAME LIKE :PL_NAME) AND (PL_STATUS = 'GÜLTIG' OR PL_STATUS IS NULL) ORDER BY NLSSORT(PL_NAME, 'NLS_SORT=GERMAN')</Sql>
+					<Parameters>
+						<Parameter name=":PL_MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PL_NAME" type="text" length="30"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSDepartment" readonly="false">
+					<SourceTable>FPASS_DEPARTMENT</SourceTable>
+					<Sql>SELECT DEPT_CHANGEUSER, DEPT_TIMESTAMP, DEPT_ID, DEPT_MND_ID, DEPT_DEPARTMENT, DEPT_STATUS FROM FPASS_DEPARTMENT WHERE (DEPT_MND_ID = :DEPT_MND_ID) AND (DEPT_STATUS = 'GÜLTIG' OR DEPT_STATUS IS NULL)</Sql>
+					<Parameters>
+						<Parameter name=":DEPT_MND_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSAdminCraft" readonly="false">
+					<SourceTable>FPASS_CRAFT</SourceTable>
+					<Sql>SELECT CRA_CHANGEUSER, CRA_TIMESTAMP, CRA_ID, CRA_MND_ID, CRA_CRAFTNO, CRA_CRAFTNOTATION FROM FPASS_CRAFT WHERE (CRA_MND_ID = :CRA_MND_ID)</Sql>
+					<Parameters>
+						<Parameter name=":CRA_MND_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSUserByRole" readonly="true">
+					<SourceTable>VW_FPASS_USERBYROLE</SourceTable>
+					<Sql>SELECT UM_USER_ID, FPASS_USER_ID, BOTHNAMESTEL, UM_USERAPPLID FROM VW_FPASS_USERBYROLE WHERE (MND_ID = :MND_ID) AND (RO_ID = :RO_ID)</Sql>
+					<Parameters>
+						<Parameter name=":MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":RO_ID" type="text" length="50"></Parameter>
+					</Parameters>
+				</DataAdapter>
+				<DataAdapter id="DSAssignRole" readonly="false">
+					<SourceTable>UM_ROLELINK</SourceTable>
+					<Sql>SELECT RL_ROLEID, RL_AUTHORIZEDENTITYID, RL_CHANGEUSER, RL_TIMESTAMP FROM UM_ROLELINK</Sql>
+				</DataAdapter>
+			</DataAdapters>
+			<SqlCommands>		
+				<SqlCommand id="GlobalsFPASSPara">
+					<Sql>SELECT PARF_ID, PARF_KEY, PARF_VALUE FROM FPASS_PARAMETERFPASS WHERE PARF_MND_ID = :PARF_MND_ID</Sql>
+					<Parameters>
+						<Parameter name=":PARF_MND_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>					
+				</SqlCommand>				
+				<SqlCommand id="GlobalsRoleByMandator">
+					<Sql>SELECT RL_ROLEID FROM VW_FPASS_ROLEBYMANDATOR WHERE (UM_ROLE_NAME = :UM_ROLE_NAME AND MND_ID = :MND_ID)</Sql>
+					<Parameters>
+						<Parameter name=":MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":UM_ROLE_NAME" type="text" length="30"></Parameter>
+					</Parameters>					
+				</SqlCommand>
+        <SqlCommand id="SelectCoWorkerPhoto">
+          <Sql>SELECT * FROM FPASS_CWRPIC WHERE CWPI_CWR_ID = :CWR_ID</Sql>
+          <Parameters>
+            <Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+          </Parameters>
+        </SqlCommand>        
+        <SqlCommand id="SelectCoWorker">
+					<Sql>
+            SELECT CWR_TK, CWR_PERSNO, CWR_EXCO_ID, CWR_DEPT_ID, CWR_CRA_ID, CWR_ECOD_ID, CWR_SUBE_ID, CWR_OVEREIGHTEEN_YN, CWR_IDCARDNO, CWR_MIFARENO, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_PLACEOFBIRTH, CWR_DATECREATED,
+            CWR_WINDOWS_ID, CWR_SMARTACTNO, CWR_PKI, CWR_PHONE, CWR_IMPORTDATE,
+            to_char(CWR_VALIDFROM, 'DD.MM.YYYY HH24:MI:SS') as CWR_VALIDFROM,
+            to_char(CWR_VALIDUNTIL, 'DD.MM.YYYY HH24:MI:SS') as CWR_VALIDUNTIL,
+            CWR_ORDERNO, CWR_SECPASS_YN, CWR_ENTRYDATECOOD, CWR_ENTRYCOODID, CWR_CHKOFFDATECOOD, CWR_CHKOFFCOODID, CWR_ORDERCOMPLET_YN, CWR_CHANGEUSER, CWR_TIMESTAMP, CWR_RETURNCODE_ZKS, CWR_ACCESS, CWR_STATUS, EXCO_SUPERSURNAME || ', ' || EXCO_SUPERFIRSTNAME as SUPERVISOR, EXCO_TELEPHONENO, CWR_PRECAUTIONMED_YN FROM FPASS_COWORKER, FPASS_EXCONTRACTOR WHERE CWR_ID = :CWR_ID AND CWR_EXCO_ID = EXCO_ID</Sql>
+					<Parameters>
+						<Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="SelectValidUntil">
+					<Sql>SELECT CWR_VALIDUNTIL, CWR_ACCESS FROM FPASS_COWORKER WHERE CWR_ID = :CWR_ID</Sql>
+					<Parameters>
+						<Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+        <SqlCommand id="SelectCoWorkerArchive">
+          <Sql>
+            SELECT CWR_TK, CWR_PERSNO, CWR_EXCO_ID, CWR_DEPT_ID, CWR_CRA_ID, CWR_ECOD_ID, CWR_SUBE_ID, CWR_OVEREIGHTEEN_YN, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_PLACEOFBIRTH, CWR_DATECREATED, CWR_VALIDFROM, CWR_VALIDUNTIL, CWR_ORDERNO, CWR_SECPASS_YN, CWR_ENTRYDATECOOD, CWR_ENTRYCOODID, CWR_CHKOFFDATECOOD, CWR_CHKOFFCOODID, CWR_ORDERCOMPLET_YN, CWR_CHANGEUSER, CWR_TIMESTAMP, CWR_RETURNCODE_ZKS, CWR_ACCESS, CWR_STATUS, EXCO_SUPERSURNAME || ', ' || EXCO_SUPERFIRSTNAME as SUPERVISOR, EXCO_TELEPHONENO, CWR_PRECAUTIONMED_YN, CWR_SMARTACTNO, CWR_IDCARDNO, CWR_MIFARENO, CWR_PKI, CWR_PHONE, CWR_WINDOWS_ID, CWR_IMPORTDATE
+            FROM VW_FPASS_ARCOWORKER, FPASS_EXCONTRACTOR WHERE CWR_ID = :CWR_ID AND CWR_EXCO_ID = EXCO_ID
+            UNION
+            SELECT CWR_TK, CWR_PERSNO, CWR_EXCO_ID, CWR_DEPT_ID, CWR_CRA_ID, CWR_ECOD_ID, CWR_SUBE_ID, CWR_OVEREIGHTEEN_YN, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_PLACEOFBIRTH, CWR_DATECREATED, CWR_VALIDFROM, CWR_VALIDUNTIL, CWR_ORDERNO, CWR_SECPASS_YN, CWR_ENTRYDATECOOD, CWR_ENTRYCOODID, CWR_CHKOFFDATECOOD, CWR_CHKOFFCOODID, CWR_ORDERCOMPLET_YN, CWR_CHANGEUSER, CWR_TIMESTAMP, CWR_RETURNCODE_ZKS, CWR_ACCESS, CWR_STATUS, EXCO_SUPERSURNAME || ', ' || EXCO_SUPERFIRSTNAME as SUPERVISOR, EXCO_TELEPHONENO, CWR_PRECAUTIONMED_YN, CWR_SMARTACTNO, CWR_IDCARDNO, CWR_MIFARENO, CWR_PKI, CWR_PHONE, CWR_WINDOWS_ID, CWR_IMPORTDATE 
+            FROM VW_FPASS_ARCOWORKER, VW_FPASS_AREXCONTRACTOR WHERE CWR_ID = :CWR_ID AND CWR_EXCO_ID = EXCO_ID
+          </Sql>
+          <Parameters>
+            <Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+          </Parameters>
+        </SqlCommand>
+
+        <SqlCommand id="InsertCoWorker">
+					<Sql>
+            INSERT INTO FPASS_COWORKER ( CWR_ID, CWR_TK, CWR_PERSNO, CWR_EXCO_ID, CWR_DEPT_ID, CWR_CRA_ID, CWR_ECOD_ID, CWR_SUBE_ID, CWR_OVEREIGHTEEN_YN, CWR_IDCARDNO, CWR_MIFARENO, CWR_WINDOWS_ID, CWR_SMARTACTNO, CWR_PKI, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_PLACEOFBIRTH, CWR_DATECREATED, CWR_VALIDFROM, CWR_VALIDUNTIL, CWR_ORDERNO, CWR_SECPASS_YN, CWR_ENTRYDATECOOD, CWR_ENTRYCOODID, CWR_CHKOFFDATECOOD, CWR_CHKOFFCOODID, CWR_ORDERCOMPLET_YN, CWR_CHANGEUSER, CWR_TIMESTAMP, CWR_RETURNCODE_ZKS, CWR_MND_ID, CWR_PRECAUTIONMED_YN, CWR_PHONE )
+            VALUES ( :CWR_ID, :CWR_TK, :CWR_PERSNO, :CWR_EXCO_ID, :CWR_DEPT_ID, :CWR_CRA_ID, :CWR_ECOD_ID, :CWR_SUBE_ID, :CWR_OVEREIGHTEEN_YN, :CWR_IDCARDNO, :CWR_MIFARENO, :CWR_WINDOWS_ID, :CWR_SMARTACTNO, :CWR_PKI, :CWR_SURNAME, :CWR_FIRSTNAME, :CWR_DATEOFBIRTH, :CWR_PLACEOFBIRTH, :CWR_DATECREATED, :CWR_VALIDFROM, :CWR_VALIDUNTIL, :CWR_ORDERNO, :CWR_SECPASS_YN, :CWR_ENTRYDATECOOD, :CWR_ENTRYCOODID, :CWR_CHKOFFDATECOOD, :CWR_CHKOFFCOODID, :CWR_ORDERCOMPLET_YN, :CWR_CHANGEUSER, :CWR_TIMESTAMP, :CWR_RETURNCODE_ZKS, :CWR_MND_ID, :CWR_PRECAUTIONMED_YN, :CWR_PHONE )</Sql>
+					<Parameters>
+						<Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_TK" type="number" precision="3" scale="0"></Parameter>
+						<Parameter name=":CWR_PERSNO" type="text" length="8"></Parameter>
+						<Parameter name=":CWR_EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_DEPT_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_CRA_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_ECOD_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_SUBE_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_OVEREIGHTEEN_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWR_IDCARDNO" type="number" precision="15" scale="0"></Parameter>
+            <Parameter name=":CWR_MIFARENO" type="number" precision="15" scale="0"></Parameter>
+            <Parameter name=":CWR_WINDOWS_ID" type="text" length="50"></Parameter>
+            <Parameter name=":CWR_SMARTACTNO" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":CWR_PKI" type="text" length="1"></Parameter>
+            <Parameter name=":CWR_SURNAME" type="text" length="30"></Parameter>
+						<Parameter name=":CWR_FIRSTNAME" type="text" length="30"></Parameter>
+						<Parameter name=":CWR_DATEOFBIRTH" type="datetime"></Parameter>
+						<Parameter name=":CWR_PLACEOFBIRTH" type="text" length="30"></Parameter>
+						<Parameter name=":CWR_DATECREATED" type="datetime"></Parameter>
+						<Parameter name=":CWR_VALIDFROM" type="datetime"></Parameter>
+						<Parameter name=":CWR_VALIDUNTIL" type="datetime"></Parameter>
+						<Parameter name=":CWR_ORDERNO" type="text" length="40"></Parameter>
+						<Parameter name=":CWR_SECPASS_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWR_ENTRYDATECOOD" type="datetime"></Parameter>
+						<Parameter name=":CWR_ENTRYCOODID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_CHKOFFDATECOOD" type="datetime"></Parameter>
+						<Parameter name=":CWR_CHKOFFCOODID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_ORDERCOMPLET_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWR_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":CWR_RETURNCODE_ZKS" type="text" length="2"></Parameter>
+						<Parameter name=":CWR_MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_PRECAUTIONMED_YN" type="text" length="1"></Parameter>
+            <Parameter name=":CWR_PHONE" type="text" length="50"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="UpdateCoWorker">
+					<Sql>
+            UPDATE FPASS_COWORKER SET CWR_TK = :CWR_TK, CWR_PERSNO = :CWR_PERSNO, CWR_EXCO_ID = :CWR_EXCO_ID, CWR_DEPT_ID = :CWR_DEPT_ID,
+            CWR_CRA_ID = :CWR_CRA_ID, CWR_ECOD_ID = :CWR_ECOD_ID, CWR_SUBE_ID = :CWR_SUBE_ID, CWR_OVEREIGHTEEN_YN = :CWR_OVEREIGHTEEN_YN,
+            CWR_IDCARDNO = :CWR_IDCARDNO, CWR_SURNAME = :CWR_SURNAME, CWR_FIRSTNAME = :CWR_FIRSTNAME, CWR_DATEOFBIRTH = :CWR_DATEOFBIRTH,
+            CWR_PLACEOFBIRTH = :CWR_PLACEOFBIRTH, CWR_DATECREATED = :CWR_DATECREATED, CWR_VALIDFROM = :CWR_VALIDFROM,
+            CWR_ORDERNO = :CWR_ORDERNO, CWR_SECPASS_YN = :CWR_SECPASS_YN, CWR_ENTRYDATECOOD = :CWR_ENTRYDATECOOD, CWR_ENTRYCOODID = :CWR_ENTRYCOODID,
+            CWR_CHKOFFDATECOOD = :CWR_CHKOFFDATECOOD, CWR_CHKOFFCOODID = :CWR_CHKOFFCOODID, CWR_ORDERCOMPLET_YN = :CWR_ORDERCOMPLET_YN,
+            CWR_CHANGEUSER = :CWR_CHANGEUSER, CWR_TIMESTAMP = :CWR_TIMESTAMP, CWR_RETURNCODE_ZKS = :CWR_RETURNCODE_ZKS,
+            CWR_MND_ID = :CWR_MND_ID, CWR_PRECAUTIONMED_YN = :CWR_PRECAUTIONMED_YN,
+            CWR_PHONE = :CWR_PHONE, CWR_WINDOWS_ID = :CWR_WINDOWS_ID, CWR_SMARTACTNO = :CWR_SMARTACTNO, CWR_MIFARENO = :CWR_MIFARENO, CWR_PKI = :CWR_PKI
+            WHERE (CWR_ID = :CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_TK" type="number" precision="3" scale="0"></Parameter>
+						<Parameter name=":CWR_PERSNO" type="text" length="8"></Parameter>
+						<Parameter name=":CWR_EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_DEPT_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_CRA_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_ECOD_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_SUBE_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_OVEREIGHTEEN_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWR_IDCARDNO" type="number" precision="15" scale="0"></Parameter>
+						<Parameter name=":CWR_SURNAME" type="text" length="30"></Parameter>
+						<Parameter name=":CWR_FIRSTNAME" type="text" length="30"></Parameter>
+						<Parameter name=":CWR_DATEOFBIRTH" type="datetime"></Parameter>
+						<Parameter name=":CWR_PLACEOFBIRTH" type="text" length="30"></Parameter>
+						<Parameter name=":CWR_DATECREATED" type="datetime"></Parameter>
+						<Parameter name=":CWR_VALIDFROM" type="datetime"></Parameter>
+						<Parameter name=":CWR_ORDERNO" type="text" length="40"></Parameter>
+						<Parameter name=":CWR_SECPASS_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWR_ENTRYDATECOOD" type="datetime"></Parameter>
+						<Parameter name=":CWR_ENTRYCOODID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_CHKOFFDATECOOD" type="datetime"></Parameter>
+						<Parameter name=":CWR_CHKOFFCOODID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_ORDERCOMPLET_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWR_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":CWR_RETURNCODE_ZKS" type="text" length="2"></Parameter>
+						<Parameter name=":CWR_MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_PRECAUTIONMED_YN" type="text" length="1"></Parameter>
+            <Parameter name=":CWR_PHONE" type="text" length="50"></Parameter>
+            <Parameter name=":CWR_WINDOWS_ID" type="text" length="50"></Parameter>
+            <Parameter name=":CWR_SMARTACTNO" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":CWR_MIFARENO" type="number" precision="15"></Parameter>
+            <Parameter name=":CWR_PKI" type="text" length="1"></Parameter>
+					</Parameters>
+				</SqlCommand>								
+				<SqlCommand id="SelectBriefing">
+					<Sql>SELECT CWBR_ID, CWBR_USER_ID, CWBR_BRF_ID, CWBR_BRIEFING_YN , CWBR_BRIEFINGDATE, CWBR_TIMESTAMP, CWBR_INACTIVE_YN, USERNICENAME, CWBR_DIRECTBRIEFINGDATE, CWBR_DIRECTUSER_ID, DIRECTUSERNICENAME FROM VW_FPASS_EDITCWRBRIEFING WHERE (CWBR_CWR_ID = :CWBR_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="SelectBriefingArchive">
+					<Sql>SELECT CWBR_ID, CWBR_USER_ID, CWBR_BRF_ID, CWBR_BRIEFING_YN , CWBR_BRIEFINGDATE, CWBR_TIMESTAMP, CWBR_INACTIVE_YN, USERNICENAME, CWBR_DIRECTBRIEFINGDATE, CWBR_DIRECTUSER_ID, DIRECTUSERNICENAME FROM VW_FPASS_AREDITCWRBRIEFING WHERE (CWBR_CWR_ID = :CWBR_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="UpdateBriefing">
+					<Sql>
+            UPDATE FPASS_CWRBRIEFING SET CWBR_USER_ID = :CWBR_USER_ID, CWBR_BRIEFING_YN = :CWBR_BRIEFING_YN, CWBR_BRIEFINGDATE = :CWBR_BRIEFINGDATE, CWBR_TIMESTAMP = :CWBR_TIMESTAMP, CWBR_INACTIVE_YN = :CWBR_INACTIVE_YN,
+            CWBR_DIRECTUSER_ID = :CWBR_DIRECTUSER_ID, CWBR_DIRECTBRIEFINGDATE = :CWBR_DIRECTBRIEFINGDATE, CWBR_CWR_ID = :CWBR_CWR_ID, CWBR_BRF_ID = :CWBR_BRF_ID, CWBR_LASTUSER_ID = :CWBR_LASTUSER_ID WHERE (CWBR_ID = :CWBR_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":CWBR_USER_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":CWBR_BRIEFING_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWBR_BRIEFINGDATE" type="datetime"></Parameter>
+						<Parameter name=":CWBR_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":CWBR_INACTIVE_YN" type="text" length="1"></Parameter>
+            <Parameter name=":CWBR_DIRECTUSER_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":CWBR_DIRECTBRIEFINGDATE" type="datetime"></Parameter>
+						<Parameter name=":CWBR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_BRF_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_LASTUSER_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>								
+				<SqlCommand id="InsertBriefing">
+					<Sql>INSERT INTO fpass_cwrbriefing( CWBR_ID, CWBR_CWR_ID, CWBR_BRF_ID, CWBR_USER_ID, CWBR_BRIEFING_YN, CWBR_BRIEFINGDATE, CWBR_INACTIVE_YN, CWBR_DIRECTUSER_ID, CWBR_DIRECTBRIEFINGDATE, CWBR_LASTUSER_ID, CWBR_TIMESTAMP )
+            VALUES( :CWBR_ID, :CWBR_CWR_ID, :CWBR_BRF_ID, :CWBR_USER_ID, :CWBR_BRIEFING_YN, :CWBR_BRIEFINGDATE, :CWBR_INACTIVE_YN, :CWBR_DIRECTUSER_ID, :CWBR_DIRECTBRIEFINGDATE, :CWBR_LASTUSER_ID, :CWBR_TIMESTAMP )</Sql>
+					<Parameters>
+						<Parameter name=":CWBR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_BRF_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_USER_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_BRIEFING_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWBR_BRIEFINGDATE" type="datetime"></Parameter>
+						<Parameter name=":CWBR_INACTIVE_YN" type="text" length="1"></Parameter>
+            <Parameter name=":CWBR_DIRECTUSER_ID" type="number" precision="10" scale="0"></Parameter> 
+            <Parameter name=":CWBR_DIRECTBRIEFINGDATE" type="datetime"></Parameter>
+            <Parameter name=":CWBR_LASTUSER_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_TIMESTAMP" type="datetime"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectPrecautionaryMedical">
+					<Sql>SELECT PMED_ID, PMED_USER_ID, PMED_EXECUTEDON, PMED_TIMESTAMP, PMED_INACTIVE_YN, PMED_VALIDUNTIL, PMED_PMTY_ID, PMTY_NOTATION, PMTY_TYPE, USERNICENAME FROM VW_FPASS_EDITCWRPRECMED WHERE (PMED_CWR_ID = :PMED_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":PMED_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="SelectPrecautionaryMedicalArchive">
+					<Sql>SELECT PMED_ID, PMED_USER_ID, PMED_EXECUTEDON, PMED_TIMESTAMP, PMED_INACTIVE_YN, PMED_VALIDUNTIL, PMED_PMTY_ID, PMTY_NOTATION, PMTY_TYPE, USERNICENAME FROM VW_FPASS_AREDITCWRPRECMED WHERE (PMED_CWR_ID = :PMED_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":PMED_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>						
+				
+				<SqlCommand id="InsertPrecautionaryMedical">
+					<Sql>INSERT INTO  fpass_precautionmed (PMED_ID, PMED_CWR_ID, PMED_PMTY_ID, PMED_USER_ID, PMED_EXECUTEDON, PMED_INACTIVE_YN, PMED_TIMESTAMP,  PMED_VALIDUNTIL ) values ( :PMED_ID, :PMED_CWR_ID, :PMED_PMTY_ID, :PMED_USER_ID, :PMED_EXECUTEDON, :PMED_INACTIVE_YN, :PMED_TIMESTAMP,  :PMED_VALIDUNTIL )</Sql>	
+					<Parameters>
+						<Parameter name=":PMED_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMED_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMED_PMTY_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMED_USER_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMED_EXECUTEDON" type="datetime"></Parameter>
+						<Parameter name=":PMED_INACTIVE_YN" type="text" length="1"></Parameter>
+						<Parameter name=":PMED_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":PMED_VALIDUNTIL" type="datetime"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="UpdatePrecautionaryMedical">
+					<Sql>UPDATE FPASS_PRECAUTIONMED SET PMED_CWR_ID = :PMED_CWR_ID, PMED_USER_ID = :PMED_USER_ID, PMED_EXECUTEDON = :PMED_EXECUTEDON, PMED_PMTY_ID = :PMED_PMTY_ID, PMED_VALIDUNTIL = :PMED_VALIDUNTIL, PMED_TIMESTAMP = :PMED_TIMESTAMP, PMED_INACTIVE_YN = :PMED_INACTIVE_YN WHERE ( PMED_ID = :PMED_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":PMED_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMED_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMED_PMTY_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMED_USER_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":PMED_EXECUTEDON" type="datetime"></Parameter>
+						<Parameter name=":PMED_INACTIVE_YN" type="text" length="1"></Parameter>
+						<Parameter name=":PMED_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":PMED_INACTIVE_YN type" type="text" length="1"></Parameter>
+						<Parameter name=":PMED_VALIDUNTIL" type="datetime"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="DeletePrecautionaryMedical">
+					<Sql>DELETE FPASS_PRECAUTIONMED WHERE (PMED_CWR_ID = :PMED_CWR_ID AND PMED_PMTY_ID = :PMED_PMTY_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":PMED_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":PMED_PMTY_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="InsertVehicleAccess">
+					<Sql>INSERT INTO FPASS_CWRBRIEFING (CWBR_ID, CWBR_CWR_ID, CWBR_BRF_ID, CWBR_USER_ID, CWBR_BRIEFING_YN, CWBR_BRIEFINGDATE, CWBR_INACTIVE_YN, CWBR_LASTUSER_ID, CWBR_TIMESTAMP ) VALUES ( :CWBR_ID, :CWBR_CWR_ID, :CWBR_BRF_ID, :CWBR_USER_ID, :CWBR_BRIEFING_YN, :CWBR_BRIEFINGDATE, :CWBR_INACTIVE_YN, :CWBR_LASTUSER_ID, SYSDATE )</Sql> 			
+					<Parameters>
+						<Parameter name=":CWBR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_BRF_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_USER_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":CWBR_BRIEFING_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWBR_BRIEFINGDATE" type="datetime"></Parameter>
+						<Parameter name=":CWBR_INACTIVE_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWBR_LASTUSER_ID" type="number" precision="10" scale="0"></Parameter>  
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="UpdateVehicleAccess">
+					<Sql>UPDATE FPASS_CWRBRIEFING SET CWBR_BRIEFING_YN = :CWBR_BRIEFING_YN, CWBR_BRIEFINGDATE = :CWBR_BRIEFINGDATE, CWBR_INACTIVE_YN = :CWBR_INACTIVE_YN, CWBR_USER_ID = :CWBR_USER_ID, CWBR_TIMESTAMP = SYSDATE WHERE ( CWBR_CWR_ID = :CWBR_CWR_ID AND CWBR_BRF_ID = :CWBR_BRF_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":CWBR_USER_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":CWBR_BRIEFING_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWBR_BRIEFINGDATE" type="datetime"></Parameter>
+						<Parameter name=":CWBR_INACTIVE_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_BRF_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="UpdateSelectedVehicleAccess">
+					<Sql>UPDATE FPASS_CWRBRIEFING SET CWBR_INACTIVE_YN = :CWBR_INACTIVE_YN, CWBR_USER_ID = :CWBR_USER_ID, CWBR_TIMESTAMP = SYSDATE, CWBR_BRIEFINGDATE = SYSDATE WHERE ( CWBR_CWR_ID = :CWBR_CWR_ID AND CWBR_BRF_ID = :CWBR_BRF_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":CWBR_USER_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":CWBR_INACTIVE_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_BRF_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="UpdateSelecNotAceptVehicAccs">
+					<Sql>UPDATE FPASS_CWRBRIEFING SET CWBR_INACTIVE_YN = :CWBR_INACTIVE_YN, CWBR_USER_ID = :CWBR_USER_ID, CWBR_TIMESTAMP = SYSDATE, CWBR_BRIEFINGDATE = SYSDATE WHERE CWBR_CWR_ID = :CWBR_CWR_ID AND CWBR_BRF_ID IN (:CWBR_BRF_ID, :CWBR_BRFL_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":CWBR_USER_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":CWBR_INACTIVE_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_BRF_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWBR_BRFL_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+        
+        <SqlCommand id="SelectPlants">
+					<Sql>SELECT CWPL_ID, CWPL_PL_ID, CWPL_CWR_ID, CWPL_USER_ID, CWPL_PLANTDATE, CWPL_PLANT_YN, CWPL_INACTIVE_YN, CWPL_VALIDUNTIL, PL_NAME, PL_SOURCE, USERNICENAME FROM VW_FPASS_EDITCWRPLANT WHERE (CWPL_CWR_ID = :CWPL_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":CWPL_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>	
+				<SqlCommand id="SelectPlantsArchive">
+					<Sql>SELECT CWPL_ID, CWPL_PL_ID, CWPL_CWR_ID, CWPL_USER_ID, CWPL_PLANTDATE, CWPL_PLANT_YN, CWPL_INACTIVE_YN, CWPL_VALIDUNTIL, PL_NAME, USERNICENAME FROM VW_FPASS_AREDITCWRPLANT WHERE (CWPL_CWR_ID = :CWPL_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":CWPL_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectPlantManagers">
+					<Sql>SELECT DISTINCT USPL.USPL_PL_ID, USPL.USPL_USER_ID FROM FPASS_USERPLANT USPL, FPASS_PLANT PL WHERE USPL.USPL_PL_ID = PL.PL_ID AND PL.PL_MND_ID = :PL_MND_ID AND (PL.PL_STATUS = 'GÜLTIG' OR PL.PL_STATUS IS NULL)</Sql>
+					<Parameters>
+						<Parameter name=":pl_mnd_id" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				
+				<SqlCommand id="InsertPlants">
+					<Sql>INSERT INTO FPASS_CWRPLANT (CWPL_ID, CWPL_PL_ID, CWPL_CWR_ID, CWPL_USER_ID, CWPL_PLANTDATE, CWPL_VALIDUNTIL, CWPL_TIMESTAMP, CWPL_PLANT_YN, CWPL_INACTIVE_YN)
+            VALUES (:CWPL_ID, :CWPL_PL_ID, :CWPL_CWR_ID, :CWPL_USER_ID, :CWPL_PLANTDATE, :CWPL_VALIDUNTIL, :CWPL_TIMESTAMP, :CWPL_PLANT_YN, :CWPL_INACTIVE_YN)</Sql>
+					<Parameters>
+						<Parameter name=":CWPL_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWPL_PL_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWPL_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWPL_USER_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWPL_PLANTDATE" type="datetime"></Parameter>
+            <Parameter name=":CWPL_VALIDUNTIL" type="datetime"></Parameter>
+            <Parameter name=":CWPL_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":CWPL_PLANT_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWPL_INACTIVE_YN" type="text" length="1"></Parameter>
+					</Parameters>
+				</SqlCommand>	
+				<SqlCommand id="UpdatePlants">
+					<Sql>UPDATE FPASS_CWRPLANT SET CWPL_PL_ID = :CWPL_PL_ID, CWPL_CWR_ID = :CWPL_CWR_ID, CWPL_USER_ID = :CWPL_USER_ID,  CWPL_PLANTDATE = :CWPL_PLANTDATE, CWPL_VALIDUNTIL = :CWPL_VALIDUNTIL, CWPL_TIMESTAMP = :CWPL_TIMESTAMP, CWPL_PLANT_YN = :CWPL_PLANT_YN, CWPL_INACTIVE_YN = :CWPL_INACTIVE_YN WHERE CWPL_ID = :CWPL_ID</Sql>
+					<Parameters>
+						<Parameter name=":CWPL_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWPL_PL_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWPL_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWPL_USER_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWPL_PLANTDATE" type="datetime"></Parameter>
+            <Parameter name=":CWPL_VALIDUNTIL" type="datetime"></Parameter>
+						<Parameter name=":CWPL_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":CWPL_PLANT_YN" type="text" length="1"></Parameter>
+						<Parameter name=":CWPL_INACTIVE_YN" type="text" length="1"></Parameter>
+					</Parameters>
+				</SqlCommand>	
+				<SqlCommand id="DeletePlants">
+					<Sql>DELETE FPASS_CWRPLANT WHERE CWPL_ID = :CWPL_ID</Sql>
+					<Parameters>
+						<Parameter name=":CWPL_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>			
+																
+				<SqlCommand id="SelectAuthorization">
+					<Sql>SELECT RATH_ID, RATH_RATT_ID, RATH_CWR_ID, RATH_USER_ID, RATH_RECEPTAUTHO_YN, RATH_COMMENT, RATH_RECEPTAUTHODATE, RATH_TIMESTAMP, USERNICENAME FROM VW_FPASS_EDITCWRRECAUTH WHERE (RATH_CWR_ID = :RATH_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":RATH_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectAuthorizationArchive">
+					<Sql>SELECT RATH_ID, RATH_RATT_ID, RATH_CWR_ID, RATH_RATT_ID, RATH_USER_ID, RATH_RECEPTAUTHO_YN, RATH_COMMENT, RATH_RECEPTAUTHODATE, RATH_TIMESTAMP, USERNICENAME FROM VW_FPASS_AREDITCWRRECAUTH WHERE (RATH_CWR_ID = :RATH_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":RATH_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="UpdateAuthorization">
+					<Sql>UPDATE fpass_receptionauthorize SET RATH_USER_ID = :RATH_USER_ID, RATH_RECEPTAUTHO_YN = :RATH_RECEPTAUTHO_YN, RATH_COMMENT = :RATH_COMMENT, RATH_RECEPTAUTHODATE = :RATH_RECEPTAUTHODATE, RATH_TIMESTAMP = :RATH_TIMESTAMP, RATH_RATT_ID = :RATH_RATT_ID WHERE ( RATH_ID = :RATH_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":RATH_USER_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":RATH_RECEPTAUTHO_YN" type="text" length="1"></Parameter>
+						<Parameter name=":RATH_COMMENT" type="text" length="100"></Parameter>
+						<Parameter name=":RATH_RECEPTAUTHODATE" type="datetime"></Parameter>
+						<Parameter name=":RATH_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":RATH_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":RATH_RATT_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="InsertAuthorization">
+					<Sql>INSERT INTO fpass_receptionauthorize (RATH_ID, RATH_CWR_ID, RATH_RATT_ID, RATH_USER_ID, RATH_RECEPTAUTHO_YN, RATH_COMMENT, RATH_RECEPTAUTHODATE,  RATH_TIMESTAMP ) VALUES ( :RATH_ID, :RATH_CWR_ID, :RATH_RATT_ID, :RATH_USER_ID, :RATH_RECEPTAUTHO_YN, :RATH_COMMENT, :RATH_RECEPTAUTHODATE,  :RATH_TIMESTAMP )</Sql>	
+					<Parameters>
+						<Parameter name=":RATH_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":RATH_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":RATH_RATT_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":RATH_USER_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":RATH_RECEPTAUTHO_YN" type="text" length="1"></Parameter>
+						<Parameter name=":RATH_COMMENT" type="text" length="100"></Parameter>
+						<Parameter name=":RATH_RECEPTAUTHODATE" type="datetime"></Parameter>
+						<Parameter name=":RATH_TIMESTAMP" type="datetime"></Parameter>
+					</Parameters>
+				</SqlCommand>        
+          <SqlCommand id="SelectMask">
+            <Sql>SELECT REMA_ID, REMA_CWR_ID, REMA_RMTY_ID, RMTY_SYSTEM, REMA_USER_ID, REMA_MASKNO, REMA_DATE, REMA_NEXT_MAINTAIN, REMA_TIMESTAMP, US_USERID, USERNICENAME FROM VW_FPASS_EDITCWRRESPMASK WHERE (REMA_CWR_ID = :REMA_CWR_ID) AND REMA_RMTY_ID IN ( :REMA_RMTY_LENT_ID, :REMA_RMTY_RETURN_ID)</Sql>
+            <Parameters>
+              <Parameter name=":REMA_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+              <Parameter name=":REMA_RMTY_LENT_ID" type="number" precision="10" scale="0"></Parameter>
+              <Parameter name=":REMA_RMTY_RETURN_ID" type="number" precision="10" scale="0"></Parameter>
+            </Parameters>
+          </SqlCommand>
+        <SqlCommand id="SelectMaskCoworkerLent">
+          <Sql>SELECT REMA_ID, REMA_CWR_ID, REMA_RMTY_ID, RMTY_SYSTEM, REMA_USER_ID, REMA_MASKNO, REMA_DATE, REMA_TIMESTAMP, US_USERID, USERNICENAME FROM VW_FPASS_EDITCWRRESPMASKLENT  WHERE (REMA_CWR_ID = :REMA_CWR_ID)</Sql>
+          <Parameters>
+            <Parameter name=":REMA_CWR_ID" type="number" precision="10" scale="0"></Parameter>          
+          </Parameters>
+        </SqlCommand>
+        <SqlCommand id="SelectMaskCoworkerLentArchive">
+          <Sql>
+            SELECT REMA_ID, REMA_CWR_ID, REMA_RMTY_ID, REMA_USER_ID, REMA_MASKNO, REMA_DATE, REMA_TIMESTAMP, US_USERID, USERNICENAME FROM VW_FPASS_AREDITCWRRESPMASKLENT WHERE (REMA_CWR_ID = :REMA_CWR_ID)</Sql>
+          <Parameters>
+            <Parameter name=":REMA_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+          </Parameters>
+        </SqlCommand>
+        <SqlCommand id="SelectMaskTecbosNextMaintDate">
+          <Sql>SELECT MIN(gti.NDATUM) AS NDATUM FROM syscom_GERAETESTAMM gsta, syscom_GERAETESTAMM_INTERVALLE gti  WHERE gsta.ID = gti.IDPARENT AND (gsta.BARCODE = :GER_BARCODE)</Sql>
+          <Parameters>
+            <Parameter name=":GER_BARCODE" type="text" length="50"></Parameter>
+          </Parameters>
+        </SqlCommand>
+
+        <SqlCommand id="SelectMaskArchive">
+          <Sql>SELECT REMA_ID, REMA_CWR_ID, REMA_RMTY_ID, REMA_USER_ID, REMA_INACTIVE_YN, REMA_MASKNO, REMA_DATE, REMA_NEXT_MAINTAIN, REMA_TIMESTAMP, US_USERID, USERNICENAME FROM VW_FPASS_AREDITCWRRESPMASK WHERE (REMA_CWR_ID = :REMA_CWR_ID)</Sql>
+          <Parameters>
+            <Parameter name=":REMA_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+          </Parameters>
+        </SqlCommand>
+        <SqlCommand id="SelectMaskLent">
+          <Sql>SELECT COWORKER, REMA_DATE_LENT, REMA_DATE_RET FROM VW_FPASS_RESPMASK_LENT WHERE (REMA_MASKNO = :REMA_MASKNO)</Sql>
+          <Parameters>
+            <Parameter name=":REMA_MASKNO" type="text" length="30"></Parameter>
+          </Parameters>
+        </SqlCommand>
+        <SqlCommand id="SelectMaskAvailable">
+          <Sql>
+            SELECT GER_BARCODE, AUSGEMUSTERT, GESPERRTDATUM, GESPERRTGRUND, FUNKTIONSTUECHTIG, STANDORT1, COWORKER, GER_LAST_MAINTAIN, GER_NEXT_MAINTAIN, REMA_RMTYID_LENT, REMA_DATE_LENT, REMA_RMTYID_RET, REMA_DATE_RET
+            FROM VW_FPASS_RESPMASK_AVAIL WHERE (GER_BARCODE = :GER_BARCODE)</Sql>
+          <Parameters>
+            <Parameter name=":GER_BARCODE" type="text" length="50"></Parameter>
+          </Parameters>
+        </SqlCommand>
+        
+        <SqlCommand id="SelectLatestMaskDate">
+					<Sql>SELECT MAX(REMA_DATE) AS MAXMASKDATE FROM FPASS_RESPMASK WHERE REMA_CWR_ID = :REMA_CWR_ID</Sql>
+					<Parameters>
+						<Parameter name=":REMA_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>        
+        <SqlCommand id="SelectFlorixMask">
+          <Sql>SELECT FLO_BARCODE, FLO_MAINTAIN_DUE FROM VW_FLORIX_MASK WHERE (FLO_BARCODE = :FLO_BARCODE)</Sql>
+          <Parameters>
+            <Parameter name=":FLO_BARCODE" type="text" length="35"></Parameter>
+          </Parameters>
+        </SqlCommand>
+
+        <SqlCommand id="InsertMask">
+          <Sql>
+            INSERT INTO FPASS_RESPMASK (REMA_ID, REMA_CWR_ID, REMA_RMTY_ID, REMA_MASKNO, REMA_DATE, REMA_USER_ID, REMA_TIMESTAMP) VALUES (:REMA_ID, :REMA_CWR_ID, :REMA_RMTY_ID, :REMA_MASKNO, :REMA_DATE, :REMA_LAST_MAINTAIN, :REMA_USER_ID, :REMA_TIMESTAMP)
+          </Sql>
+          <Parameters>
+            <Parameter name=":REMA_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":REMA_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":REMA_RMTY_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":REMA_USER_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":REMA_DATE" type="datetime"></Parameter>
+            <Parameter name=":REMA_TIMESTAMP" type="datetime"></Parameter>
+            <Parameter name=":REMA_MASKNO" type="text" length="30"></Parameter>
+          </Parameters>
+        </SqlCommand>
+        <SqlCommand id="InsertMaskSP">
+          <Sql>
+            SP_INSERT_FPASS_RESPMASK(:REMA_CWR_ID, :REMA_RMTY_ID, :REMA_MASKNO, :REMA_DATE, :REMA_USER_ID)
+          </Sql>
+          <Parameters>
+            <Parameter name=":REMA_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":REMA_RMTY_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":REMA_USER_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":REMA_DATE" type="datetime"></Parameter>
+            <Parameter name=":REMA_MASKNO" type="text" length="30"></Parameter>
+          </Parameters>
+        </SqlCommand>
+
+        <SqlCommand id="UpdateMask">
+					<Sql>UPDATE FPASS_RESPMASK SET REMA_USER_ID = :REMA_USER_ID, REMA_MASKNO = :REMA_MASKNO, REMA_DATE = :REMA_DATE, REMA_TIMESTAMP = :REMA_TIMESTAMP WHERE ( REMA_ID = :REMA_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":REMA_USER_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":REMA_MASKNO" type="text" length="30"></Parameter>
+						<Parameter name=":REMA_DATE" type="datetime"></Parameter>
+            <Parameter name=":REMA_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":REMA_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				
+				<SqlCommand id="SelectVehicleRegistrationNumber">
+					<Sql>SELECT VRNO_ID, VRNO_CWR_ID, VRNO_VEHREGNO, VRNO_CHANGEUSER, VRNO_TIMESTAMP FROM FPASS_VEHREGNO WHERE (VRNO_CWR_ID = :VRNO_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":VRNO_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="SelectVehicleRegistrationNumberArchive">
+					<Sql>SELECT VRNO_ID, VRNO_CWR_ID, VRNO_VEHREGNO, VRNO_CHANGEUSER, VRNO_TIMESTAMP FROM VW_FPASS_ARVEHREGNO WHERE (VRNO_CWR_ID = :VRNO_CWR_ID)</Sql>
+					<Parameters>
+						<Parameter name=":VRNO_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				
+								
+				<SqlCommand id="UpdateVehicleRegistrationNumber">
+					<Sql>UPDATE fpass_vehregno SET VRNO_CHANGEUSER = :VRNO_CHANGEUSER, VRNO_VEHREGNO = :VRNO_VEHREGNO, VRNO_TIMESTAMP = :VRNO_TIMESTAMP WHERE ( VRNO_ID = :VRNO_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":VRNO_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":VRNO_VEHREGNO" type="text" length="35"></Parameter>
+						<Parameter name=":VRNO_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":VRNO_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="InsertVehicleRegistrationNumber">
+					<Sql>INSERT INTO  fpass_vehregno (VRNO_ID, VRNO_CWR_ID, VRNO_VEHREGNO, VRNO_CHANGEUSER, VRNO_TIMESTAMP ) values (:VRNO_ID, :VRNO_CWR_ID, :VRNO_VEHREGNO, :VRNO_CHANGEUSER, :VRNO_TIMESTAMP ) </Sql>	
+					<Parameters>
+						<Parameter name=":VRNO_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":VRNO_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":VRNO_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":VRNO_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":VRNO_VEHREGNO" type="text" lenght="35"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="UpdateCWRZKS">
+					<Sql>UPDATE FPASS_COWORKER SET CWR_RETURNCODE_ZKS = :CWR_RETURNCODE_ZKS, CWR_CHANGEUSER = :CWR_CHANGEUSER, CWR_TIMESTAMP = :CWR_TIMESTAMP WHERE CWR_ID = :CWR_ID</Sql>	
+					<Parameters>
+						<Parameter name=":CWR_RETURNCODE_ZKS" type="text" lenght="2"></Parameter>
+						<Parameter name=":CWR_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_TIMESTAMP" type="datetime"></Parameter>
+						<Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>	
+								
+				<SqlCommand id="SelectPrecMeds">
+					<Sql>SELECT PMED_VALIDUNTIL, PMED_EXECUTEDON, PMTY_NOTATION, PMTY_TYPE, USER_NAME from fpass_precautionmed, fpass_precmedtype, fpass_user where PMED_CWR_ID = :PMED_CWR_ID and PMED_PMTY_ID = PMTY_ID and PMED_USER_ID = USER_ID</Sql>
+					<Parameters>
+						<Parameter name=":PMED_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+		
+				<SqlCommand id="DynamicTables">
+					<Sql>SELECT DYFP_ID, DYFP_DATE, DYFP_TIME, DYFP_ENTRY, CWR_PERSNO, CWR_SURNAME, CWR_FIRSTNAME, EXCO_NAME FROM VW_FPASS_DYNAMIC</Sql>
+				</SqlCommand>
+				<SqlCommand id="ArchiveCoWorker">
+					<Sql>SELECT ACWR_ID, AVWS_SURNAME, AVWS_FIRSTNAME, AVWS_DATEOFBIRTH, AVWS_PLACEOFBIRTH, AVWS_STATUS, AVWS_VALIDUNTIL, AVWS_RETURNCODE_ZKS, AVWS_ACCESS, AVWS_EXCONAME, AVWS_SUPERNAME, AVWS_SUPERTEL, AVWS_COORD_ID, AVWS_COORD_SURNAME, AVWS_COORD_TEL, AVWS_SUBNAME FROM VW_FPASS_ARCOWORKER_SUMMARY</Sql>
+				</SqlCommand>
+				<SqlCommand id="SummaryCoWorker">
+					<Sql>SELECT CWR_ID, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_PLACEOFBIRTH, CWR_OVEREIGHTEEN_YN, CWR_STATUS, CWR_VALIDUNTIL, EXTCON, SUPERNAME, SUPERTEL, SUBCON, VWC_SURNAME, VWC_TEL, CWR_RETURNCODE_ZKS FROM vw_fpass_coworker_summary</Sql>
+				</SqlCommand>
+				<SqlCommand id="HistoryTables">
+					<Sql>SELECT HIST_ID, HIST_USER_ID, USM_MND_ID, HIST_CHANGEDATE, HIST_TABLENAME, HIST_COLUMNNAME, HIST_ROWID, HIST_OLDVALUE, HIST_NEWVALUE, HIST_DESCRIPTION, USERNICENAME FROM VW_FPASS_HIST</Sql>
+				</SqlCommand>
+				<SqlCommand id="CoWorkerDelete">
+					<Sql>SELECT CWR_ID, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_VALIDUNTIL, CWR_SMARTACTNO, EXTCON, SUPERNAME, SUPERTEL, SUBCON, VWC_SURNAME, VWC_TEL,VWC_ID, CWR_STATUS, CWR_ACCESS FROM vw_fpass_deletecoworker</Sql>
+				</SqlCommand>
+				<SqlCommand id="CwrCheckList">
+					<Sql>SELECT CHLS_ID, CHLS_TK, CHLS_PERSNO, CHLS_IDCARDMIFAREFPASS, CHLS_IDCARDMIFAREZKS, CHLS_SURNAME, CHLS_FIRSTNAME, CHLS_VALIDEFROM, CHLS_VALIDEUNTIL, CHLS_AUTHORISED_YN, CHLS_EXCONTRACTOR, CHLS_SUBCONTRACTOR, CHLS_STATUS FROM FPASS_CHECKLIST</Sql>
+				</SqlCommand>
+				<SqlCommand id="CwrVehregno">
+					<Sql>SELECT VRNO_ID,VRNO_CWR_ID,VRNO_VEHREGNO,VRNO_CHANGEUSER,VRNO_TIMESTAMP FROM FPASS_VEHREGNO</Sql>          
+				</SqlCommand>
+				<SqlCommand id="PlantManager">
+					<Sql>SELECT USPL_ID, US_FIRSTNAME, US_NAME, US_NAME || ', ' || US_FIRSTNAME AS PLANTMASTER, USER_TEL, PL_NAME, PL_MND_ID FROM VW_FPASS_REPORTMANAGERPLANT</Sql>     
+				</SqlCommand>
+				<SqlCommand id="ReportMaxPlant">
+					<Sql>SELECT CWPL_PLANTDATE,CWPL_CWR_ID,CWPL_PLANT_YN,PL_NAME,PLANTUSER FROM VW_FPASS_REPORTMAXPLANT</Sql>     
+				</SqlCommand>
+				<SqlCommand id="ReportVehregno">
+					<Sql>SELECT VRNO_ID,VRNO_CWR_ID,VRNO_VEHREGNO FROM VW_FPASS_REPORTVEHREGNO</Sql>     
+				</SqlCommand>
+				<SqlCommand id="ExContractorReports">
+					<Sql>SELECT ECEC_ECOD_ID, ECEC_EXCO_ID, EXCO_NAME, EXCO_DEBITNO, COORDINATOR, VWC_SURNAME, VWC_FIRSTNAME,VWC_TEL,SUPERVISOR,EXCO_SUPERSURNAME,EXCO_SUPERFIRSTNAME,EXCO_STREET,EXCO_CITY, EXCO_POSTCODE,EXCO_TELEPHONENO,EXCO_MOBILEPHONE,EXCO_FAX,EXCO_MND_ID,CWR_SUBE_ID,SUBCONTRACTOR FROM VW_FPASS_REPORTEXCOECOD</Sql>
+				</SqlCommand>
+				<SqlCommand id="Mandator">
+					<Sql>SELECT vus.UM_USER_ID, vus.MND_ID, vus.MND_MANDATOR, vus.MND_ZKS_YN FROM vw_fpass_user_summary vus WHERE UPPER(vus.USERWITHDOMAIN) = :USERWITHDOMAIN AND vus.FPASS_USER_DELETE_YN = 'N'</Sql>
+					<Parameters>
+						<Parameter name=":USERWITHDOMAIN" type="text" length="50" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="CheckUserApplIDUnique">
+					<Sql>SELECT vus.USERWITHDOMAIN FROM vw_fpass_user_summary vus WHERE vus.MND_ID = :USM_MND_ID AND FPASS_USER_DELETE_YN = 'N' AND UPPER(vus.USERWITHDOMAIN) = :USERWITHDOMAIN</Sql>
+					<Parameters>
+						<Parameter name=":USM_MND_ID" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":USERWITHDOMAIN" type="text" length="50"></Parameter>        
+					</Parameters>
+				</SqlCommand>  
+				
+				<SqlCommand id="FPASSUserID">
+					<Sql>SELECT USER_ID, BOTHNAMESTEL, USER_IDCARDREADER_HITAG, USER_IDCARDREADER_MIFARE FROM VW_FPASS_USERNICENAME where USER_US_ID = :USER_US_ID</Sql>
+					<Parameters>
+						<Parameter name=":USER_US_ID" type="text" length="50" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="FPASSUserParameter">
+					<Sql>SELECT UPAR_NAUMBEROFPASS, UPAR_PRINTPREVIEW_YN FROM fpass_userparameter WHERE UPAR_USER_ID = :UPAR_USER_ID</Sql>
+					<Parameters>
+						<Parameter name=":UPAR_USER_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="COORDINATORID_QUERY">
+					<Sql>SELECT ECOD_ID FROM FPASS_EXCOCOORDINATOR where ECOD_USER_ID = :ECOD_USER_ID</Sql>
+					<Parameters>
+						<Parameter name=":ECOD_USER_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="ExternalContractor">
+					<Sql>SELECT EXCO_ID, EXCO_CITY, EXCO_STREET, EXCO_NAME, EXCO_POSTCODE, EXCO_COUNTRY, EXCO_MND_ID FROM FPASS_EXCONTRACTOR</Sql>
+				</SqlCommand>
+        <SqlCommand id="IDCardReaders">
+          <Sql>SELECT IDR_READER_NO, IDR_READER_TYPE, IDR_DESCRIPTION FROM FPASS_IDCARD_READER</Sql>
+        </SqlCommand>
+				<SqlCommand id="VehicleAccess">
+					<Sql>SELECT CWR_ID, CWR_MND_ID, CWR_SURNAME, CWR_FIRSTNAME, EXCO_NAME, SHORTGATEWAYDESIRE_YN, SHORTGATEWAY_YN, SHORTGATEWAYDATE, SHORTGATEWAYUSER, SHORTUSERNICENAME, LONGGATEWAYDESIRE_YN, LONGGATEWAY_YN, LONGGATEWAYDATE, LONGGATEWAYUSER, LONGUSERNICENAME FROM VW_FPASS_VEHICLEACCESS</Sql>
+				</SqlCommand>
+				<SqlCommand id="CoWorkerReports">
+					<Sql>SELECT DISTINCT CWR_ID,CWR_STATUS,CWR_ACCESS,CWR_PERSNO,CWR_RETURNCODE_ZKS, CWR_SURNAME,CWR_FIRSTNAME,CWR_DATEOFBIRTH,CWR_VALIDUNTIL,CWR_DATECREATED,CWR_ORDERNO,CWR_MND_ID,EXTCON,SUPERVISOR,SUPERTEL,COORDINATOR,COORDSURNAME,COORDFIRSTNAME,VWC_TEL,SUBCON,RATH_RECEPTAUTHO_YN,CWR_VALIDFROM,CWR_IDCARDNO FROM VW_FPASS_REPORTCOWORKER</Sql>          
+				</SqlCommand>
+				<SqlCommand id="CoWorkerReportsNoBook">
+					<Sql>SELECT CWR_ID, CWR_STATUS, CWR_ACCESS, LASTBOOK, CWR_PERSNO, CWR_RETURNCODE_ZKS, CWR_SURNAME,CWR_FIRSTNAME,CWR_DATEOFBIRTH,CWR_VALIDUNTIL,CWR_DATECREATED,CWR_ORDERNO,CWR_MND_ID,EXTCON,SUPERVISOR,SUPERTEL,COORDINATOR,COORDSURNAME,COORDFIRSTNAME,VWC_TEL,SUBCON,RATH_RECEPTAUTHO_YN,CWR_VALIDFROM,CWR_IDCARDNO FROM vw_fpass_reportcwr_nobook</Sql>          
+				</SqlCommand>
+				<SqlCommand id="CWRDynDateReports">
+					<Sql>SELECT DISTINCT CWR_ID,CWR_STATUS,CWR_ACCESS,CWR_PERSNO,CWR_RETURNCODE_ZKS,CWR_SURNAME,CWR_FIRSTNAME,CWR_DATEOFBIRTH,CWR_MND_ID,EXTCON,SUPERVISOR,SUPERTEL,COORDINATOR,VWC_TEL,SUBCON,CWR_VALIDUNTIL,CWR_DATECREATED,CWR_ORDERNO,COORDSURNAME,COORDFIRSTNAME,RATH_RECEPTAUTHO_YN,CWR_IDCARDNO,DEPT_DEPARTMENT,CRA_CRAFTNOTATION,DYFP_DATE,DYFP_TIME,DYFP_ENTRY FROM vw_fpass_reportdynmonths</Sql>       
+				</SqlCommand>
+				<SqlCommand id="CWRAttendanceDetailReports">
+					<Sql>SELECT VATT_CWR_ID,VATT_CWR_MND_ID,VATT_STATUS,VATT_ACCESS,VATT_PERSNUMBER,VATT_SURNAME,VATT_FIRSTNAME,VATT_COWORKER,VATT_DATEOFBIRTH,VATT_COORDINATORNAMETEL,VATT_EXCONTRACTOR,VATT_DEBITNO,VATT_SUBCONTRACTOR,VATT_RETURNCODEZKS,VATT_BOOKING,VATT_ENTRYDATE,VATT_EXITDATE,VATT_ATTENDANCETIME,VATT_ATTENDANCEHOURS,VATT_OVERLIMIT FROM VW_FPASS_REPORTCWRATTENDANCE</Sql>
+				</SqlCommand>			
+				<SqlCommand id="CWRAttendanceSumsReports">
+					<Sql>SELECT VATT_CWR_ID,VATT_CWR_MND_ID,VATT_STATUS,VATT_ACCESS,VATT_PERSNUMBER,VATT_SURNAME,VATT_FIRSTNAME,VATT_COWORKER,VATT_DATEOFBIRTH,VATT_COORDINATORNAMETEL,VATT_EXCONTRACTOR,VATT_DEBITNO,VATT_SUBCONTRACTOR,VATT_RETURNCODEZKS,VATT_DAY,VATT_ATTENDANCESUM FROM VW_FPASS_REPORTCWRATTSUMS</Sql>
+				</SqlCommand>
+        <SqlCommand id="EXCOAttendanceSumsReports">
+          <Sql>SELECT EXCO_ID, EXCO_MND_ID, EXCO_NAME, EXCO_DEBITNO, EXCO_SUPERVISOR, EXCO_TELEPHONENO, EXCO_STREET, EXCO_POSTCODE, EXCO_CITY, count(distinct CWR_PERSNO) as EXCO_COUNTPERS, round(sum(EXCO_HOURS)/(60*60), 2) as EXCO_SUMMEDHOURS FROM VW_FPASS_REPORTEXCOATTENDANCE</Sql>
+        </SqlCommand>
+        <SqlCommand id="CWRAttendancePersNoReports">
+          <Sql>SELECT VATT_CWR_MND_ID, VATT_PERSNUMBER, VATT_SURNAME, VATT_FIRSTNAME, VATT_EXCONTRACTOR, VATT_SUBCONTRACTOR, VATT_BOOKINGDATE, VATT_BOOKING FROM VW_FPASS_REPORTCWRATTPERSNO</Sql>
+        </SqlCommand>
+				<SqlCommand id="CWRAllDataReports">
+					<Sql>SELECT CWR_ID, CWR_PERSNO, CWR_IDCARDNO, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_VALIDUNTIL, CWR_DATECREATED, CWR_ORDERNO, CWR_MND_ID, EXTCON, SUPERVISOR, SUPERTEL, COORDINATOR, VWC_TEL, SUBCON, CRA_CRAFTNO, CRA_CRAFTNOTATION, COORDSURNAME, COORDFIRSTNAME, CWR_VALIDFROM, DEPT_DEPARTMENT, CWR_PLACEOFBIRTH, EXCO_STREET, EXCO_COUNTRY, EXCO_CITY, EXCO_POSTCODE, EXCO_FAX,EXCO_MOBILEPHONE, EXCO_SUPERFIRSTNAME, EXCO_SUPERSURNAME, CWR_ENTRYDATECOOD, CWR_CHKOFFDATECOOD,CWR_SECPASS_YN,CWR_PRECAUTIONMED_YN,CWR_ORDERCOMPLET_YN,SECURITY_YN,SECURITYDATE,SECURITYUSER,ACCESS_YN,ACCESSDATE,ACCESSCOMMENT,ACCESSUSER,SIGNATUR_YN,SIGNATURDATE,SIGNATURUSER,ISBSITE_YN,ISBSITEDATE,ISBSITEUSER,SITESECURITYBR_YN,SITESECURITYBRDATE,SITESECURITYBRUSER,IDENTIFYCARD_YN,IDENTIFYCARDDATE,IDENTIFYCARDUSER,WEARBRIAPPARG26_2YN,WEARBRIAPPARDATEG26_2,WEARBRIAPPARUSERG26_2,WEARBRIAPPARG26_3YN,WEARBRIAPPARDATEG26_3,WEARBRIAPPARUSERG26_3,PALLETLIFTER_YN,PALLETLIFTERDATE,PALLETLIFTERUSER,RAISEABLEPLATF_YN,RAISEABLEPLATFDATE, RAISEABLEPLATFUSER,CRANELIFTGEAR_YN,CRANELIFTGEARDATE,CRANELIFTGEARUSER,DEPARTBRIEF_YN,DEPARTBRIEFDATE,DEPARTBRIEFUSER, RESPSITEFIRE_YN, RESPSITEFIREDATE, RESPSITEFIREUSER, MASKLENTDETAILS, MASKLENTDATE, MASKLENTUSER, MASKRETURNDETAILS, MASKRETURNDATE, MASKRETURNUSER, SHORTGATEWAYDESIRE_YN,SHORTGATEWAY_YN,SHORTGATEWAYDATE,SHORTGATEWAYUSER,LONGGATEWAYDESIRE_YN,LONGGATEWAY_YN,LONGGATEWAYDATE,LONGGATEWAYUSER, FIREBRIEFYN, FIREBRIEFDATE, FIREBRIEFUSER FROM VW_FPASS_REPORTALLDATA</Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRFpassReports">
+					<Sql>SELECT CWR_ID, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_VALIDUNTIL, CWR_DATECREATED, CWR_ORDERNO, CWR_MND_ID, EXTCON, SUPERVISOR, SUPERTEL, COORDINATOR, VWC_TEL, SUBCON, CRA_CRAFTNO, COORDSURNAME, COORDFIRSTNAME, CWR_VALIDFROM, DEPT_DEPARTMENT, CWR_PLACEOFBIRTH, EXCO_SUPERFIRSTNAME, EXCO_SUPERSURNAME, CWR_ENTRYDATECOOD, CWR_CHKOFFDATECOOD, ENTRYUSER, CHKUSER, CWR_SECPASS_YN, CWR_PRECAUTIONMED_YN, SECURITY_YN, SECURITYDATE, SECURITYUSER, ACCESS_YN, ACCESSDATE, ACCESSCOMMENT, ACCESSUSER, SIGNATUR_YN, SIGNATURDATE, SIGNATURUSER, ISBSITE_YN, ISBSITEDATE, ISBSITEUSER, SITESECURITYBR_YN, SITESECURITYBRDATE, SITESECURITYBRUSER, IDENTIFYCARD_YN, IDENTIFYCARDDATE, IDENTIFYCARDUSER, WEARBRIAPPARG26_2YN, WEARBRIAPPARDATEG26_2, WEARBRIAPPARUSERG26_2, WEARBRIAPPARG26_3YN, WEARBRIAPPARDATEG26_3, WEARBRIAPPARUSERG26_3, PALLETLIFTER_YN, PALLETLIFTERDATE, PALLETLIFTERUSER, RAISEABLEPLATF_YN, RAISEABLEPLATFDATE, RAISEABLEPLATFUSER, CRANELIFTGEAR_YN, CRANELIFTGEARDATE, CRANELIFTGEARUSER, DEPARTBRIEF_YN, DEPARTBRIEFDATE, DEPARTBRIEFUSER, RESPSITEFIRE_YN, RESPSITEFIREDATE, RESPSITEFIREUSER, FIREBRIEFYN, FIREBRIEFDATE, FIREBRIEFUSER FROM VW_FPASS_REPORTPASS</Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRPlantReports">
+					<Sql>SELECT CWPL_ID, CWPL_CWR_ID, CWPL_PLANTDATE, CWPL_PLANT_YN, PLANTUSER, PL_NAME FROM VW_FPASS_REPORTCWRPLANT</Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRPrecautionmedReports">
+					<Sql>SELECT PMED_ID,PMED_CWR_ID,PMED_VALIDUNTIL, PMTY_TYPE FROM VW_FPASS_REPORTPRECAUTIONMED </Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRPrecmedAllDataReports">
+					<Sql>SELECT PMED_ID,PMED_CWR_ID,PMED_VALIDUNTIL,PMED_EXECUTEDON,PMTY_TYPE,PMTY_NOTATION,PMTY_MND_ID,USER_NAME FROM VW_FPASS_REPORTPRECMEDALLDATA </Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRRespmaskReports">
+					<Sql>SELECT DISTINCT CWR_ID, REMA_MASKNO, MASKSYSTEM, MASKDATELENT, MASKDATERETURN, MASKSYSTEM, MASKNEXTMAINTAIN, CWR_STATUS, CWR_ACCESS, CWR_RETURNCODE_ZKS, CWR_SURNAME, CWR_FIRSTNAME, COWORKER, CWR_DATEOFBIRTH, CWR_VALIDUNTIL, CWR_ORDERNO, CWR_MND_ID, CWR_EXCO_ID, EXTCON, SUPERVISOR, SUPERTEL, COORDINATOR, COORDSURNAME, COORDFIRSTNAME, VWC_TEL, SUBCON, RATH_RECEPTAUTHO_YN FROM VW_FPASS_REPORTRESPMASK</Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRRespMaskSubReports">
+					<Sql>SELECT MBC_CWR_ID, MBC_MASKNO, MBC_SYSTEM, MBC_DATE_LENT, MBC_USER_LENT, MBC_MASKNO_RET, MBC_DATE_RET, MBC_USER_RET FROM VW_FPASS_REPORTMASKBYCOWORKER</Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRDynamicDataReports">
+					<Sql>SELECT DYFP_ID,DYFP_DATE,DYFP_TIME,DYFP_ENTRY,DYFP_CWR_ID FROM VW_FPASS_REPORTDYNAMICDATA </Sql>
+				</SqlCommand>			
+				<SqlCommand id="CWRDynamicDataExcoReports">
+					<Sql>SELECT DISTINCT CWR_ID, CWR_PERSNO, CWR_SURNAME, CWR_FIRSTNAME, CWR_MND_ID, EXTCON, CWR_IDCARDNO FROM vw_fpass_reportdynmonths</Sql>       
+				</SqlCommand>
+				<SqlCommand id="CWRDynamicDataExcoReportsLight">
+					<Sql>SELECT DISTINCT CWR_ID, CWR_SURNAME, CWR_FIRSTNAME FROM VW_FPASS_REPORTDYNMONTHSLIGHT</Sql>       
+				</SqlCommand>
+				<SqlCommand id="CWRDynamicDataSumDaysReports">
+					<Sql>SELECT DISTINCT CWR_ID, CWR_EXCO_ID, CWR_PERSNO, CWR_SURNAME, CWR_FIRSTNAME, EXTCON, CWR_IDCARDNO, COUNT( DISTINCT DYFP_DATE ) AS SUMDAYSONECWR FROM vw_fpass_reportdynmonths</Sql>       
+				</SqlCommand>
+				<SqlCommand id="CWRSumDynDaysCwrReports">
+					<Sql>SELECT CWR_ID,CWR_EXCO_ID,CWR_SURNAME,CWR_FIRSTNAME, CWR_PERSNO,SUMDAYSONECWR,EXCO_NAME FROM VW_FPASS_REPORTSUMCWR </Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRSumCoworkerAExcoReports">
+					<Sql>SELECT DISTINCT EXCO_ID,EXCO_NAME,EXCO_DEBITNO,EXCO_CITY,EXCO_POSTCODE,EXCO_COUNTRY,EXCO_STREET,EXCO_TELEPHONENO,EXCO_SUPERVISOR FROM VW_FPASS_REPORTEXCONTRSUMCWR </Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRDelCwrReports">
+					<Sql>SELECT DISTINCT CWR_ID,CWR_STATUS,CWR_ACCESS,CWR_PERSNO,CWR_RETURNCODE_ZKS,CWR_SURNAME,CWR_FIRSTNAME,CWR_DATEOFBIRTH,CWR_VALIDUNTIL,CWR_DATECREATED,CWR_ORDERNO,CWR_MND_ID,EXTCON,SUPERVISOR,SUPERTEL,COORDINATOR,VWC_TEL,SUBCON,RATH_RECEPTAUTHO_YN, DEPT_DEPARTMENT,CRA_CRAFTNOTATION,COORDSURNAME,COORDFIRSTNAME,CWR_VALIDFROM  FROM VW_FPASS_REPORTDELCOWORKER</Sql>        
+				</SqlCommand>
+				<SqlCommand id="UserDepartmentReports">
+					<Sql>SELECT USER_ID,USER_NAME,DEPT_DEPARTMENT FROM VW_FPASS_USERDEPARTMENT</Sql>        
+				</SqlCommand>
+				<SqlCommand id="ExtendedSearchCWR">
+					<Sql>SELECT DISTINCT CWR_ID, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_VALIDUNTIL, EXTCON, SUPERVISOR, SUPERTEL, COORDINATOR, VWC_TEL, SUBCON, CWR_STATUS, CWR_RETURNCODE_ZKS, CWR_ACCESS FROM VW_FPASS_EXTENDEDSEARCHCWR</Sql>
+				</SqlCommand>
+				<SqlCommand id="ExtendedSearchCWBR">
+					<Sql>SELECT CWR_ID FROM VW_FPASS_CWRBRIEFING</Sql>
+				</SqlCommand>
+				<SqlCommand id="ExtendedSearchRATH">
+					<Sql>SELECT CWR_ID FROM VW_FPASS_RECEPTIONAUTHORIZE</Sql>
+				</SqlCommand>
+				<SqlCommand id="ExtendedSearchPLMEDMASK">
+					<Sql>SELECT CWR_ID FROM VW_FPASS_PLANTMASKMED</Sql>
+				</SqlCommand>
+				<SqlCommand id="CWRHistReports">
+					<Sql>SELECT HIST_ID,CHANGEDATE,TABLENAME,COLUMNNAME,ROW_ID,OLDVALUE,NEWVALUE,HISTUSER,COWORKERID  FROM VW_FPASS_REPORTHIST</Sql>        
+				</SqlCommand>
+				<SqlCommand id="CWRPlantManagerReports">
+					<Sql>SELECT CWPL_ID,CWPL_CWR_ID,PL_NAME,PL_MND_ID,US_FIRSTNAME,US_NAME,USER_TEL FROM VW_FPASS_REPORTCWRPLANTMANAGER</Sql>
+				</SqlCommand>
+				<SqlCommand id="ReportCoworkerRoot">
+					<Sql>SELECT DISTINCT CWR_ID, CWR_PERSNO, CWR_IDCARDNO, CWR_SURNAME, CWR_FIRSTNAME, EXTCON FROM VW_FPASS_REPORTCOWORKER</Sql>
+				</SqlCommand>
+				<SqlCommand id="ReportFFMAAenderungshistorieSub">
+					<Sql>SELECT VH3_HIST_ID, VH3_CWR_ID, VH3_BOTHNAME, VH3_PERSNO, VH3_COLUMNNAME, VH3_COLUMNDESC, VH3_TABLEDESC, VH3_OLDVALUEDESC, VH3_NEWVALUEDESC, VH3_CHANGEDATE, VH3_CHANGEUSER FROM VW_FPASS_REPORTCOWORKER_HIST</Sql>
+				</SqlCommand>
+        <SqlCommand id="ReportFFMABookingsSub">
+          <Sql>SELECT CWR_ID, DYFP_DATE, DYFP_TIME, DYFP_ENTRY FROM VW_FPASS_REPORTBOOKINGS</Sql>
+        </SqlCommand>
+        <SqlCommand id="SelectAdminExcoCoord">
+          <Sql>SELECT DISTINCT ECEC_CHANGEUSER, ECEC_TIMESTAMP, ECEC_EXCO_ID, EXCO_NAME, EXCO_STATUS, ECEC_ECOD_ID, UM_BOTHNAMESTEL FROM vw_fpass_exco_coord_admin WHERE (EXCO_MND_ID = :EXCO_MND_ID)</Sql>
+          <Parameters>
+            <Parameter name=":EXCO_MND_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":ECEC_EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":ECEC_ECOD_ID" type="number" precision="10" scale="0"></Parameter>
+          </Parameters>
+        </SqlCommand>	
+				<SqlCommand id="SelectUserByRole">
+					<Sql>SELECT UM_USER_ID, FPASS_USER_ID, UM_USERAPPLID, UM_USERSURNAME, UM_FIRSTNAME, USER_TEL, BOTHNAMESTEL, FPASS_DEPT_ID, DEPT_DEPARTMENT, FPASS_UDOM_ID, FPASS_UDOM_NAME, RO_ID, RO_NAME, RO_DESCRIPTION, USER_PLANTMASTER_YN FROM vw_fpass_userbyrole WHERE (MND_ID = :MND_ID) AND (UPPER(UM_USERSURNAME) LIKE :UM_USERSURNAME) AND (UPPER (UM_FIRSTNAME) LIKE :UM_FIRSTNAME) AND (UPPER(UM_USERAPPLID) LIKE :UM_USERAPPLID) AND (FPASS_USER_DELETE_YN = 'N')</Sql>	
+					<Parameters>
+						<Parameter name=":MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":UM_USERSURNAME" type="text" length="50"></Parameter>
+						<Parameter name=":UM_FIRSTNAME" type="text" length="50"></Parameter>
+						<Parameter name=":UM_USERAPPLID" type="text" length="50"></Parameter>
+					</Parameters>
+				</SqlCommand>	
+				<SqlCommand id="SelectPlantByUser">
+					<Sql>SELECT DISTINCT USPL_PL_ID, PL_NAME, USPL_USER_ID FROM VW_FPASS_PLANTUSER WHERE (USPL_USER_ID = :USPL_USER_ID) AND (PL_STATUS = 'GÜLTIG' OR PL_STATUS IS NULL)</Sql>	
+					<Parameters>
+						<Parameter name=":USPL_USER_ID" type="number" precision="10" scale="0"></Parameter> 	
+					</Parameters>
+				</SqlCommand>	
+				<SqlCommand id="InsertManageUMUsers">
+					<Sql>INSERT INTO UM_USER (US_ID, US_NAME, US_FIRSTNAME, US_PASSWORD, US_FIRSTLOGIN, US_USERID, US_DELETED, US_CHANGEUSER, US_TIMESTAMP) VALUES (:US_ID, :US_NAME, :US_FIRSTNAME, :US_PASSWORD, :US_FIRSTLOGIN, :US_USERID, :US_DELETED, :US_CHANGEUSER, sysdate)</Sql>	
+					<Parameters>
+						<Parameter name=":US_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":US_NAME" type="text" length="50"></Parameter>        
+						<Parameter name=":US_FIRSTNAME" type="text" length="50"></Parameter>   
+						<Parameter name=":US_PASSWORD" type="text" length="50"></Parameter>    
+						<Parameter name=":US_FIRSTLOGIN" type="number" precision="1" scale="0"></Parameter>    
+						<Parameter name=":US_USERID" type="text" length="50"></Parameter>          
+						<Parameter name=":US_DELETED" type="number" precision="1" scale="0"></Parameter>         
+						<Parameter name=":US_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>    
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="InsertManageFPASSUsers">
+					<Sql>INSERT INTO FPASS_USER (USER_ID, USER_US_ID, USER_DEPT_ID, USER_UDOM_ID, USER_TEL, USER_PLANTMASTER_YN, USER_DELETE_YN, USER_NAME, USER_CHANGEUSER, USER_TIMESTAMP) VALUES (:USER_ID, :USER_US_ID, :USER_DEPT_ID, :USER_UDOM_ID, :USER_TEL, :USER_PLANTMASTER_YN, :USER_DELETE_YN, :USER_NAME, :USER_CHANGEUSER, sysdate)</Sql>
+					<Parameters>
+						<Parameter name=":USER_ID" type="number" precision="10" scale="0"></Parameter>                
+						<Parameter name=":USER_US_ID" type="number" precision="10" scale="0"></Parameter>                   
+						<Parameter name=":USER_DEPT_ID" type="number" precision="10" scale="0"></Parameter>                 
+						<Parameter name=":USER_UDOM_ID" type="number" precision="10" scale="0"></Parameter>                 
+						<Parameter name=":USER_TEL" type="text" length="30"></Parameter>                  
+						<Parameter name=":USER_PLANTMASTER_YN" type="text" length="1"></Parameter>   
+						<Parameter name=":USER_DELETE_YN" type="text" length="1"></Parameter>            
+						<Parameter name=":USER_NAME" type="text" length="50"></Parameter>                 
+						<Parameter name=":USER_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>            
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="InsertUserToMandant">
+					<Sql>INSERT INTO FPASS_USERMAN (USM_MND_ID, USM_USER_ID, USM_CHANGEUSER, USM_TIMESTAMP) VALUES (:USM_MND_ID, :USM_USER_ID, :USM_CHANGEUSER, :USM_TIMESTAMP)</Sql>
+					<Parameters>
+						<Parameter name=":USM_MND_ID" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":USM_USER_ID" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":USM_CHANGEUSER" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":USM_TIMESTAMP" type="datetime"></Parameter> 
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="InsertUserParameterTable">
+					<Sql>INSERT INTO FPASS_USERPARAMETER (UPAR_ID, UPAR_ENTRANCEFLOWTIME, UPAR_NAUMBEROFPASS, UPAR_PRINTPREVIEW_YN, UPAR_CHANGEUSER, UPAR_TIMESTAMP, UPAR_USER_ID, UPAR_MND_ID) VALUES (:UPAR_ID, :UPAR_ENTRANCEFLOWTIME, :UPAR_NAUMBEROFPASS, :UPAR_PRINTPREVIEW_YN, :UPAR_CHANGEUSER, :UPAR_TIMESTAMP, :UPAR_USER_ID, :UPAR_MND_ID)</Sql>
+					<Parameters>
+						<Parameter name=":UPAR_ID" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":UPAR_ENTRANCEFLOWTIME" type="number" precision="5" scale="0"></Parameter> 
+						<Parameter name=":UPAR_NAUMBEROFPASS" type="text" length="30"></Parameter>      
+						<Parameter name=":UPAR_PRINTPREVIEW_YN" type="text" length="1"></Parameter>       
+						<Parameter name=":UPAR_CHANGEUSER" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":UPAR_TIMESTAMP" type="datetime"></Parameter>          
+						<Parameter name=":UPAR_USER_ID" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":UPAR_MND_ID" type="number" precision="10" scale="0"></Parameter> 
+					</Parameters>
+				</SqlCommand>		
+				<SqlCommand id="AssignNewPlants">
+					<Sql>INSERT INTO FPASS_USERPLANT (USPL_ID, USPL_PL_ID, USPL_USER_ID, USPL_CHANGEUSER, USPL_TIMESTAMP) VALUES (:USPL_ID, :USPL_PL_ID, :USPL_USER_ID, :USPL_CHANGEUSER, :USPL_TIMESTAMP)</Sql>        
+					<Parameters>
+						<Parameter name=":USPL_ID" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":USPL_PL_ID" type="number" precision="10" scale="0"></Parameter>                
+						<Parameter name=":USPL_USER_ID" type="number" precision="10" scale="0"></Parameter>           
+						<Parameter name=":USPL_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>    
+						<Parameter name=":USPL_TIMESTAMP" type="datetime"></Parameter>   
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="AddRolePlantManager">
+					<Sql>INSERT INTO UM_ROLELINK (RL_ROLEID, RL_AUTHORIZEDENTITYID, RL_CHANGEUSER, RL_TIMESTAMP) VALUES (:RL_ROLEID, :RL_AUTHORIZEDENTITYID, :RL_CHANGEUSER, :RL_TIMESTAMP)</Sql>
+					<Parameters>
+						<Parameter name=":RL_ROLEID" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":RL_AUTHORIZEDENTITYID" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":RL_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>           
+						<Parameter name=":RL_TIMESTAMP" type="datetime"></Parameter>   
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="DeleteUserPlants">
+					<Sql>DELETE FPASS_USERPLANT WHERE (USPL_USER_ID = :USPL_USER_ID)</Sql>
+					<Parameters>           
+					<Parameter name=":USPL_USER_ID" type="number" precision="10" scale="0"></Parameter>           
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="UpdateManageUMUsers">
+					<Sql>UPDATE UM_USER SET US_NAME = :US_NAME, US_FIRSTNAME = :US_FIRSTNAME, US_USERID = :US_USERID, US_DELETED = :US_DELETED, US_CHANGEUSER = :US_CHANGEUSER, US_TIMESTAMP = :US_TIMESTAMP WHERE ( US_ID = :US_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":US_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":US_NAME" type="text" length="50"></Parameter>        
+						<Parameter name=":US_FIRSTNAME" type="text" length="50"></Parameter>   
+						<Parameter name=":US_USERID" type="text" length="50"></Parameter>          
+						<Parameter name=":US_DELETED" type="number" precision="1" scale="0"></Parameter>         
+						<Parameter name=":US_CHANGEUSER" type="number" precision="10" scale="0"></Parameter> 
+						<Parameter name=":US_TIMESTAMP" type="datetime"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="UpdateManageFPASSUsers">
+					<Sql>UPDATE FPASS_USER SET USER_DEPT_ID = :USER_DEPT_ID, USER_UDOM_ID = :USER_UDOM_ID, USER_TEL = :USER_TEL, USER_PLANTMASTER_YN = :USER_PLANTMASTER_YN, USER_DELETE_YN = :USER_DELETE_YN, USER_NAME = :USER_NAME, USER_CHANGEUSER = :USER_CHANGEUSER, USER_TIMESTAMP = :USER_TIMESTAMP WHERE (USER_ID = :USER_ID) AND (USER_US_ID = :USER_US_ID)</Sql>
+					<Parameters>
+					  <Parameter name=":USER_ID" type="number" precision="10" scale="0"></Parameter>  
+						<Parameter name=":USER_US_ID" type="number" precision="10" scale="0"></Parameter>                   
+						<Parameter name=":USER_DEPT_ID" type="number" precision="10" scale="0"></Parameter>                 
+						<Parameter name=":USER_UDOM_ID" type="number" precision="10" scale="0"></Parameter>                 
+						<Parameter name=":USER_TEL" type="text" length="30"></Parameter>                  
+						<Parameter name=":USER_PLANTMASTER_YN" type="text" length="1"></Parameter>   
+						<Parameter name=":USER_DELETE_YN" type="text" length="1"></Parameter>            
+						<Parameter name=":USER_NAME" type="text" length="50"></Parameter>                 
+						<Parameter name=":USER_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>            
+						<Parameter name=":USER_TIMESTAMP" type="datetime"></Parameter>    
+					</Parameters>
+				</SqlCommand>
+        <SqlCommand id="UpdateUserIdCardReader">
+          <Sql>UPDATE FPASS_USER SET USER_IDCARDREADER_HITAG = :USER_IDCARDREADER_HITAG, USER_IDCARDREADER_MIFARE = :USER_IDCARDREADER_MIFARE, USER_CHANGEUSER = :USER_CHANGEUSER, USER_TIMESTAMP = :USER_TIMESTAMP WHERE (USER_ID = :USER_ID)</Sql>
+          <Parameters>
+            <Parameter name=":USER_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":USER_IDCARDREADER_HITAG" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":USER_IDCARDREADER_MIFARE" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":USER_CHANGEUSER" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":USER_TIMESTAMP" type="datetime"></Parameter>
+          </Parameters>
+        </SqlCommand>      
+        
+				<SqlCommand id="UpdateValidUntil">
+					<Sql>UPDATE FPASS_COWORKER SET CWR_VALIDUNTIL = :CWR_VALIDUNTIL, CWR_CHANGEUSER = :CWR_CHANGEUSER, CWR_TIMESTAMP = SYSDATE WHERE CWR_ID = :CWR_ID</Sql>	
+					<Parameters>
+						<Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":CWR_VALIDUNTIL" type="datetime" ></Parameter> 
+						<Parameter name=":CWR_CHANGEUSER" type="number" precision="10" scale="0"></Parameter> 
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="SelectRoleByUser">
+					<Sql>SELECT RL_ROLEID, UM_ROLE_NAME, UM_ROLEFORMAT, RL_AUTHORIZEDENTITYID, RL_CHANGEUSER, RL_TIMESTAMP FROM VW_FPASS_ROLEBYUSER WHERE (RL_AUTHORIZEDENTITYID = :RL_AUTHORIZEDENTITYID)</Sql>	
+					<Parameters>
+						<Parameter name=":RL_AUTHORIZEDENTITYID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>	
+				<SqlCommand id="SelectCoordsForReassign">
+					<Sql>SELECT ECEC_ECOD_ID, UM_BOTHNAMESTEL, EXCO_NAME FROM vw_fpass_exco_coord_admin WHERE (ECEC_EXCO_ID = :ECEC_EXCO_ID )</Sql>	
+					<Parameters>
+						<Parameter name=":ECEC_EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectCurrrentCoordID">
+					<Sql>SELECT ECOD_ID FROM fpass_excocoordinator WHERE (ECOD_USER_ID = :ECOD_USER_ID )</Sql>	
+					<Parameters>
+						<Parameter name=":ECOD_USER_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="GetDependentExcoIDs">
+					<Sql>SELECT DISTINCT CWR_EXCO_ID FROM fpass_coworker WHERE ( CWR_ECOD_ID = :CWR_ECOD_ID )</Sql>	
+					<Parameters>
+						<Parameter name=":CWR_ECOD_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="CountDependentCwrIDs">
+					<Sql>SELECT COUNT(cwr_id) AS result FROM fpass_coworker WHERE (CWR_EXCO_ID = :CWR_EXCO_ID) AND (CWR_ECOD_ID = :CWR_ECOD_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":CWR_EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_ECOD_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="CheckDuplicateInvalidExco">
+					<Sql>SELECT EXCO_ID FROM FPASS_EXCONTRACTOR WHERE (EXCO_NAME = :EXCO_NAME) AND (EXCO_MND_ID = :EXCO_MND_ID)</Sql>	
+					<Parameters>
+						<Parameter name=":EXCO_NAME" type="text" length="30"></Parameter>  
+						<Parameter name=":EXCO_MND_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+		
+				<SqlCommand id="SequenceDummy">
+					<Sql>SELECT * FROM DUAL</Sql>
+				</SqlCommand>
+				
+				<SqlCommand id="TransactionDummy">
+					<Sql>SELECT * FROM DUAL</Sql>
+				</SqlCommand>
+			
+				
+				<SqlCommand id="CheckCoordinatorEdit">
+					<Sql>select count(*) from fpass_excoecod where ecec_ecod_id = :ecec_ecod_id and ecec_exco_id = :ecec_exco_id</Sql>
+					<Parameters>
+						<Parameter name=":ecec_ecod_id" type="number" precision="10" scale="0"></Parameter>          
+						<Parameter name=":ecec_exco_id" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="CoordinatorsList">
+					<Sql>select distinct ECEC_ECOD_ID, UM_BOTHNAMES,  UM_BOTHNAMESTEL from vw_fpass_exco_coord_admin </Sql>
+				</SqlCommand>
+				
+				<SqlCommand id="ContractorsList">
+					<Sql>Select distinct  ECEC_EXCO_ID, EXCO_NAME from vw_fpass_exco_coord_admin </Sql>
+				</SqlCommand>
+				
+				<SqlCommand id="SelectCoordinators">
+					<Sql>select distinct ECEC_ECOD_ID, UM_BOTHNAMES,  UM_BOTHNAMESTEL from vw_fpass_exco_coord_admin where EXCO_MND_ID = :EXCO_MND_ID order by UM_BOTHNAMESTEL</Sql>				
+					<Parameters>
+						<Parameter name=":EXCO_MND_ID" type="number" precision="10" scale="0"></Parameter>          
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="SelectAllActiveCoordinators">
+					<Sql>select VWC_ID,  VWC_BOTHNAMES  from VW_FPASS_COORDINATORS where VWC_MND_ID = :VWC_MND_ID</Sql>				
+					<Parameters>
+						<Parameter name=":VWC_MND_ID" type="number" precision="10" scale="0"></Parameter>          
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectArchiveCoordinators">
+					<Sql>select AVWC_ID,  AVWC_BOTHNAMES  from VW_FPASS_ARCOORDINATORS where AVWC_MND_ID = :AVWC_MND_ID</Sql>				
+					<Parameters>
+						<Parameter name=":AVWC_MND_ID" type="number" precision="10" scale="0"></Parameter>          
+					</Parameters>
+				</SqlCommand>
+				
+				<SqlCommand id="SelectAllActiveSupervisors">
+					<Sql>SELECT EXCO_SUPERSURNAME ||' '|| EXCO_SUPERFIRSTNAME ||' ('|| EXCO_NAME ||')' AS SUPERVISOR, EXCO_ID FROM FPASS_EXCONTRACTOR WHERE (EXCO_MND_ID = :EXCO_MND_ID AND EXCO_SUPERSURNAME IS NOT NULL)</Sql>
+					<Parameters>
+						<Parameter name=":EXCO_MND_ID" type="number" precision="10" scale="0"></Parameter>          
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectArchiveSupervisors">
+					<Sql>SELECT AECO_SUPERSURNAME ||' '|| AECO_SUPERFIRSTNAME ||' ('|| AECO_NAME ||')' AS SUPERVISOR, AECO_ID FROM FPASS_AREXCONTRACTOR WHERE (AECO_AMND_ID = :AECO_AMND_ID AND AECO_SUPERSURNAME IS NOT NULL)</Sql>
+					<Parameters>
+						<Parameter name=":AECO_AMND_ID" type="number" precision="10" scale="0"></Parameter>          
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectContractors">
+					<Sql>SELECT EXCO_ID, EXCO_NAME FROM FPASS_EXCONTRACTOR where EXCO_MND_ID = :EXCO_MND_ID AND (EXCO_STATUS = 'GÜLTIG' OR EXCO_STATUS IS NULL) order by EXCO_NAME</Sql>
+					<Parameters>
+						<Parameter name=":EXCO_MND_ID" type="number" precision="10" scale="0"></Parameter>          
+					</Parameters>
+				</SqlCommand>	
+				<SqlCommand id="SelectNonFpassContractors">
+					<Sql>SELECT EXCO_NAME FROM VW_FPASS_NONFPASS_EXCO</Sql>
+				</SqlCommand>
+				<SqlCommand id="SelectInvalidContractors">
+					<Sql>SELECT EXCO_ID, EXCO_NAME FROM FPASS_EXCONTRACTOR where EXCO_MND_ID = :EXCO_MND_ID AND (EXCO_STATUS = 'UNGÜLTIG') order by EXCO_NAME</Sql>
+					<Parameters>
+						<Parameter name=":EXCO_MND_ID" type="number" precision="10" scale="0"></Parameter>          
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectContractorsArchive">
+					<Sql>SELECT AECO_ID, AECO_NAME from FPASS_AREXCONTRACTOR where AECO_AMND_ID = :AECO_AMND_ID order by AECO_NAME</Sql>
+					<Parameters>
+						<Parameter name=":AECO_AMND_ID" type="number" precision="10" scale="0"></Parameter>          
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="SelectAssignments">
+					<Sql>select ECEC_ECOD_ID, ECEC_EXCO_ID from FPASS_EXCOECOD</Sql>
+				</SqlCommand>				
+				<SqlCommand id="CraftsList">
+					<Sql>select CRA_ID, CRA_CRAFTNO, CRA_CRAFTNOTATION from FPASS_CRAFT WHERE (CRA_MND_ID = :CRA_MND_ID) order by CRA_CRAFTNO</Sql>
+					<Parameters>
+						<Parameter name=":CRA_MND_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="PlantsList">
+				<ID>FPASS_PLANT_LIST</ID>
+				<SQL>select PL_ID, PL_NAME from FPASS_PLANT WHERE PL_MND_ID = :PL_MND_ID AND PL_SOURCE = 'FPASS' AND (PL_STATUS = 'GÜLTIG' OR PL_STATUS IS NULL) order by PL_NAME</SQL>
+				<Parameters>
+					<Parameter name=":PL_MND_ID" type="number" precision="10" scale="0"></Parameter>
+				</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectZksCoWorker">
+					<Sql>select CWR_ID, CWR_TK, CWR_PERSNO, CWR_MND_ID, CWR_IDCARDNO, CWR_MIFARENO, CWR_WINDOWS_ID, CWR_SURNAME, CWR_FIRSTNAME, CWR_DATEOFBIRTH, CWR_PLACEOFBIRTH, CWR_DATECREATED, CWR_VALIDFROM, CWR_VALIDUNTIL, EXCO1.EXCO_NAME as EXCONTRACTOR, EXCO2.EXCO_NAME as SUBEXCONTRACTOR, EXCO1.EXCO_SUPERSURNAME || ', ' || EXCO1.EXCO_SUPERFIRSTNAME as SUPERVISOR, DEPT_DEPARTMENT, USER_NAME from FPASS_COWORKER, FPASS_EXCONTRACTOR EXCO1, FPASS_EXCONTRACTOR EXCO2, FPASS_DEPARTMENT, FPASS_EXCOCOORDINATOR, FPASS_USER where CWR_ID = :CWR_ID AND EXCO1.EXCO_ID(+) = CWR_EXCO_ID AND EXCO2.EXCO_ID(+) = CWR_SUBE_ID AND DEPT_ID(+) = CWR_DEPT_ID AND ECOD_ID(+) = CWR_ECOD_ID AND USER_ID = ECOD_USER_ID</Sql>
+					<Parameters>
+						<Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectZksParameter">
+					<Sql>SELECT PARZ_KEY, PARZ_VALUE FROM FPASS_PARAMETERZKS WHERE PARZ_MND_ID = :PARZ_MND_ID</Sql>
+					<Parameters>
+						<Parameter name=":PARZ_MND_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectZksVehicleAuth">
+					<Sql>SELECT CWBR_BRF_ID, CWBR_BRIEFING_YN, CWBR_INACTIVE_YN, CWBR_BRIEFINGDATE FROM FPASS_CWRBRIEFING WHERE (CWBR_BRF_ID = 48 OR CWBR_BRF_ID = 49) AND CWBR_CWR_ID = :CWBR_CWR_ID</Sql>
+					<Parameters>
+						<Parameter name=":CWBR_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="SelectAccessAuthorization">
+					<Sql>SELECT r2.RATH_RECEPTAUTHO_YN as RATH_RECEPTAUTHO_YN, r6.RATH_RECEPTAUTHO_YN as RATH_RECEPTAUTHO_YN6, r6.RATH_RECEPTAUTHODATE as RATH_RECEPTAUTHODATE6
+						FROM FPASS_RECEPTIONAUTHORIZE r2, FPASS_RECEPTIONAUTHORIZE r6
+						WHERE r2.RATH_CWR_ID = r6.RATH_CWR_ID (+)
+						AND (r2.RATH_RATT_ID = 2 OR r2.RATH_RATT_ID = 5)
+						AND r6.RATH_RATT_ID (+) = 6
+						AND r2.RATH_CWR_ID = :RATH_CWR_ID</Sql>
+					<Parameters>
+						<Parameter name=":RATH_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				 
+				<SqlCommand id="SelectZksAllCoWorkers">
+					<Sql>SELECT CWR_ID, CWR_MND_ID, CWR_WINDOWS_ID, CWR_SURNAME, CWR_FIRSTNAME, CWR_IDCARDNO, CWR_MIFARENO, CWR_STATUS, EXCO_NAME, CWR_VALIDUNTIL, CWR_PKI, VWC_ID, VWC_BOTHNAMESTEL
+            FROM VW_FPASS_COWORKER_SMARTACT
+            WHERE CWR_MND_ID = :CWR_MND_ID</Sql>
+					<Parameters>
+						<Parameter name=":CWR_MND_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="SelectZksTerminalParameter">
+					<Sql>SELECT TER_HOSTNAME, TER_PORTNO, TER_USERNAME, TER_PASSWORD, TER_TERMINALNO, TER_LASTIDCARDNO FROM FPASS_TERMINAL WHERE UPPER(TER_COMPUTERNAME) = :TER_COMPUTERNAME</Sql>
+					<Parameters>
+						<Parameter name=":TER_COMPUTERNAME" type="text" length="50"></Parameter>
+					</Parameters>
+				</SqlCommand>				
+				<SqlCommand id="SelectIdCardExists">
+					<Sql>SELECT CWR_IDCARDNO, CWR_MIFARENO FROM FPASS_COWORKER WHERE CWR_ID != :CWR_ID AND CWR_MND_ID = :CWR_MND_ID AND (CWR_IDCARDNO = :CWR_IDCARDNO OR CWR_MIFARENO = :CWR_MIFARENO)</Sql>
+					<Parameters>
+            <Parameter name=":CWR_ID" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":CWR_MND_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_IDCARDNO" type="number" precision="10" scale="0"></Parameter>
+            <Parameter name=":CWR_MIFARENO" type="number" precision="10" scale="0"></Parameter>
+          </Parameters>
+				</SqlCommand>				
+				<SqlCommand id="CheckCoWorkerExistence">
+					<Sql>SELECT CWR_ID FROM FPASS_COWORKER WHERE CWR_EXCO_ID = :CWR_EXCO_ID AND UPPER(CWR_SURNAME) = :CWR_SURNAME AND CWR_MND_ID = :CWR_MND_ID</Sql>
+					<Parameters>
+						<Parameter name=":CWR_EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+						<Parameter name=":CWR_SURNAME" type="text" length="30"></Parameter>
+						<Parameter name=":CWR_MND_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+				<SqlCommand id="CoWorkerCoordHist">
+					<Sql>SELECT VH1_CWRBOTHNAMES, VH1_COORD, VH1_RESPDATEFROM, VH1_RESPDATEUNTIL, VH1_CHANGEDATE, VH1_USERNICENAME FROM VW_FPASS_COWORKER_COORD_HIST WHERE VH1_CWR_ID = :VH1_CWR_ID ORDER BY VH1_CWR_ID, VH1_RESPDATEUNTIL DESC, VH1_RESPDATEFROM DESC</Sql>
+					<Parameters>
+						<Parameter name=":VH1_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>					
+				<SqlCommand id="ExcoCoordHist">
+					<Sql>SELECT VH2_EXCO_ID, VH2_EXCO_NAME, VH2_COORD_ID, VH2_BOTHNAMESTEL, VH2_RESPDATEFROM, VH2_CREATEDBY, VH2_RESPDATEUNTIL, VH2_DELETEDBY FROM VW_FPASS_EXCO_ECOD_HIST WHERE VH2_EXCO_ID = :VH2_EXCO_ID ORDER BY VH2_RESPDATEUNTIL DESC, VH2_RESPDATEFROM DESC</Sql>
+					<Parameters>
+						<Parameter name=":VH2_EXCO_ID" type="number" precision="10" scale="0"></Parameter>
+					</Parameters>
+				</SqlCommand>
+        <SqlCommand id="SelectZksCoworkerPlants">
+          <Sql>SELECT PL_NUMBER, TO_CHAR(CWPL_VALIDUNTIL,'dd.mm.yyyy') CWPL_VALIDUNTIL FROM FPASS_CWRPLANT JOIN FPASS_PLANT ON (PL_ID = CWPL_PL_ID)  WHERE PL_SOURCE = 'ZKS' AND CWPL_INACTIVE_YN = 'N' AND CWPL_CWR_ID = :CWPL_CWR_ID ORDER BY PL_NUMBER </Sql>
+          <Parameters>
+            <Parameter name=":CWPL_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+          </Parameters>
+        </SqlCommand>
+        <SqlCommand id="SelectZksPrecMedicals">
+          <Sql>SELECT pmed.PMED_CWR_ID, pmty.PMTY_TYPE, pmty.PMTY_NOTATION, pmed.PMED_VALIDUNTIL FROM FPASS_PRECAUTIONMED pmed JOIN FPASS_PRECMEDTYPE pmty ON pmed.PMED_PMTY_ID = pmty.PMTY_ID WHERE pmed.PMED_CWR_ID = :PMED_CWR_ID ORDER BY pmed.PMED_VALIDUNTIL</Sql>
+          <Parameters>
+            <Parameter name=":PMED_CWR_ID" type="number" precision="10" scale="0"></Parameter>
+          </Parameters>
+        </SqlCommand>
+      </SqlCommands>
+		</DbAccess>
+    
+		<ListsOfValue>
+			<DB_Connect
+				ENCRYPTED="false" 
+				CONNECTSTRING="user id=fpass;data source=wesorat1;password=fpass2003" 
+				ASSEMBLY="System.Data.OracleClient" 
+				CONNECTION_CLASS="System.Data.OracleClient.OracleConnection"
+				DATAREADER_CLASS="System.Data.OracleClient.OracleDataReader" 
+				COMMAND_CLASS="System.Data.OracleClient.OracleCommand" >
+			</DB_Connect> 
+			
+			<ListOfValue>
+				<ID>FPASS_COWORKER</ID>
+				<SQL>SELECT CWR_ID, CWR_FIRSTNAME, CWR_SURNAME, CWR_ORDERNO from FPASS_COWORKER where cwr_exco_id in (select exco_id from fpass_excontractor where exco_mnd_id = $RESTRICTION ) ORDER BY NLSSORT(CWR_FIRSTNAME, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="CWR_ID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="CWR_FIRSTNAME" type="System.Object"></Attribute>
+					<Attribute id="CWR_SURNAME" type="System.Object"></Attribute>
+					<Attribute id="CWR_ORDERNO" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+
+			<ListOfValue>
+				<ID>FPASS_EXCONTRACTOR</ID>
+				<SQL>SELECT EXCO_SUPERSURNAME||', '||EXCO_SUPERFIRSTNAME as SUPERVISOR, EXCO_ID, EXCO_NAME, EXCO_SUPERSURNAME, EXCO_SUPERFIRSTNAME, EXCO_CITY from FPASS_EXCONTRACTOR WHERE (EXCO_MND_ID = $RESTRICTION) AND (EXCO_STATUS = 'GÜLTIG' OR EXCO_STATUS IS NULL) ORDER BY NLSSORT(EXCO_NAME, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="SUPERVISOR" type="System.Object"></Attribute>
+					<Attribute id="EXCO_ID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="EXCO_NAME" type="System.Object"></Attribute>
+					<Attribute id="EXCO_SUPERSURNAME" type="System.Object"></Attribute>
+					<Attribute id="EXCO_SUPERFIRSTNAME" type="System.Object"></Attribute>
+					<Attribute id="EXCO_CITY" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_EXCONTRACTORCITY</ID>
+				<SQL>SELECT DISTINCT EXCO_CITY from FPASS_EXCONTRACTOR WHERE (EXCO_MND_ID = $RESTRICTION) AND (EXCO_CITY IS NOT NULL) AND (EXCO_STATUS = 'GÜLTIG' OR EXCO_STATUS IS NULL) ORDER BY NLSSORT (EXCO_CITY, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="EXCO_CITY" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_SUPERVISOR</ID>
+				<SQL>SELECT DISTINCT EXCO_SUPERSURNAME ||' '|| EXCO_SUPERFIRSTNAME ||' ('|| EXCO_NAME ||')' AS SUPERVISOR, EXCO_ID FROM FPASS_EXCONTRACTOR WHERE (EXCO_MND_ID = $RESTRICTION) AND (EXCO_STATUS = 'GÜLTIG' OR EXCO_STATUS IS NULL) AND EXCO_SUPERSURNAME IS NOT NULL ORDER BY NLSSORT (SUPERVISOR, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="SUPERVISOR" type="System.Object"></Attribute>
+					<Attribute id="EXCO_ID" type="System.Int64" pk="true"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>VW_FPASS_COORDINATORS</ID>
+				<SQL>SELECT DISTINCT VWC_ID, VWC_BOTHNAMES, VWC_BOTHNAMESTEL FROM VW_FPASS_COORDINATORS WHERE VWC_MND_ID = $RESTRICTION ORDER BY NLSSORT (VWC_BOTHNAMES, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="VWC_ID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="VWC_BOTHNAMES" type="System.Object"></Attribute>
+					<Attribute id="VWC_BOTHNAMESTEL" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_DEPARTMENT</ID>
+				<SQL>SELECT DEPT_ID, DEPT_DEPARTMENT FROM FPASS_DEPARTMENT WHERE DEPT_MND_ID = $RESTRICTION AND (DEPT_STATUS = 'GÜLTIG' OR DEPT_STATUS IS NULL) ORDER BY NLSSORT (DEPT_DEPARTMENT, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="DEPT_ID" type="System.Int64" pk="true"></Attribute>	
+					<Attribute id="DEPT_DEPARTMENT" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_CRAFT</ID>
+				<SQL>SELECT CRA_ID, CRA_CRAFTNO, CRA_CRAFTNOTATION FROM FPASS_CRAFT WHERE CRA_MND_ID = $RESTRICTION ORDER BY NLSSORT (CRA_CRAFTNO, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="CRA_ID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="CRA_CRAFTNO" type="System.Object"></Attribute>
+					<Attribute id="CRA_CRAFTNOTATION" type="System.Object"></Attribute>
+				</Attributes>L
+			</ListOfValue>
+			<!-- all plants -->
+			<ListOfValue>
+				<ID>FPASS_PLANT</ID>
+				<SQL>SELECT PL_ID, PL_NAME FROM FPASS_PLANT WHERE PL_MND_ID = $RESTRICTION AND (PL_STATUS = 'GÜLTIG' OR PL_STATUS IS NULL) ORDER BY NLSSORT (PL_NAME, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="PL_ID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="PL_NAME" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+      <!-- only FPASS plants -->
+      <ListOfValue>
+        <ID>FPASS_PLANT_FPASS</ID>
+        <SQL>SELECT PL_ID, PL_NAME FROM FPASS_PLANT WHERE PL_MND_ID = $RESTRICTION AND PL_SOURCE = 'FPASS' AND (PL_STATUS = 'GÜLTIG' OR PL_STATUS IS NULL) ORDER BY NLSSORT (PL_NAME, 'NLS_SORT=GERMAN')</SQL>
+        <Attributes>
+          <Attribute id="PL_ID" type="System.Int64" pk="true"></Attribute>
+          <Attribute id="PL_NAME" type="System.Object"></Attribute>
+        </Attributes>
+      </ListOfValue>
+
+			<ListOfValue>
+				<ID>FPASS_PRECMEDTYPELOV</ID>
+				<SQL>SELECT PMTY_TYPE || ', ' || PMTY_NOTATION AS PMTY_FULLNAME, PMTY_ID, PMTY_TYPE, PMTY_NOTATION FROM FPASS_PRECMEDTYPE WHERE PMTY_MND_ID = $RESTRICTION ORDER BY NLSSORT (PMTY_TYPE, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="PMTY_FULLNAME" type="System.Object"></Attribute>
+					<Attribute id="PMTY_ID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="PMTY_TYPE" type="System.Object"></Attribute>
+					<Attribute id="PMTY_NOTATION" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_PRECMEDTYPE</ID>
+				<SQL>SELECT DISTINCT PMTY_TYPE FROM FPASS_PRECMEDTYPE WHERE PMTY_MND_ID = $RESTRICTION ORDER BY NLSSORT (PMTY_TYPE, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>					
+					<Attribute id="PMTY_TYPE" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_PRECMEDNOTA</ID>
+				<SQL>SELECT PMTY_ID, PMTY_NOTATION FROM FPASS_PRECMEDTYPE WHERE PMTY_MND_ID = $RESTRICTION ORDER BY NLSSORT (PMTY_NOTATION, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="PMTY_ID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="PMTY_NOTATION" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_USERDOMAINE</ID>
+				<SQL>SELECT UDOM_ID, UDOM_NAME FROM FPASS_USERDOMAINE ORDER BY NLSSORT (UDOM_NAME, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="UDOM_ID" type="System.Int64" pk="true"></Attribute>	
+					<Attribute id="UDOM_NAME" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_ROLEBYMAND</ID>
+				<SQL>SELECT RL_ROLEID, UM_ROLEFORMAT FROM VW_FPASS_ROLEBYMANDATOR WHERE MND_ID = $RESTRICTION ORDER BY NLSSORT (UM_ROLEFORMAT, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="RL_ROLEID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="UM_ROLEFORMAT" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+			<ListOfValue>
+				<ID>FPASS_SUMMARYUSER</ID>
+				<SQL>SELECT UM_USER_ID, BOTHNAMESTEL, UM_USERSURNAME FROM vw_fpass_user_summary WHERE MND_ID = $RESTRICTION ORDER BY NLSSORT (UM_USERSURNAME, 'NLS_SORT=GERMAN')</SQL>
+				<Attributes>
+					<Attribute id="UM_USER_ID" type="System.Int64" pk="true"></Attribute>
+					<Attribute id="BOTHNAMESTEL" type="System.Object"></Attribute>
+					<Attribute id="UM_USERSURNAME" type="System.Object"></Attribute>
+				</Attributes>
+			</ListOfValue>
+			
+		</ListsOfValue>
+		
+		<UserManagementData>
+			<Resources>
+				<Dialogs>
+					<Dialog Id="100" Name="Mandant" Description="Dialog Mandant"/>
+				
+					<Dialog Id="102" Name="Historie" Description="Dialog Historie Tabellen"/>	
+					<Dialog Id="103" Name="SucheFremdfirma" Description="Dialog Suche Fremdfirma"/>
+				
+					<Dialog Id="101" Name="ReportHauptmaske" Description="Dialog Report - Hauptmaske"/>
+					<Dialog Id="104" Name="ReportPassierscheinEins" Description="Dialog Report - Passierschein Eins"/>
+					<Dialog Id="105" Name="ReportPassierscheinZwei" Description="Dialog Report - Passierschein Zwei"/>	
+					<Dialog Id="106" Name="ReportFFMABewegungenProMonat" Description="Dialog Report - FFMA mit Bewegungen"/>
+					<Dialog Id="107" Name="ReportFFMAMitAllenDaten" Description="Dialog Report - FFMA mit allen Daten"/>
+					<Dialog Id="108" Name="ReportFFMitKoordinatoren" Description="Dialog Report - FF mit Koordinatoren"/>	
+					<Dialog Id="109" Name="ReportBestandsvergleichsliste" Description="Dialog Report - Bestandsvergleichsliste FPASS/ZKS"/>
+					<Dialog Id="110" Name="ReportFFMANachAblaufdatum" Description="Dialog Report - FFMA nach Ablaufdatum"/>
+					<Dialog Id="111" Name="ReportLoeschliste" Description="Dialog Report - Löschliste alte FFMA"/>	
+					<Dialog Id="112" Name="ReportBetriebe" Description="Dialog Report - Betriebe mit zugehörigen Meistern"/>
+					<Dialog Id="113" Name="ReportSumme" Description="Dialog Report - FFMA mit Bewegungen pro Monat (Summe)"/>
+					<Dialog Id="114" Name="ReportVerlieheneMasken" Description="Dialog Report - Verliehene Atemschutzmasken"/>
+					<Dialog Id="115" Name="ReportMaskenNachWartungsdatum" Description="Dialog Report - Verliehene Atemschutzmasken nach Wartungsdatum"/>					
+					<Dialog Id="116" Name="ReportFremdfirmaBewegungsdaten" Description="Dialog Report - Fremdfirma (Bewegungsdaten Fremdfirmenmitarbeiter)"/>
+					<Dialog Id="117" Name="ReportÄnderungshistorieFFMA" Description="Dialog Report - Änderungshistorie FFMA"/>
+					<Dialog Id="118" Name="ReportFFMABuchungSeit" Description="Dialog Report - Fremdfirmenmitarbeiter ohne Buchung seit x Tagen"/>
+					<Dialog Id="119" Name="ReportFFMAAttendanceDetail" Description="Dialog Report - Anwesenheitszeiten FFMA Detail"/>
+					<Dialog Id="120" Name="ReportFFMAAttendance" Description="Dialog Report - Anwesenheitszeiten FFMA"/>
+					<Dialog Id="121" Name="ReportExcoAttendance" Description="Dialog Report - Leistungsverrechnung FF"/>
+					
+					<Dialog Id="201" Name="Verwaltung" Description="Dialog Dialog - gesamt"/>
+					<Dialog Id="202" Name="VerwaltungZuordnungFremdfirmaKoordinator" Description="Dialog Verwaltung - Zuordnung Koordinator zu Fremdfirma"/>	
+					<Dialog Id="203" Name="VerwaltungBetrieb" Description="Dialog Verwaltung - Betrieb"/>
+					<Dialog Id="204" Name="VerwaltungGewerk" Description="Dialog Verwaltung - Gewerk"/>
+					<Dialog Id="205" Name="VerwaltungFremdfirma" Description="Dialog Verwaltung - Fremdfirma"/>
+					<Dialog Id="206" Name="VerwaltungAbteilung" Description="Dialog Verwaltung - Abteilung"/>						
+					<Dialog Id="207" Name="VerwaltungVorsorgeuntersuchung" Description="Dialog Verwaltung - Vorsorgeuntersuchung"/>											
+					
+					<Dialog Id="301" Name="FFMAUebersicht" Description="Dialog FFMA Uebersicht"/>					
+					<Dialog Id="302" Name="FFMAErfassen" Description="Dialog FFMA erfassen - gesamt"/>
+					<Dialog Id="303" Name="FFMAEmpfang" Description="Dialog FFMA erfassen - Empfang"/>
+					<Dialog Id="304" Name="FFMAKoordinator" Description="Dialog FFMA erfassen - Koordinator"/>
+					<Dialog Id="305" Name="FFMAWerkschutz" Description="Dialog FFMA erfassen - Werkschutz"/>
+					<Dialog Id="306" Name="FFMAWerkaerztlicherDienst" Description="Dialog FFMA erfassen - Werkaerztlicher Dienst"/>
+					<Dialog Id="307" Name="FFMAWerksfeuerwehr" Description="Dialog FFMA erfassen - Werksfeuerwehr"/>
+					<Dialog Id="308" Name="FFMABetrieb" Description="Dialog FFMA erfassen - Betrieb"/>
+					<Dialog Id="309" Name="FFMAArbeitssicherheit" Description="Dialog FFMA erfassen - Arbeitssicherheit"/>	
+					<Dialog Id="310" Name="FFMATechnischeAbteilung" Description="Dialog FFMA erfassen - Technische Abteilung"/>
+					<Dialog Id="311" Name="FFMAWerkschutzLeitung" Description="Dialog FFMA erfassen - Werkschutz Leitung"/>
+					<Dialog Id="312" Name="FFMAWerkschutzKfzKennzeichen" Description="Dialog FFMA erfassen - Werkschutz Kfz-Kennzeichen"/>				
+					
+          <Dialog Id="401" Name="FFMAArchiv" Description="Dialog FFMA - Archiv"/>
+					<Dialog Id="402" Name="FFMALoeschliste" Description="Dialog FFMA - Loeschliste"/>	
+					<Dialog Id="403" Name="FFMAErweiterteSuche" Description="Dialog FFMA - Erweiterte Suche"/>
+					<Dialog Id="404" Name="FFMABewegungsdaten" Description="Dialog FFMA - Bewegungsdaten"/>	
+					<Dialog Id="501" Name="User" Description="Dialog User bearbeiten"/>
+					<Dialog Id="502" Name="Rolle" Description="Dialog vorhandene Rollen"/>
+					<Dialog Id="503" Name="UserZuRolle" Description="Dialog Zuordnung User zu Rolle"/>
+					<Dialog Id="601" Name="FpassToZks" Description="Schnittstelle FPass nach Zks"/>													
+				</Dialogs>
+        <Controls>
+          <Control Id="313" Name="FFMAButtonRegisterDetails" Description="Dialog FFMA Uebersicht - Button Neu Erfassen"/>
+          <Control Id="314" Name="FFMAFieldIdCardNo" Description="Dialog FFMA Bearbeiten - Feld Ausweisnummer"/>
+          <Control Id="315" Name="FFMAFieldApprentice" Description="Dialog FFMA Bearbeiten - Felder für Bearbeitung des Azubizutritts"/>
+        </Controls>
+			</Resources>
+		</UserManagementData>
+		
+		<UserManagement>
+			<ResourceStorage type="XML"/>
+			<AuthorizationStorage type="DB"/>
+			<RoleStorage type="DB"/>
+			<UserToRoleStorage type="DB"/>
+			<UserStorage type="DB"/>
+			<FirstLoginPassword Password="FIRST_LOGIN"/>
+			<AuthorizedEntities AuthorizedEntity="All"/>
+			<AbstractClassMapping>
+				<AbstractClass AbstractClass="Resource" TypeFieldInTable="Res_TypeId">
+					<Map Id="1" SubClass="de.pta.Component.N_UserManagement.Resource.Dialog"/>
+					<Map Id="2" SubClass="de.pta.Component.N_UserManagement.Resource.Report"/>
+					<Map Id="3" SubClass="de.pta.Component.N_UserManagement.Resource.Batch"/>
+					<Map Id="4" SubClass="de.pta.Component.N_UserManagement.Resource.Control"/>
+				</AbstractClass>
+			</AbstractClassMapping>
+		</UserManagement>
+		<DataAccess>
+			<System>
+				<XMLTempPath Name="C:\\temp\\appsuser\\fpass\\XMLTempPath" PathIsRelative="false"></XMLTempPath>
+				<Connection Type="ORACLE" ServerName="" Database="" DefaultUser="" Domain="" DefaultPassword="" 
+					encrypted="false" ConnectString="user id=fpass;data source=wesorat1;password=fpass2003">
+				</Connection>
+				<CleanUp User="" Host="" Pwd="" TimeInSeconds="600" CleanAllTime="23:00:00"></CleanUp>
+			</System>
+			<Application>
+				<ApplicationMaxRecords>1000000</ApplicationMaxRecords>
+				<DataBlockSize>500</DataBlockSize>
+				<DataPageSize>100</DataPageSize>
+				<TurboModeFlag>true</TurboModeFlag>
+				<TurboModeMaxRecords>1000000</TurboModeMaxRecords>
+			</Application>
+			<Queries>
+				<Query ID="Roles" Name="Roles" Type="ORACLE" Statement="select $ATTLIST from UM_Role, fpass_role where ro_id = rol_ro_id  $PARALIST1 $PARALIST2 $PARALIST3 $PARALIST4" DifferentDataPageSizeUsed="">
+					<Attributelists>
+					
+					
+					<!--  select ro.ro_id, ro.ro_name, ro.ro_description from um_role ro where ro.ro_id in( select rol.rol_ro_id from Fpass_role rol where rol_mnd_id = 21);-->
+						<Attributelist ID="$ATTLIST"></Attributelist>
+					</Attributelists>
+					<Attributes>
+						<Attribute ID="Ro_Id" ColName="Ro_Id" ColWidthPx="10" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="Ro_Name" ColName="Ro_Name" ColWidthPx="10" DataType="TXT" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="Ro_Description" ColName="Ro_Description" ColWidthPx="10" DataType="TXT" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+					</Attributes>
+					<Parameterlists>
+						<Parameterlist ID="$PARALIST1" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+						<Parameterlist ID="$PARALIST2" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+						<Parameterlist ID="$PARALIST3" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+						<Parameterlist ID="$PARALIST4" Type="WHERE-CLAUSE" Code=" and "></Parameterlist>
+					</Parameterlists>
+					<Parameters>
+						<Parameter ID="MandatorID" ColName="rol_mnd_id" DataType="NUM" ParaList="$PARALIST1" Operator="="></Parameter>
+						<Parameter ID="Id" ColName="Ro_Id" DataType="NUM" ParaList="$PARALIST2" Operator="="></Parameter>
+						<Parameter ID="Name" ColName="Ro_Name" DataType="TXT" ParaList="$PARALIST3" Operator="Like"></Parameter>
+						<Parameter ID="Description" ColName="Ro_Description" DataType="TXT" ParaList="$PARALIST4" Operator="Like"></Parameter>
+					</Parameters>
+				</Query>
+				<Query ID="RoleAssignments" Name="RoleAssignments" Type="ORACLE" Statement="select $ATTLIST from UM_RoleLink $PARALIST1 $PARALIST2" DifferentDataPageSizeUsed="">
+					<Attributelists>
+						<Attributelist ID="$ATTLIST"></Attributelist>
+					</Attributelists>
+					<Attributes>
+						<Attribute ID="Rl_RoleId" ColName="Rl_RoleId" ColWidthPx="10" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="Rl_UserId" ColName="Rl_AuthorizedEntityId" ColWidthPx="10" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+					</Attributes>
+					<Parameterlists>
+						<Parameterlist ID="$PARALIST1" Type="WHERE-CLAUSE" Code="where "></Parameterlist>
+						<Parameterlist ID="$PARALIST2" Type="WHERE-CLAUSE" Code="and "></Parameterlist>
+					</Parameterlists>
+					<Parameters>
+						<Parameter ID="RoleId" ColName="Rl_AuthorizedEntityId" DataType="NUM" ParaList="$PARALIST1" Operator="="></Parameter>
+						<Parameter ID="AuthorizedEntityId" ColName="Rl_AuthorizedEntityId" DataType="NUM" ParaList="$PARALIST2" Operator="="></Parameter>
+					</Parameters>
+				</Query>
+				<Query ID="UserRoles" Name="UserRoles" Type="ORACLE" Statement="select $ATTLIST from UM_ROLELINK $PARALIST1" DifferentDataPageSizeUsed="">
+					<Attributelists>
+						<Attributelist ID="$ATTLIST"></Attributelist>
+					</Attributelists>
+					<Attributes>
+						<Attribute ID="Ro_Id" ColName="Rl_RoleId" ColWidthPx="10" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+					</Attributes>
+					<Parameterlists>
+						<Parameterlist ID="$PARALIST1" Type="WHERE-CLAUSE" Code="where "></Parameterlist>
+					</Parameterlists>
+					<Parameters>
+						<Parameter ID="Rl_AuthorizedEntityId" ColName="Rl_AuthorizedEntityId" DataType="NUM" ParaList="$PARALIST1" Operator="In"></Parameter>
+					</Parameters>
+				</Query>
+				<Query ID="Users" Name="Users" Type="ORACLE" Statement="select $ATTLIST from UM_USER $PARALIST1 $PARALIST2 $PARALIST3 $PARALIST4 $PARALIST5 $PARALIST6" DifferentDataPageSizeUsed="">
+					<Attributelists>
+						<Attributelist ID="$ATTLIST"></Attributelist>
+					</Attributelists>
+					<Attributes>
+						<Attribute ID="Us_Id" ColName="Us_Id" ColWidthPx="10" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="Us_Name" ColName="Us_Name" ColWidthPx="10" DataType="TXT" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="Us_FirstName" ColName="Us_FirstName" ColWidthPx="10" DataType="TXT" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="Us_UserID" ColName="Us_UserID" ColWidthPx="10" DataType="TXT" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="Us_Password" ColName="Us_Password" ColWidthPx="10" DataType="TXT" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="Us_FirstLogin" ColName="Us_FirstLogin" ColWidthPx="10" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+					</Attributes>
+					<Parameterlists>
+						<Parameterlist ID="$PARALIST1" Type="WHERE-CLAUSE" Code="where "></Parameterlist>
+						<Parameterlist ID="$PARALIST2" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+						<Parameterlist ID="$PARALIST3" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+						<Parameterlist ID="$PARALIST4" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+						<Parameterlist ID="$PARALIST5" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+						<Parameterlist ID="$PARALIST6" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+					</Parameterlists>
+					<Parameters>
+						<Parameter ID="Id" ColName="Us_Id" DataType="NUM" ParaList="$PARALIST1" Operator="="></Parameter>
+						<Parameter ID="Name" ColName="Us_Name" DataType="TXT" ParaList="$PARALIST2" Operator="Like"></Parameter>
+						<Parameter ID="FirstName" ColName="Us_FirstName" DataType="TXT" ParaList="$PARALIST3" Operator="Like"></Parameter>
+						<Parameter ID="UserId" ColName="Us_UserId" DataType="TXT" ParaList="$PARALIST4" Operator="Like"></Parameter>
+						<Parameter ID="Password" ColName="Us_Password" DataType="TXT" ParaList="$PARALIST5" Operator="Like"></Parameter>
+						<Parameter ID="UserGroup" ColName="Us_UserGroupId" DataType="NUM" ParaList="$PARALIST6" Operator="="></Parameter>
+					</Parameters>
+				</Query>
+				<Query ID="Authorizations" Name="Authorizations" Type="ORACLE" Statement="select $ATTLIST from UM_AUTHORIZATION $PARALIST1 $PARALIST2" DifferentDataPageSizeUsed="">
+					<Attributelists>
+						<Attributelist ID="$ATTLIST"></Attributelist>
+					</Attributelists>
+					<Attributes>
+						<Attribute ID="AU_ResourceId" ColName="AU_Res_Id" ColWidthPx="10" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="AU_RoleID" ColName="AU_Ro_ID" ColWidthPx="10" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="AU_RESOURCEACCESS" ColName="AU_RESOURCEACCESS" ColWidthPx="1" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="AU_CREATE" ColName="AU_CREATE" ColWidthPx="1" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="AU_UPDATE" ColName="AU_UPDATE" ColWidthPx="1" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+						<Attribute ID="AU_DELETE" ColName="AU_DELETE" ColWidthPx="1" DataType="NUM" AttribList="$ATTLIST" DimensionAttribute="false"></Attribute>
+					</Attributes>
+					<Parameterlists>
+						<Parameterlist ID="$PARALIST1" Type="WHERE-CLAUSE" Code="where "></Parameterlist>
+						<Parameterlist ID="$PARALIST2" Type="WHERE-CLAUSE" code=" and "></Parameterlist>
+					</Parameterlists>
+					<Parameters>
+						<Parameter ID="RoleId" ColName="AU_RO_ID" DataType="NUM" ParaList="$PARALIST1" Operator="="></Parameter>
+						<Parameter ID="ResourceId" ColName="AU_RES_ID" DataType="NUM" ParaList="$PARALIST2" Operator="="></Parameter>
+					</Parameters>
+				</Query>
+			</Queries>
+		</DataAccess>
+
+	</configuration>
+</application>

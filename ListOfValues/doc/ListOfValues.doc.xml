@@ -1,0 +1,797 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ListOfValues</name>
+    </assembly>
+    <members>
+        <member name="T:de.pta.Component.ListOfValues.Internal.Attribute">
+            <summary>
+            Encapsulates an column attribute
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.Attribute.#ctor">
+            <summary>
+            Constructs an instance of the object. 
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.Attribute.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.Attribute.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.Attribute.IsPrimeryKey">
+            <summary>
+            Gets or stes the flag isPrimeryKey.
+            </summary>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.DbInformation">
+            <summary>
+            Encapsulates the connection information and the class names
+            used to process the reading from a database.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Oct/16/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.DbInformation.#ctor">
+            <summary>
+            Constructs an instance of the object.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.DbInformation.AssemblyName">
+            <summary>
+            Gets and sets the name of the assembly in which the
+            classes reside.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.DbInformation.CommandClass">
+            <summary>
+            Gets and sets the name of the command class.
+            The name should be fully specified.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.DbInformation.ConnectionClass">
+            <summary>
+            Gets and sets the name of the connection class.
+            The name should be fully specified.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.DbInformation.ConnectString">
+            <summary>
+            Gets and sets the connection string for the database.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.DbInformation.DataReaderClass">
+            <summary>
+            Gets and sets the name of the dataReader class.
+            The name should be fully specified.
+            </summary>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.FilteredListDemand">
+            <summary>
+            Encapsulates a filtered list demand.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/22/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.FilteredListDemand.#ctor">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.FilteredListDemand.ProcessFilteredDemand(System.String,System.String,System.String,System.Collections.ArrayList)">
+            <summary>
+            Processes an filtered list demand.
+            </summary>
+            <param name="listId">Id of the list.</param>
+            <param name="column">The column name.</param>
+            <param name="attributeName">Name of the column to restrict.</param>
+            <param name="attributeValues">ArrayList of strings including the values to restrict.</param>
+            <returns>An array with the list elements.</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.FilteredListDemand.ProcessFilteredDemand(System.String,System.String,System.String,System.Collections.ArrayList,System.String,System.Collections.ArrayList)">
+            <summary>
+            Processes an filtered list demand.
+            </summary>
+            <param name="listId">Id of the list.</param>
+            <param name="column">The column name.</param>
+            <param name="attributeName1">Name of the column to restrict.</param>
+            <param name="attributeValues1">ArrayList of strings including the values to restrict.</param>
+            <param name="attributeName2">Name of the column to restrict.</param>
+            <param name="attributeValues2">ArrayList of strings including the values to restrict.</param>
+            <returns>An array with the list elements.</returns>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.ListDemand">
+            <summary>
+            Abstact base class for the demands.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListDemand.#ctor">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListDemand.Localization">
+            <summary>
+            Sets and gets the localization interface.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListDemand.GetLanguageText(System.String)">
+            <summary>
+            Retrieves the language dependent text from the localization interface.
+            When no localization interface is set, the input text is returned.
+            </summary>
+            <param name="text">A String that contains the text to translate.</param>
+            <returns>Returns a string that contains the translated text.</returns>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.ListOfValues">
+            <summary>
+            Encapsulates a list of values.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValues.#ctor">
+            <summary>
+            constructs the object.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValues.Items">
+            <summary>
+            Gets the list of list of value items (read only).
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValues.ConfigAttributes">
+            <summary>
+            Gets the config attributes of the list of values (read only).
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValues.Id">
+            <summary>
+            Gets or sets the id of the list of values.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValues.ReadAlwaysNew">
+            <summary>
+            Gets and sets the flag, that indicats if a list of values
+            is read by every request.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValues.SqlStatement">
+            <summary>
+            Gets or sets the SQL statement to read the kist of
+            values from a database.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValues.ParentList">
+            <summary>
+            Gets or sets the the id of the parent list of 
+            the current list of values.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValues.RefAttribute">
+            <summary>
+            Gets or sets the reference attribute of the list of values.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValues.LocalAttribute">
+            <summary>
+            Gets or sets the local attribute of the list of values.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValues.AddConfigAttribute(de.pta.Component.ListOfValues.Internal.Attribute)">
+            <summary>
+            Adds a attribute (from the configuration) to the list of values.
+            </summary>
+            <param name="attribute">Config attribute to add.</param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValues.HasParent">
+            <summary>
+            Verifies if the list has a parent list.
+            </summary>
+            <returns>
+            Returns true if the list has a parent, otherwise false.
+            </returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValues.AddItem(de.pta.Component.ListOfValues.Internal.ListOfValuesItem)">
+            <summary>
+            Adds an new ListOfValuesItem to the internal collection.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValues.GetItemForId(System.String)">
+            <summary>
+            Gets the list of values item for the given id.
+            </summary>
+            <param name="id">Id of the list of values item.</param>
+            <returns>
+            A reference to a list of values item, if no item for the given
+            id is found, null is returned.
+            </returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValues.IsColumnOfList(System.String)">
+            <summary>
+            Evaluates, if the given column is part of the list.
+            </summary>
+            <param name="column">The column name to verify.</param>
+            <returns>
+            True, if the columns is part of the current list, otherwise false.
+            </returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValues.Clear">
+            <summary>
+            Clears the list of value. Does not initialize the object,
+            so call this method only for cleanup purposes.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValues.ClearItems">
+            <summary>
+            Clears the items
+            </summary>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.ListOfValueException">
+            <summary>
+            Exception class for the LOV component.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValueException.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValueException.#ctor(System.String)">
+            <summary>
+            Instantiating while defining a error message.
+            </summary>
+            <param name="message">message associated with the exception</param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValueException.#ctor(System.String,System.Exception)">
+            <summary>
+            Instantiating with a defined message a associated inner exception.
+            </summary>
+            <param name="message">message associated with the exception</param>
+            <param name="innerException">exception which caused this exception</param>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.ListOfValuesItem">
+            <summary>
+            
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValuesItem.#ctor(System.Int32)">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValuesItem.Id">
+            <summary>
+            Gets or sets the id of the item.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValuesItem.ChildListId">
+            <summary>
+            Gets or sets the id of the child list.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListOfValuesItem.Childs">
+            <summary>
+            Gets the child items (read only).
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValuesItem.AddChild(de.pta.Component.ListOfValues.Internal.ListOfValuesItem)">
+            <summary>
+            Adds an new entry to the childs.
+            </summary>
+            <param name="item">List of values item to add.</param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValuesItem.AddValues(System.String,System.Object)">
+            <summary>
+            Adds a key and a value to the attributes.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="obj">The value.</param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValuesItem.GetValueForAttribute(System.String)">
+            <summary>
+            The value to the requested attribute (column) name.
+            </summary>
+            <param name="attribute">Contains the attribute (column) name.</param>
+            <returns>A string that contains the value for the requested attribute.</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListOfValuesItem.ExistsAttribute(System.String)">
+            <summary>
+            Evaluates, if a column name is an attribute of the lov item.
+            </summary>
+            <param name="attribute">The attribute name (column).</param>
+            <returns>
+            True, is the column name is an attribute of the lov item, otherwise false.
+            </returns>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.ListStructure">
+            <summary>
+            Encapsulates the lists of values
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.initialize">
+            <summary>
+            Initializes the members.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.GetInstance">
+            <summary>
+            Returns the one and only instance of the class.
+            </summary>
+            <returns>
+            The instance of the ListStructure.
+            </returns>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.ListStructure.Restriction">
+            <summary>
+            Gets and sets the value for the restriction information.
+            If null is set, the value is transformed to String.Empty.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.ReadConfiguration">
+            <summary>
+            Reads the configuration.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.clearListOfValues">
+            <summary>
+            Clears all lists of values in the list structure.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.GetList(System.String)">
+            <summary>
+            Gets a list of values.
+            </summary>
+            <param name="listId">Id of the list.</param>
+            <returns>
+            A ListOfValues object reference, if the requested list is found, 
+            otherwise null.
+            </returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.AddListOfValues(de.pta.Component.ListOfValues.Internal.ListOfValues)">
+            <summary>
+            Adds a list of values.
+            </summary>
+            <param name="lov"></param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.GetChildListOfValues(System.String)">
+            <summary>
+            Returns a string that contains the id of the child list of values
+            to the given id of the parent list. If no childs are found an empty
+            string is returned.
+            </summary>
+            <param name="parentLovId">Id of the parent list.</param>
+            <returns>
+            A string with an lov id or an empty string.
+            </returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.GetNumberOfChilds(System.String)">
+            <summary>
+            Gets the number ob childs to the provided id of a list of values.
+            </summary>
+            <param name="parentLovId">The id of the parent List of values.</param>
+            <returns>
+            The numer of childs. If no childs exist 0 is returned.
+            </returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.IsColumnOfList(System.String,System.String)">
+            <summary>
+            Evaluates, if the given column is a column of the given list of values.
+            </summary>
+            <param name="column">Name of the column to verify.</param>
+            <param name="listId">Name of the list of values.</param>
+            <returns>
+            True if the list of values exists and the column is part of these list,
+            otherwise false is returned.
+            </returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.readAllLists">
+            <summary>
+            Reads the lists of values from the database.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.ListStructure.buildReferences">
+            <summary>
+            Builds the references between the lists and items.
+            </summary>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.LovConfigProcessor">
+            <summary>
+            Implements the IConfigProcessor functionality.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovConfigProcessor.#ctor">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.Internal.LovConfigProcessor.DbInfo">
+            <summary>
+            Gets the database information object.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovConfigProcessor.ProcessConfigItem(de.pta.Component.Common.ConfigNode)">
+            <summary>
+            Processes a ConfigNode of type 'item'.
+            </summary>
+            <param name="cNode"></param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovConfigProcessor.ProcessConfigBlockBegin(de.pta.Component.Common.ConfigNode)">
+            <summary>
+            Processes a ConfigNode of type 'block begin'.
+            </summary>
+            <param name="cNode"></param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovConfigProcessor.ProcessConfigBlockEnd(de.pta.Component.Common.ConfigNode)">
+            <summary>
+            Processes a ConfigNode of type 'block end'.
+            </summary>
+            <param name="cNode"></param>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.LovDataReader">
+            <summary>
+            Encpsulates the database access.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovDataReader.#ctor(de.pta.Component.ListOfValues.Internal.DbInformation)">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovDataReader.Open">
+            <summary>
+            Opens a database connection.
+            </summary>
+            <exception cref="T:de.pta.Component.ListOfValues.Internal.ListOfValueException">throws an exception if the open fails.</exception>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovDataReader.Close">
+            <summary>
+            closes the database.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovDataReader.ExecuteSql(System.String,System.String)">
+            <summary>
+            Executes a given SQL statement.
+            </summary>
+            <param name="sql">String with the SQL statement.</param>
+            <param name="restriction">String with the restriction.</param>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.LovDataReader.FillListOfValues(de.pta.Component.ListOfValues.Internal.ListOfValues)">
+            <summary>
+            Fills a list of values
+            </summary>
+            <param name="lov">Reference of the a ListOfValues object.</param>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.RootListDemand">
+            <summary>
+            Encapsulates a root list demand.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.RootListDemand.#ctor">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.RootListDemand.ProcessRootDemand(System.String,System.String)">
+            <summary>
+            Processes an root list demand.
+            </summary>
+            <param name="listId">Id of the list.</param>
+            <param name="column">The column name.</param>
+            <returns>An array with the list elements.</returns>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.Internal.SubListDemand">
+            <summary>
+            Encapsulates an sub list demand.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.SubListDemand.#ctor">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.Internal.SubListDemand.ProcessSubDemand(System.String,System.String,System.String)">
+            <summary>
+            Processes an sub list demand.
+            </summary>
+            <param name="listId">Id of the list.</param>
+            <param name="column">The column name.</param>
+            <param name="itemId">Id of the item.</param>
+            <returns>An array with the list elements.</returns>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.ILocalization">
+            <summary>
+            Interface that provides language specific information.
+            A client that uses the list of values, must implement
+            this interface and provide so the necessary information.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Sept/23/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.ILocalization.GetLocalizedText(System.String)">
+            <summary>
+            Gets a localized text.
+            The implementation of the method must localize the text provided
+            as parameter. Localization can be done by a localization manager
+            or by a database and so on.
+            If no localization is needed, the incoming text can only be returned.
+            </summary>
+            <param name="text">Text to localize.</param>
+            <returns>The localized text.</returns>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.LovItem">
+            <summary>
+            Encapsulates an entry of a list of values. 
+            </summary>
+            <remarks>
+            This class is desiged to use outside the component. It is used to exchange 
+            data over the LovSingleton interface.
+            </remarks>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovItem.#ctor">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovItem.#ctor(System.String,System.String)">
+            <summary>
+            Constructs the object with the given parameters.
+            </summary>
+            <param name="id">Id of the item.</param>
+            <param name="itemValue">Value of the item.</param>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.LovItem.Id">
+            <summary>
+            Gets or sets the id of the item.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.LovItem.IdAsLong">
+            <summary>
+            Gets the id of the item as an long value (Read only).
+            Throws an exception, when the id of the item is not
+            numeric.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.LovItem.DecId">
+            <summary>
+            Gets the id of the item as an decimal value (Read only).
+            Throws an exception, when the id of the item is not
+            numeric.
+            </summary>
+        </member>
+        <member name="P:de.pta.Component.ListOfValues.LovItem.ItemValue">
+            <summary>
+            Gets or sets the value of the item.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovItem.CompareTo(System.Object)">
+            <summary>
+            Compares the item value of the passed object with the item value of this object.
+            </summary>
+            <param name="obj">Object to compare.</param>
+            <returns>
+            Less than zero: this instance is less than obj. 
+            Zero: this instance is equal to obj. 
+            Greater than zero: this instance is greater than obj.  
+            </returns>
+            <remarks>
+            The implementation of the IComparable interface makes it possioble
+            to use the ArrayList.Sort() method.
+            </remarks>
+        </member>
+        <member name="T:de.pta.Component.ListOfValues.LovSingleton">
+            <summary>
+            Summary description for LovSingleton.
+            </summary>
+            <remarks>
+            <pre>
+            <b>History</b>
+            <b>Author:</b> M.Keller, PTA GmbH
+            <b>Date:</b> Apr/02/2003
+            <b>Remarks:</b> None
+            </pre>
+            </remarks>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.GetInstance">
+            <summary>
+            Returns the one and only instance of the Singleton.
+            </summary>
+            <returns>An instance of the LovSingleton</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.ReadConfiguration">
+            <summary>
+            Invokes the reading of the configuration. Configuration 
+            can be read more than one times. But must be called at 
+            least once.
+            However, if configuration must be reloaded you can call 
+            ReadConfiguration again.
+            </summary>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.GetRootList(de.pta.Component.ListOfValues.ILocalization,System.String,System.String)">
+            <summary>
+            Provides an ArrayList.
+            </summary>
+            <param name="local">Localization interface.</param>
+            <param name="listId">The id of the list.</param>
+            <param name="column">The column name.</param>
+            <returns>An Array list.</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.GetSubList(de.pta.Component.ListOfValues.ILocalization,System.String,System.String,System.String)">
+            <summary>
+            Provides an ArrayList.
+            </summary>
+            <param name="local">Localization interface.</param>
+            <param name="listId">The id of the list.</param>
+            /// <param name="column">The column name.</param>
+            <param name="itemId">The id of the item.</param>
+            <returns>An Array list.</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.GetFilteredList(de.pta.Component.ListOfValues.ILocalization,System.String,System.String,System.String,System.Collections.ArrayList)">
+            <summary>
+            Gets an filtered ArrayList.
+            </summary>
+            <param name="local">Localization interface.</param>
+            <param name="listId">The id of the list.</param>
+            <param name="column">The column name.</param>
+            <param name="attributeName">Name of the column to restrict.</param>
+            <param name="attributeValues">ArrayList of strings including the values to restrict.</param>
+            <returns>An Array list.</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.GetFilteredList(de.pta.Component.ListOfValues.ILocalization,System.String,System.String,System.String,System.Collections.ArrayList,System.String,System.Collections.ArrayList)">
+            <summary>
+            Gets an filtered ArrayList.
+            </summary>
+            <param name="local">Localization interface.</param>
+            <param name="listId">The id of the list.</param>
+            <param name="column">The column name.</param>
+            <param name="attributeName1">Name of the column to restrict.</param>
+            <param name="attributeValues1">ArrayList of strings including the values to restrict.</param>
+            <param name="attributeName2">Name of the column to restrict.</param>
+            <param name="attributeValues2">ArrayList of strings including the values to restrict.</param>
+            <returns>An Array list.</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.GetSubListId(System.String)">
+            <summary>
+            Returns the id of a list of values. The returned id is the child list
+            to the given parent list id.
+            </summary>
+            <param name="parentListId">Id of the parent list of values.</param>
+            <returns>An id of an list of values if found, otherwise an empty string.</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.GetNumberOfChildLists(System.String)">
+            <summary>
+            Gets the number of childs to a list of values.
+            </summary>
+            <param name="parentListId">Id of the parent list of values.</param>
+            <returns>The number of child list of values.</returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.IsColumnOfList(System.String,System.String)">
+            <summary>
+            States if the given column is a column of the given list of values.
+            </summary>
+            <param name="column">Name of the column to verify.</param>
+            <param name="listId">Name of the list of values.</param>
+            <returns>
+            True if the list of values exists and the column is part of these list,
+            otherwise false is returned.
+            </returns>
+        </member>
+        <member name="M:de.pta.Component.ListOfValues.LovSingleton.SetSqlRestriction(System.String)">
+            <summary>
+            Sets the value for the restiction. A Restriction must be configured
+            in an SQL statement in the configuration.
+            </summary>
+            <param name="restiction">Value for the restiction.</param>
+        </member>
+    </members>
+</doc>
